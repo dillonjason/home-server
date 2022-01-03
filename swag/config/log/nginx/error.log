@@ -1,2 +1,0 @@
-2022/01/02 18:15:21 [crit] 499#499: *21 SSL_read_early_data() failed (SSL: error:141CF06C:SSL routines:tls_parse_ctos_key_share:bad key share) while SSL handshaking, client: 107.178.200.217, server: 0.0.0.0:443
-2022/01/02 18:18:06 [crit] 499#499: *32 SSL_read_early_data() failed (SSL: error:141CF06C:SSL routines:tls_parse_ctos_key_share:bad key share) while SSL handshaking, client: 107.178.231.247, server: 0.0.0.0:443

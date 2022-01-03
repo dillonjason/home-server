@@ -1,1 +1,2 @@
-swag/config/dns-conf
+swag/config/*
+!swag/config/nginx
