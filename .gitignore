@@ -1,3 +1,4 @@
 swag/config/*
 !swag/config/nginx
 jellyfin
+code-server/config/code-server/config.yaml

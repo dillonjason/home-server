@@ -9,7 +9,7 @@ services:
       - PGID=985
       - TZ=America/New_York
       - URL=dillonjason.dev
-      - SUBDOMAINS=apollo,
+      - SUBDOMAINS=apollo,code-server
       - VALIDATION=dns
       - DNSPLUGIN=cloudflare
     volumes:
@@ -39,3 +39,13 @@ services:
     environment:
       - UID=1000
       - GID=985
+  code-server:
+    image: codercom/code-server:latest
+    container_name: code-server
+    volumes:
+      - ./code-server/config:/home/coder/.config
+      - /home/dillon/Projects:/home/coder/project
+    environment:
+      - UID=1000
+      - GID=985
+      - DOCKER_USER=$USER
