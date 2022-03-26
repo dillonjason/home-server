@@ -17,6 +17,16 @@ services:
     ports:
       - 443:443
     restart: unless-stopped
+  authelia:
+    image: authelia/authelia
+    container_name: authelia
+    environment:
+      - TZ=America/New_York
+      - UID=1000
+      - GID=985
+    volumes:
+      - ./authelia/config:/config
+    restart: unless-stopped
   homer:
     image: b4bz/homer:latest
     volumes: 
