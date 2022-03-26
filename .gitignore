@@ -3,3 +3,4 @@ swag/config/*
 jellyfin
 code-server/config/code-server/config.yaml
 authelia/config/configuration.yml
+deluge/*

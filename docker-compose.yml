@@ -29,7 +29,7 @@ services:
     restart: unless-stopped
   homer:
     image: b4bz/homer:latest
-    volumes: 
+    volumes:
       - ./homer/assets:/www/assets
     ports:
       - 8080:8080
@@ -59,3 +59,12 @@ services:
       - UID=1000
       - GID=985
       - DOCKER_USER=$USER
+  deluge:
+    image: binhex/arch-delugevpn
+    container_name: deluge
+    restart: "unless-stopped"
+    env_file:
+      - ./deluge/.env
+    volumes:
+      - ./deluge/data:/data
+      - ./deluge/config:/config
