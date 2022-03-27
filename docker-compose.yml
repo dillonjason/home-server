@@ -63,7 +63,7 @@ services:
     volumes:
       - ./jellyfin/config:/config
       - ./jellyfin/cache:/cache
-      - /mnt/Media:/media
+      - /mnt/Media/media:/media
     restart: "unless-stopped"
     environment:
       - TZ=America/New_York
@@ -119,8 +119,7 @@ services:
       - TZ=America/New_York
     volumes:
       - ./sonarr/config:/config
-      - ./sonarr/tv:/tv
-      - ./sonarr/downloads:/downloads
+      - /mnt/Media:/data
     restart: unless-stopped
     ports:
       - 8989:8989
