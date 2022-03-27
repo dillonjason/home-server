@@ -9,3 +9,4 @@ deluge/*
 redis/data
 transmission/data/transmission-home/*
 transmission/.env
+jackett/*
