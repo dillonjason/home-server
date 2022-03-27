@@ -108,5 +108,5 @@ services:
       - AUTO_UPDATE=true
     volumes:
       - ./jackett/config:/config
-      - ./jackkett/downloads:/downloads
+      - ./jackett/downloads:/downloads
     restart: unless-stopped
