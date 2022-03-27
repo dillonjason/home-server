@@ -1,3 +1,11 @@
+secrets:
+  jwt:
+    file: ./authelia/secrets/jwt
+  encryption_key:
+    file: ./authelia/secrets/encryption_key
+  smtp:
+    file: ./authelia/secrets/smtp
+
 services:
   swag:
     image: ghcr.io/linuxserver/swag
@@ -20,7 +28,14 @@ services:
   authelia:
     image: authelia/authelia
     container_name: authelia
+    secrets:
+      - jwt
+      - smtp
+      - encryption_key
     environment:
+      - AUTHELIA_JWT_SECRET_FILE=/run/secrets/jwt
+      - AUTHELIA_STORAGE_ENCRYPTION_KEY_FILE=/run/secrets/encryption_key
+      - AUTHELIA_NOTIFIER_SMTP_PASSWORD_FILE=/run/secrets/smtp
       - TZ=America/New_York
       - UID=1000
       - GID=985

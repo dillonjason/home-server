@@ -2,5 +2,7 @@ swag/config/*
 !swag/config/nginx
 jellyfin
 code-server/config/code-server/config.yaml
-authelia/config/configuration.yml
+authelia/config/*
+authelia/secrets
+!authelia/config/configuration.yml
 deluge/*
