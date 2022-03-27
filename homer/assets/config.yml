@@ -50,19 +50,7 @@ message:
 
 # Optional navbar
 # links: [] # Allows for navbar (dark mode, layout, and search) without any links
-links:
-  - name: "Contribute"
-    icon: "fab fa-github"
-    url: "https://github.com/bastienwirtz/homer"
-    target: "_blank" # optional html a tag target attribute
-  - name: "Wiki"
-    icon: "fas fa-book"
-    url: "https://www.wikipedia.org/"
-  # this will link to a second homer page that will load config from additionnal-page.yml and keep default config values as in config.yml file
-  # see url field and assets/additionnal-page.yml.dist used in this example:
-  - name: "another page!"
-    icon: "fas fa-file-alt"
-    url: "#additionnal-page" 
+links: []
 
 # Services
 # First level array represent a group.
@@ -71,14 +59,30 @@ services:
   - name: "Applications"
     icon: "fas fa-cloud"
     items:
-      - name: "Awesome app"
+      - name: "Code Server"
         logo: "assets/tools/sample.png"
-        subtitle: "Bookmark example"
+        subtitle: "VSCode available anywhere"
         tag: "app"
-        url: "https://www.reddit.com/r/selfhosted/"
-        target: "_blank" # optional html a tag target attribute
-      - name: "Another one"
-        logo: "assets/tools/sample2.png"
-        subtitle: "Another application"
+        url: "https://code-server.dillonjason.dev/"
+        target: "_blank"
+      - name: "Transmission"
+        logo: "assets/tools/sample.png"
+        subtitle: "Check on them torrents"
         tag: "app"
-        url: "#"
+        url: "https://apollo.dillonjason.dev/transmission"
+        target: "_blank"
+      - name: "Jellyfin"
+        logo: "assets/tools/sample.png"
+        subtitle: "Watch something?"
+        tag: "app"
+        url: "https://apollo.dillonjason.dev/jellyfin"
+        target: "_blank"
+  - name: "Services"
+    icon: "fas fa-cloud"
+    items:
+      - name: "Jackett"
+        logo: "assets/tools/sample.png"
+        subtitle: ""
+        tag: "app"
+        url: "https://apollo.dillonjason.dev/jackett"
+        target: "_blank"
