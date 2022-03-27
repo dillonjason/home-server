@@ -80,15 +80,16 @@ services:
       - GID=985
       - DOCKER_USER=$USER
       - TZ=America/New_York
-  deluge:
-    image: binhex/arch-delugevpn
-    container_name: deluge
+  transmission:
+    image: haugene/transmission-openvpn
+    container_name: transmission
     restart: "unless-stopped"
-    env_file:
-      - ./deluge/.env
     volumes:
-      - ./deluge/data:/data
-      - ./deluge/config:/config
+      - ./transmission/data:/data
+    cap_add:
+      - NET_ADMIN
+    env_file:
+      - ./transmission/.env
   redis:
     image: redis:alpine
     container_name: redis

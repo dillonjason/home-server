@@ -332,7 +332,7 @@ access_control:
 
   rules:
     ## Rules applied to everyone
-    - domain: "code-server.dillonjason.dev"
+    - domain: "apollo.dillonjason.dev"
       policy: one_factor
 
     # - domain: secure.example.com

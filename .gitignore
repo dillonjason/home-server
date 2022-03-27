@@ -7,3 +7,5 @@ authelia/secrets
 !authelia/config/configuration.yml
 deluge/*
 redis/data
+transmission/data/transmission-home/*
+transmission/.env
