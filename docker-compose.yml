@@ -121,5 +121,3 @@ services:
       - ./sonarr/config:/config
       - /mnt/Media:/data
     restart: unless-stopped
-    ports:
-      - 8989:8989
