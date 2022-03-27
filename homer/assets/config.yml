@@ -86,3 +86,12 @@ services:
         tag: "app"
         url: "https://apollo.dillonjason.dev/jackett"
         target: "_blank"
+  - name: "Downloads"
+    icon: "fas fa-cloud"
+    items:
+      - name: "Sonarr"
+        logo: "assets/tools/sample.png"
+        subtitle: "Search for TV shows"
+        tag: "app"
+        url: "https://apollo.dillonjason.dev/sonarr"
+        target: "_blank"

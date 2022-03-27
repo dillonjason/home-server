@@ -110,3 +110,17 @@ services:
       - ./jackett/config:/config
       - ./jackett/downloads:/downloads
     restart: unless-stopped
+  sonarr:
+    image: lscr.io/linuxserver/sonarr
+    container_name: sonarr
+    environment:
+      - PUID=1000
+      - PGID=985
+      - TZ=America/New_York
+    volumes:
+      - ./sonarr/config:/config
+      - ./sonarr/tv:/tv
+      - ./sonarr/downloads:/downloads
+    restart: unless-stopped
+    ports:
+      - 8989:8989
