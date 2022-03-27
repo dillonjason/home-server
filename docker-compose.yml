@@ -121,3 +121,14 @@ services:
       - ./sonarr/config:/config
       - /mnt/Media:/data
     restart: unless-stopped
+  radarr:
+    image: lscr.io/linuxserver/radarr
+    container_name: radarr
+    environment:
+      - PUID=1000
+      - PGID=985
+      - TZ=America/New_York
+    volumes:
+      - ./radarr/config:/config
+      - /mnt/Media:/data
+    restart: unless-stopped

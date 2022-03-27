@@ -11,3 +11,4 @@ transmission/data/transmission-home/*
 transmission/.env
 jackett/*
 sonarr/*
+radarr/*
