@@ -5,6 +5,8 @@ secrets:
     file: ./authelia/secrets/encryption_key
   smtp:
     file: ./authelia/secrets/smtp
+  session:
+    file: ./authelia/secrets/session
 
 services:
   swag:
@@ -32,10 +34,12 @@ services:
       - jwt
       - smtp
       - encryption_key
+      - session
     environment:
       - AUTHELIA_JWT_SECRET_FILE=/run/secrets/jwt
       - AUTHELIA_STORAGE_ENCRYPTION_KEY_FILE=/run/secrets/encryption_key
       - AUTHELIA_NOTIFIER_SMTP_PASSWORD_FILE=/run/secrets/smtp
+      - AUTHELIA_SESSION_SECRET_FILE=/run/secrets/session
       - TZ=America/New_York
       - UID=1000
       - GID=985
@@ -62,6 +66,7 @@ services:
       - /mnt/Media:/media
     restart: "unless-stopped"
     environment:
+      - TZ=America/New_York
       - UID=1000
       - GID=985
   code-server:
@@ -74,6 +79,7 @@ services:
       - UID=1000
       - GID=985
       - DOCKER_USER=$USER
+      - TZ=America/New_York
   deluge:
     image: binhex/arch-delugevpn
     container_name: deluge
@@ -83,3 +89,11 @@ services:
     volumes:
       - ./deluge/data:/data
       - ./deluge/config:/config
+  redis:
+    image: redis:alpine
+    container_name: redis
+    volumes:
+      - ./redis/data:/data
+    restart: unless-stopped
+    environment:
+      - TZ=America/New_York

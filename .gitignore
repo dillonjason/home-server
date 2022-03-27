@@ -6,3 +6,4 @@ authelia/config/*
 authelia/secrets
 !authelia/config/configuration.yml
 deluge/*
+redis/data

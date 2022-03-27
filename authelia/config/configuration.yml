@@ -12,7 +12,7 @@
 # certificates_directory: /config/certificates/
 
 ## The theme to display: light, dark, grey, auto.
-theme: light
+theme: auto
 
 ## The secret used to generate JWT tokens when validating user identity by email confirmation. JWT Secret can also be
 ## set using a secret: https://www.authelia.com/docs/configuration/secrets.html
@@ -40,7 +40,7 @@ server:
 
   ## Set the single level path Authelia listens on.
   ## Must be alphanumeric chars and should not contain any slashes.
-  path: ""
+  path: "authelia"
 
   ## Set the path on disk to Authelia assets.
   ## Useful to allow overriding of specific static assets.
@@ -53,23 +53,23 @@ server:
   read_buffer_size: 4096
   write_buffer_size: 4096
 
-  ## Enables the pprof endpoint.
-  enable_pprof: false
+  # ## Enables the pprof endpoint.
+  # enable_pprof: false
 
-  ## Enables the expvars endpoint.
-  enable_expvars: false
+  # ## Enables the expvars endpoint.
+  # enable_expvars: false
 
-  ## Disables writing the health check vars to /app/.healthcheck.env which makes healthcheck.sh return exit code 0.
-  ## This is disabled by default if either /app/.healthcheck.env or /app/healthcheck.sh do not exist.
-  disable_healthcheck: false
+  # ## Disables writing the health check vars to /app/.healthcheck.env which makes healthcheck.sh return exit code 0.
+  # ## This is disabled by default if either /app/.healthcheck.env or /app/healthcheck.sh do not exist.
+  # disable_healthcheck: false
 
-  ## Authelia by default doesn't accept TLS communication on the server port. This section overrides this behaviour.
-  tls:
-    ## The path to the DER base64/PEM format private key.
-    key: ""
+  # ## Authelia by default doesn't accept TLS communication on the server port. This section overrides this behaviour.
+  # tls:
+  #   ## The path to the DER base64/PEM format private key.
+  #   key: ""
 
-    ## The path to the DER base64/PEM format public certificate.
-    certificate: ""
+  #   ## The path to the DER base64/PEM format public certificate.
+  #   certificate: ""
 
 ##
 ## Log Configuration
@@ -91,29 +91,29 @@ log:
 ## TOTP Configuration
 ##
 ## Parameters used for TOTP generation.
-totp:
-  ## The issuer name displayed in the Authenticator application of your choice.
-  issuer: apollo.dillonjason.dev
+# totp:
+#   ## The issuer name displayed in the Authenticator application of your choice.
+#   issuer: apollo.dillonjason.dev
 
-  ## The TOTP algorithm to use.
-  ## It is CRITICAL you read the documentation before changing this option:
-  ## https://www.authelia.com/docs/configuration/one-time-password.html#algorithm
-  algorithm: sha1
+#   ## The TOTP algorithm to use.
+#   ## It is CRITICAL you read the documentation before changing this option:
+#   ## https://www.authelia.com/docs/configuration/one-time-password.html#algorithm
+#   algorithm: sha1
 
-  ## The number of digits a user has to input. Must either be 6 or 8.
-  ## Changing this option only affects newly generated TOTP configurations.
-  ## It is CRITICAL you read the documentation before changing this option:
-  ## https://www.authelia.com/docs/configuration/one-time-password.html#digits
-  digits: 6
+#   ## The number of digits a user has to input. Must either be 6 or 8.
+#   ## Changing this option only affects newly generated TOTP configurations.
+#   ## It is CRITICAL you read the documentation before changing this option:
+#   ## https://www.authelia.com/docs/configuration/one-time-password.html#digits
+#   digits: 6
 
-  ## The period in seconds a one-time password is valid for.
-  ## Changing this option only affects newly generated TOTP configurations.
-  period: 30
+#   ## The period in seconds a one-time password is valid for.
+#   ## Changing this option only affects newly generated TOTP configurations.
+#   period: 30
 
-  ## The skew controls number of one-time passwords either side of the current one that are valid.
-  ## Warning: before changing skew read the docs link below.
-  skew: 1
-  ## See: https://www.authelia.com/docs/configuration/one-time-password.html#input-validation to read the documentation.
+#   ## The skew controls number of one-time passwords either side of the current one that are valid.
+#   ## Warning: before changing skew read the docs link below.
+#   skew: 1
+#   ## See: https://www.authelia.com/docs/configuration/one-time-password.html#input-validation to read the documentation.
 
 ##
 ## Duo Push API Configuration
@@ -131,24 +131,24 @@ totp:
 ## NTP Configuration
 ##
 ## This is used to validate the servers time is accurate enough to validate TOTP.
-ntp:
-  ## NTP server address.
-  address: "time.cloudflare.com:123"
+# ntp:
+#   ## NTP server address.
+#   address: "time.cloudflare.com:123"
 
-  ## NTP version.
-  version: 4
+#   ## NTP version.
+#   version: 4
 
-  ## Maximum allowed time offset between the host and the NTP server.
-  max_desync: 3s
+#   ## Maximum allowed time offset between the host and the NTP server.
+#   max_desync: 3s
 
-  ## Disables the NTP check on startup entirely. This means Authelia will not contact a remote service at all if you
-  ## set this to true, and can operate in a truly offline mode.
-  disable_startup_check: false
+#   ## Disables the NTP check on startup entirely. This means Authelia will not contact a remote service at all if you
+#   ## set this to true, and can operate in a truly offline mode.
+#   disable_startup_check: false
 
-  ## The default of false will prevent startup only if we can contact the NTP server and the time is out of sync with
-  ## the NTP server more than the configured max_desync. If you set this to true, an error will be logged but startup
-  ## will continue regardless of results.
-  disable_failure: false
+#   ## The default of false will prevent startup only if we can contact the NTP server and the time is out of sync with
+#   ## the NTP server more than the configured max_desync. If you set this to true, an error will be logged but startup
+#   ## will continue regardless of results.
+#   disable_failure: false
 
 ##
 ## Authentication Backend Provider Configuration
@@ -158,7 +158,7 @@ ntp:
 ## The available providers are: `file`, `ldap`. You must use only one of these providers.
 authentication_backend:
   ## Disable both the HTML element and the API for reset password functionality.
-  disable_reset_password: false
+  # disable_reset_password: false
 
   ## The amount of time to wait before we refresh data from the authentication backend. Uses duration notation.
   ## To disable this feature set it to 'disable', this will slightly reduce security because for Authelia, users will
@@ -332,7 +332,7 @@ access_control:
 
   rules:
     ## Rules applied to everyone
-    - domain: "*.dillonjason.dev"
+    - domain: "code-server.dillonjason.dev"
       policy: one_factor
 
     # - domain: secure.example.com
@@ -438,9 +438,9 @@ session:
   ##
   ## Important: Kubernetes (or HA) users must read https://www.authelia.com/docs/features/statelessness.html
   ##
-  # redis:
-    # host: 127.0.0.1
-    # port: 6379
+  redis:
+    host: redis
+    port: 6379
     ## Use a unix socket instead
     # host: /var/run/redis/redis.sock
 
