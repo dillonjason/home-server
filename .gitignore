@@ -12,3 +12,4 @@ transmission/.env
 jackett/*
 sonarr/*
 radarr/*
+transmission/*
