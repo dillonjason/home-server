@@ -75,6 +75,7 @@ services:
     volumes:
       - ./code-server/config:/home/coder/.config
       - /home/dillon/Projects:/home/coder/project
+      - /home/dillon/Packages/home-server:/home/coder/home-server
     environment:
       - UID=1000
       - GID=985
