@@ -332,7 +332,7 @@ access_control:
 
   rules:
     ## Rules applied to everyone
-    - domain: "apollo.dillonjason.dev"
+    - domain: "*.dillonjason.dev"
       policy: two_factor
 
     # - domain: secure.example.com
@@ -406,7 +406,7 @@ session:
   ## The domain to protect.
   ## Note: the authenticator must also be in that domain.
   ## If empty, the cookie is restricted to the subdomain of the issuer.
-  domain: apollo.dillonjason.dev
+  domain: dillonjason.dev
 
   ## Sets the Cookie SameSite value. Possible options are none, lax, or strict.
   ## Please read https://www.authelia.com/docs/configuration/session/#same_site
