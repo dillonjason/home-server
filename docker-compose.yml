@@ -11,6 +11,8 @@ secrets:
 volumes:
   prometheus-data:
     driver: local
+  portainer-data:
+    driver: local
 
 services:
   swag:
@@ -184,3 +186,10 @@ services:
     devices:
       - /dev/kmsg
     restart: unless-stopped
+  portainer:
+    image: portainer/portainer-ce
+    container_name: portainer
+    volumes:
+      - portainer-data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: always
