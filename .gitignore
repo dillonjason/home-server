@@ -13,3 +13,4 @@ jackett/*
 sonarr/*
 radarr/*
 transmission/*
+grafana/data/*

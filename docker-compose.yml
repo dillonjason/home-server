@@ -134,3 +134,17 @@ services:
       - ./radarr/config:/config
       - /mnt/Media:/data
     restart: unless-stopped
+  grafana:
+    image: grafana/grafana-oss
+    container_name: grafana
+    user: "1000"
+    environment:
+      - PUID=1000
+      - PGID=985
+      - TZ=America/New_York
+      - GF_SERVER_ROOT_URL=https://apollo.dillonjason.dev/grafana
+      - GF_SERVER_DOMAIN=https://apollo.dillonjason.dev/
+    volumes:
+      - ./grafana/data:/var/lib/grafana
+      - ./grafana/config/grafana.ini:/etc/grafana/grafana.ini
+    restart: unless-stopped
