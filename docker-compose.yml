@@ -8,6 +8,10 @@ secrets:
   session:
     file: ./authelia/secrets/session
 
+volumes:
+  prometheus-data:
+    driver: local
+
 services:
   swag:
     image: ghcr.io/linuxserver/swag
@@ -148,3 +152,14 @@ services:
       - ./grafana/data:/var/lib/grafana
       - ./grafana/config/grafana.ini:/etc/grafana/grafana.ini
     restart: unless-stopped
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    volumes:
+      - ./prometheus/config:/config
+      - prometheus-data:/prometheus
+    restart: unless-stopped
+    command:
+      - "--config.file=/config/prometheus.yml"
+      - "--web.external-url=https://prometheus.dillonjason.dev"
+      - "--web.route-prefix=/"
