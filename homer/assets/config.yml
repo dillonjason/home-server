@@ -78,6 +78,12 @@ services:
         tag: "tool"
         url: "https://code-server.dillonjason.dev/"
         target: "_blank"
+      - name: "Virt Manager"
+        logo: "assets/tools/virt-manager.png"
+        subtitle: "Manage kvm virtual machines"
+        tag: "tool"
+        url: "https://virt-manager.dillonjason.dev/"
+        target: "_blank"
   - name: "Services"
     icon: "fas fa-cogs"
     items:

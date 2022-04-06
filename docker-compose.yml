@@ -193,3 +193,16 @@ services:
       - portainer-data:/data
       - /var/run/docker.sock:/var/run/docker.sock
     restart: always
+  virt-manager:
+    image: mber5/virt-manager
+    container_name: virt-manager
+    ports:
+      - 8185:80
+    restart: always
+    environment:
+      HOSTS: "['qemu:///system']"
+    volumes:
+      - "/var/run/libvirt/libvirt-sock:/var/run/libvirt/libvirt-sock"
+      - "/var/lib/libvirt/images:/var/lib/libvirt/images"
+    devices:
+      - "/dev/kvm:/dev/kvm"
