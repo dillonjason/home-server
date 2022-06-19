@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "homebridge": "^1.4.1",
+    "homebridge-config-ui-x": "^4.47.0"
+  }
+}

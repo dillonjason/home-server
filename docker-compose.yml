@@ -206,3 +206,14 @@ services:
       - "/var/lib/libvirt/images:/var/lib/libvirt/images"
     devices:
       - "/dev/kvm:/dev/kvm"
+  homebridge:
+    image: oznu/homebridge:ubuntu
+    container_name: homebridge
+    restart: always
+    environment:
+      - PUID=1000
+      - PGID=985
+      - TZ=America/New_York
+      - HOMEBRIDGE_CONFIG_UI_PORT=8581
+    volumes:
+      - ./homebridge:/homebridge

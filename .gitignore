@@ -14,3 +14,11 @@ sonarr/*
 radarr/*
 transmission/*
 grafana/data/*
+**/node_modules
+homebridge/.uix-secrets
+homebridge/persist/AccessoryInfo.0E2A34CDCAA0.json
+homebridge/persist/IdentifierCache.0E2A34CDCAA0.json
+homebridge/accessories/cachedAccessories
+homebridge/auth.json
+homebridge/homebridge.log
+homebridge/homebridge
