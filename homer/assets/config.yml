@@ -69,6 +69,12 @@ services:
         tag: "download"
         url: "https://apollo.dillonjason.dev/radarr"
         target: "_blank"
+      - name: "Bazarr"
+        logo: "assets/tools/bazarr.png"
+        subtitle: "Search for subtitles"
+        tag: "download"
+        url: "https://apollo.dillonjason.dev/bazarr"
+        target: "_blank"
   - name: "Tools"
     icon: "fas fa-laptop-code"
     items:
