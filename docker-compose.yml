@@ -210,6 +210,9 @@ services:
     image: oznu/homebridge:ubuntu
     container_name: homebridge
     restart: always
+    network_mode: host
+    ports:
+      - '8581:8581'
     environment:
       - PUID=1000
       - PGID=985
@@ -217,3 +220,17 @@ services:
       - HOMEBRIDGE_CONFIG_UI_PORT=8581
     volumes:
       - ./homebridge:/homebridge
+  bazarr:
+    image: lscr.io/linuxserver/bazarr:latest
+    container_name: bazarr
+    environment:
+      - PUID=1000
+      - PGID=985
+      - TZ=America/New_York
+    volumes:
+      - ./bazarr:/config
+      - /mnt/Media/media/movies:/movies
+      - /mnt/Media/media/tv:/tv
+    ports:
+      - 6767:6767
+    restart: unless-stopped
