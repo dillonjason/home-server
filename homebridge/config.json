@@ -12,6 +12,20 @@
             "name": "Config",
             "port": 8581,
             "platform": "config"
+        },
+        {
+            "name": "Nest",
+            "refreshToken": "1//0dTqQ0Fdetzs5CgYIARAAGA0SNwF-L9IrKEP0_kxvAVwol1PqB7J8cJZNmIspZZxZn03u39j4YjLH6dr2QiNPQbJCuzjBsmXqVIQ",
+            "platform": "Nest"
+        },
+        {
+            "name": "TplinkSmarthome",
+            "addCustomCharacteristics": true,
+            "deviceTypes": [
+                "plug",
+                "bulb"
+            ],
+            "platform": "TplinkSmarthome"
         }
     ]
 }
