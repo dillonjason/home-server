@@ -132,3 +132,12 @@ services:
         tag: "tool"
         url: "https://apollo.dillonjason.dev/portainer"
         target: "_blank"
+  - name: "Home Automation"
+    icon: "fas fa-home"
+    items:
+      - name: "Homebridge"
+        logo: "assets/tools/homebridge.png"
+        subtitle: "Route devices to homekit"
+        tag: "home"
+        url: "https://homebridge.dillonjason.dev"
+        target: "_blank"
