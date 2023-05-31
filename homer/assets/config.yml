@@ -135,6 +135,12 @@ services:
   - name: "Home Automation"
     icon: "fas fa-home"
     items:
+      - name: "Home Assistant"
+        logo: "assets/tools/homeassistant.png"
+        subtitle: "Control home automations"
+        tag: "home"
+        url: "https://homeassistant.dillonjason.dev"
+        target: "_blank"
       - name: "Homebridge"
         logo: "assets/tools/homebridge.png"
         subtitle: "Route devices to homekit"

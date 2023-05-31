@@ -49,3 +49,4 @@ homeassistant/.storage/trace.saved_traces
 homeassistant/blueprints/automation/homeassistant/motion_light.yaml
 homeassistant/blueprints/automation/homeassistant/notify_leaving_zone.yaml
 homeassistant/blueprints/script/homeassistant/confirmable_notification.yaml
+homeassistant/.storage/*
