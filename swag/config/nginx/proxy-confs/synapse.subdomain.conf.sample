@@ -1,12 +1,12 @@
-## Version 2022/09/08
+## Version 2023/05/31
 
 server {
     listen 443 ssl http2;
     listen [::]:443 ssl http2;
 
     # For the federation port
-    listen 8448 ssl http2 default_server;
-    listen [::]:8448 ssl http2 default_server;
+    listen 8448 ssl;
+    listen [::]:8448 ssl;
 
     server_name matrix.*;
 
@@ -20,6 +20,9 @@ server {
     # enable for Authelia (requires authelia-location.conf in the location block)
     #include /config/nginx/authelia-server.conf;
 
+    # enable for Authentik (requires authentik-location.conf in the location block)
+    #include /config/nginx/authentik-server.conf;
+
     location / {
         # enable the next two lines for http auth
         #auth_basic "Restricted";
@@ -30,6 +33,9 @@ server {
 
         # enable for Authelia (requires authelia-server.conf in the server block)
         #include /config/nginx/authelia-location.conf;
+
+        # enable for Authentik (requires authentik-server.conf in the server block)
+        #include /config/nginx/authentik-location.conf;
 
         include /config/nginx/proxy.conf;
         include /config/nginx/resolver.conf;
