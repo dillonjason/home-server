@@ -212,6 +212,7 @@ services:
     volumes:
       - "/var/run/libvirt/libvirt-sock:/var/run/libvirt/libvirt-sock"
       - "/var/lib/libvirt/images:/var/lib/libvirt/images"
+      - "/dev/disk:/dev/disk"
     devices:
       - "/dev/kvm:/dev/kvm"
   homebridge:
