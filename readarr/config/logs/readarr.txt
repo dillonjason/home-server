@@ -1,0 +1,442 @@
+2026-04-02 02:23:31.5|Warn|DownloadMonitoringService|Unable to retrieve queue and history items from Transmission
+
+[v0.4.17.2801] System.Net.Http.HttpRequestException: Resource temporarily unavailable (transmission:9091)
+ ---> System.Net.Sockets.SocketException (11): Resource temporarily unavailable
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|277_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+   at NzbDrone.Common.Http.Dispatchers.ManagedHttpDispatcher.attemptConnection(AddressFamily addressFamily, SocketsHttpConnectionContext context, CancellationToken cancellationToken) in ./Readarr.Common/Http/Dispatchers/ManagedHttpDispatcher.cs:line 340
+   at NzbDrone.Common.Http.Dispatchers.ManagedHttpDispatcher.onConnect(SocketsHttpConnectionContext context, CancellationToken cancellationToken) in ./Readarr.Common/Http/Dispatchers/ManagedHttpDispatcher.cs:line 316
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.AddHttp11ConnectionAsync(HttpRequestMessage request)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.GetHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.AuthenticationHelper.SendWithAuthAsync(HttpRequestMessage request, Uri authUri, Boolean async, ICredentials credentials, Boolean preAuthenticate, Boolean isProxyAuth, Boolean doRequestAuth, HttpConnectionPool pool, CancellationToken cancellationToken)
+   at System.Net.Http.DecompressionHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at NzbDrone.Common.Http.Dispatchers.ManagedHttpDispatcher.GetResponseAsync(HttpRequest request, CookieContainer cookies) in ./Readarr.Common/Http/Dispatchers/ManagedHttpDispatcher.cs:line 116
+   at NzbDrone.Common.Http.HttpClient.ExecuteRequestAsync(HttpRequest request, CookieContainer cookieContainer) in ./Readarr.Common/Http/HttpClient.cs:line 157
+   at NzbDrone.Common.Http.HttpClient.ExecuteAsync(HttpRequest request) in ./Readarr.Common/Http/HttpClient.cs:line 70
+   at NzbDrone.Common.Http.HttpClient.Execute(HttpRequest request) in ./Readarr.Common/Http/HttpClient.cs:line 128
+   at NzbDrone.Core.Download.Clients.Transmission.TransmissionProxy.ProcessRequest(String action, Object arguments, TransmissionSettings settings) in ./Readarr.Core/Download/Clients/Transmission/TransmissionProxy.cs:line 319
+   at NzbDrone.Core.Download.Clients.Transmission.TransmissionProxy.GetTorrentStatus(IEnumerable`1 hashStrings, TransmissionSettings settings) in ./Readarr.Core/Download/Clients/Transmission/TransmissionProxy.cs:line 194
+   at NzbDrone.Core.Download.Clients.Transmission.TransmissionProxy.GetTorrents(TransmissionSettings settings) in ./Readarr.Core/Download/Clients/Transmission/TransmissionProxy.cs:line 44
+   at NzbDrone.Core.Download.Clients.Transmission.TransmissionBase.GetItems() in ./Readarr.Core/Download/Clients/Transmission/TransmissionBase.cs:line 38
+   at NzbDrone.Core.Download.TrackedDownloads.DownloadMonitoringService.ProcessClientDownloads(IDownloadClient downloadClient) in ./Readarr.Core/Download/TrackedDownloads/DownloadMonitoringService.cs:line 89
+
+
+2026-04-02 02:29:31.5|Warn|DownloadMonitoringService|Unable to retrieve queue and history items from Transmission
+
+[v0.4.17.2801] System.Net.Http.HttpRequestException: Resource temporarily unavailable (transmission:9091)
+ ---> System.Net.Sockets.SocketException (11): Resource temporarily unavailable
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|277_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+   at NzbDrone.Common.Http.Dispatchers.ManagedHttpDispatcher.attemptConnection(AddressFamily addressFamily, SocketsHttpConnectionContext context, CancellationToken cancellationToken) in ./Readarr.Common/Http/Dispatchers/ManagedHttpDispatcher.cs:line 340
+   at NzbDrone.Common.Http.Dispatchers.ManagedHttpDispatcher.onConnect(SocketsHttpConnectionContext context, CancellationToken cancellationToken) in ./Readarr.Common/Http/Dispatchers/ManagedHttpDispatcher.cs:line 316
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.AddHttp11ConnectionAsync(HttpRequestMessage request)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.GetHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.AuthenticationHelper.SendWithAuthAsync(HttpRequestMessage request, Uri authUri, Boolean async, ICredentials credentials, Boolean preAuthenticate, Boolean isProxyAuth, Boolean doRequestAuth, HttpConnectionPool pool, CancellationToken cancellationToken)
+   at System.Net.Http.DecompressionHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at NzbDrone.Common.Http.Dispatchers.ManagedHttpDispatcher.GetResponseAsync(HttpRequest request, CookieContainer cookies) in ./Readarr.Common/Http/Dispatchers/ManagedHttpDispatcher.cs:line 116
+   at NzbDrone.Common.Http.HttpClient.ExecuteRequestAsync(HttpRequest request, CookieContainer cookieContainer) in ./Readarr.Common/Http/HttpClient.cs:line 157
+   at NzbDrone.Common.Http.HttpClient.ExecuteAsync(HttpRequest request) in ./Readarr.Common/Http/HttpClient.cs:line 70
+   at NzbDrone.Common.Http.HttpClient.Execute(HttpRequest request) in ./Readarr.Common/Http/HttpClient.cs:line 128
+   at NzbDrone.Core.Download.Clients.Transmission.TransmissionProxy.ProcessRequest(String action, Object arguments, TransmissionSettings settings) in ./Readarr.Core/Download/Clients/Transmission/TransmissionProxy.cs:line 319
+   at NzbDrone.Core.Download.Clients.Transmission.TransmissionProxy.GetTorrentStatus(IEnumerable`1 hashStrings, TransmissionSettings settings) in ./Readarr.Core/Download/Clients/Transmission/TransmissionProxy.cs:line 194
+   at NzbDrone.Core.Download.Clients.Transmission.TransmissionProxy.GetTorrents(TransmissionSettings settings) in ./Readarr.Core/Download/Clients/Transmission/TransmissionProxy.cs:line 44
+   at NzbDrone.Core.Download.Clients.Transmission.TransmissionBase.GetItems() in ./Readarr.Core/Download/Clients/Transmission/TransmissionBase.cs:line 38
+   at NzbDrone.Core.Download.TrackedDownloads.DownloadMonitoringService.ProcessClientDownloads(IDownloadClient downloadClient) in ./Readarr.Core/Download/TrackedDownloads/DownloadMonitoringService.cs:line 89
+
+
+2026-04-02 02:30:26.5|Info|RssSyncService|Starting RSS Sync
+2026-04-02 02:30:31.5|Error|Torznab|An error occurred while processing feed. https://apollo.dillonjason.dev/jackett/api/v2.0/indexers/thepiratebay/results/torznab/api?t=book&cat=3000,3030,7000,7020,7030,7050,100102,100601,100602&extended=1&apikey=(removed)&offset=0&limit=100
+
+[v0.4.17.2801] System.Net.Http.HttpRequestException: Resource temporarily unavailable (apollo.dillonjason.dev:443)
+ ---> System.Net.Sockets.SocketException (11): Resource temporarily unavailable
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|277_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+   at NzbDrone.Common.Http.Dispatchers.ManagedHttpDispatcher.attemptConnection(AddressFamily addressFamily, SocketsHttpConnectionContext context, CancellationToken cancellationToken) in ./Readarr.Common/Http/Dispatchers/ManagedHttpDispatcher.cs:line 340
+   at NzbDrone.Common.Http.Dispatchers.ManagedHttpDispatcher.onConnect(SocketsHttpConnectionContext context, CancellationToken cancellationToken) in ./Readarr.Common/Http/Dispatchers/ManagedHttpDispatcher.cs:line 316
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.AddHttp2ConnectionAsync(HttpRequestMessage request)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.GetHttp2ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.AuthenticationHelper.SendWithAuthAsync(HttpRequestMessage request, Uri authUri, Boolean async, ICredentials credentials, Boolean preAuthenticate, Boolean isProxyAuth, Boolean doRequestAuth, HttpConnectionPool pool, CancellationToken cancellationToken)
+   at System.Net.Http.DecompressionHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at NzbDrone.Common.Http.Dispatchers.ManagedHttpDispatcher.GetResponseAsync(HttpRequest request, CookieContainer cookies) in ./Readarr.Common/Http/Dispatchers/ManagedHttpDispatcher.cs:line 116
+   at NzbDrone.Common.Http.HttpClient.ExecuteRequestAsync(HttpRequest request, CookieContainer cookieContainer) in ./Readarr.Common/Http/HttpClient.cs:line 157
+   at NzbDrone.Common.Http.HttpClient.ExecuteAsync(HttpRequest request) in ./Readarr.Common/Http/HttpClient.cs:line 70
+   at NzbDrone.Core.Indexers.HttpIndexerBase`1.FetchIndexerResponse(IndexerRequest request) in ./Readarr.Core/Indexers/HttpIndexerBase.cs:line 312
+   at NzbDrone.Core.Indexers.HttpIndexerBase`1.FetchPage(IndexerRequest request, IParseIndexerResponse parser) in ./Readarr.Core/Indexers/HttpIndexerBase.cs:line 296
+   at NzbDrone.Core.Indexers.HttpIndexerBase`1.FetchReleases(Func`2 pageableRequestChainSelector, Boolean isRecent) in ./Readarr.Core/Indexers/HttpIndexerBase.cs:line 110
+FeedUrl: https://apollo.dillonjason.dev/jackett/api/v2.0/indexers/thepiratebay/results/torznab/api?t=book&cat=3000,3030,7000,7020,7030,7050,100102,100601,100602&extended=1&apikey=(removed)&offset=0&limit=100
+
+2026-04-02 02:30:31.6|Info|DownloadDecisionMaker|No results found
+2026-04-02 02:30:31.6|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 02:45:56.7|Info|RssSyncService|Starting RSS Sync
+2026-04-02 02:47:36.8|Warn|Torznab|Pirate Bay server is currently unavailable. https://apollo.dillonjason.dev/jackett/api/v2.0/indexers/thepiratebay/results/torznab/api?t=book&cat=3000,3030,7000,7020,7030,7050,100102,100601,100602&extended=1&apikey=(removed)&offset=0&limit=100 Http request timed out
+2026-04-02 02:47:36.8|Info|DownloadDecisionMaker|No results found
+2026-04-02 02:47:36.8|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 03:02:57.0|Info|RssSyncService|Starting RSS Sync
+2026-04-02 03:04:37.0|Warn|Torznab|Pirate Bay server is currently unavailable. https://apollo.dillonjason.dev/jackett/api/v2.0/indexers/thepiratebay/results/torznab/api?t=book&cat=3000,3030,7000,7020,7030,7050,100102,100601,100602&extended=1&apikey=(removed)&offset=0&limit=100 Http request timed out
+2026-04-02 03:04:37.0|Info|DownloadDecisionMaker|No results found
+2026-04-02 03:04:37.0|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 03:19:57.2|Info|RssSyncService|Starting RSS Sync
+2026-04-02 03:21:37.3|Warn|Torznab|Pirate Bay server is currently unavailable. https://apollo.dillonjason.dev/jackett/api/v2.0/indexers/thepiratebay/results/torznab/api?t=book&cat=3000,3030,7000,7020,7030,7050,100102,100601,100602&extended=1&apikey=(removed)&offset=0&limit=100 Http request timed out
+2026-04-02 03:21:37.3|Info|DownloadDecisionMaker|No results found
+2026-04-02 03:21:37.3|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 03:36:57.5|Info|RssSyncService|Starting RSS Sync
+2026-04-02 03:36:57.5|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 03:36:57.5|Info|DownloadDecisionMaker|No results found
+2026-04-02 03:36:57.5|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 03:51:57.7|Info|RssSyncService|Starting RSS Sync
+2026-04-02 03:53:37.7|Warn|Torznab|Pirate Bay server is currently unavailable. https://apollo.dillonjason.dev/jackett/api/v2.0/indexers/thepiratebay/results/torznab/api?t=book&cat=3000,3030,7000,7020,7030,7050,100102,100601,100602&extended=1&apikey=(removed)&offset=0&limit=100 Http request timed out
+2026-04-02 03:53:37.7|Info|DownloadDecisionMaker|No results found
+2026-04-02 03:53:37.7|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 04:08:57.9|Info|RssSyncService|Starting RSS Sync
+2026-04-02 04:08:57.9|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 04:08:57.9|Info|DownloadDecisionMaker|No results found
+2026-04-02 04:08:57.9|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 04:23:58.2|Info|RssSyncService|Starting RSS Sync
+2026-04-02 04:23:58.2|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 04:23:58.2|Info|DownloadDecisionMaker|No results found
+2026-04-02 04:23:58.2|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 04:38:58.5|Info|RssSyncService|Starting RSS Sync
+2026-04-02 04:38:58.5|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 04:38:58.5|Info|DownloadDecisionMaker|No results found
+2026-04-02 04:38:58.5|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 04:53:58.5|Info|RssSyncService|Starting RSS Sync
+2026-04-02 04:55:38.5|Warn|Torznab|Pirate Bay server is currently unavailable. https://apollo.dillonjason.dev/jackett/api/v2.0/indexers/thepiratebay/results/torznab/api?t=book&cat=3000,3030,7000,7020,7030,7050,100102,100601,100602&extended=1&apikey=(removed)&offset=0&limit=100 Http request timed out
+2026-04-02 04:55:38.5|Info|DownloadDecisionMaker|No results found
+2026-04-02 04:55:38.5|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 05:10:58.7|Info|RssSyncService|Starting RSS Sync
+2026-04-02 05:10:58.7|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 05:10:58.7|Info|DownloadDecisionMaker|No results found
+2026-04-02 05:10:58.7|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 05:25:58.8|Info|RssSyncService|Starting RSS Sync
+2026-04-02 05:25:58.8|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 05:25:58.8|Info|DownloadDecisionMaker|No results found
+2026-04-02 05:25:58.8|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 05:40:58.9|Info|RssSyncService|Starting RSS Sync
+2026-04-02 05:40:58.9|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 05:40:58.9|Info|DownloadDecisionMaker|No results found
+2026-04-02 05:40:58.9|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 05:55:59.0|Info|RssSyncService|Starting RSS Sync
+2026-04-02 05:55:59.0|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 05:55:59.0|Info|DownloadDecisionMaker|No results found
+2026-04-02 05:55:59.0|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 06:10:59.2|Info|RssSyncService|Starting RSS Sync
+2026-04-02 06:10:59.2|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 06:10:59.2|Info|DownloadDecisionMaker|No results found
+2026-04-02 06:10:59.2|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 06:25:59.3|Info|RssSyncService|Starting RSS Sync
+2026-04-02 06:25:59.3|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 06:25:59.3|Info|DownloadDecisionMaker|No results found
+2026-04-02 06:25:59.3|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 06:40:59.4|Info|RssSyncService|Starting RSS Sync
+2026-04-02 06:40:59.4|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 06:40:59.4|Info|DownloadDecisionMaker|No results found
+2026-04-02 06:40:59.4|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 06:55:59.5|Info|RssSyncService|Starting RSS Sync
+2026-04-02 06:55:59.5|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 06:55:59.5|Info|DownloadDecisionMaker|No results found
+2026-04-02 06:55:59.5|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 07:10:59.6|Info|RssSyncService|Starting RSS Sync
+2026-04-02 07:10:59.6|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 07:10:59.6|Info|DownloadDecisionMaker|No results found
+2026-04-02 07:10:59.6|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 07:25:59.7|Info|RssSyncService|Starting RSS Sync
+2026-04-02 07:25:59.7|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 07:25:59.7|Info|DownloadDecisionMaker|No results found
+2026-04-02 07:25:59.7|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 07:40:59.8|Info|RssSyncService|Starting RSS Sync
+2026-04-02 07:40:59.8|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 07:40:59.8|Info|DownloadDecisionMaker|No results found
+2026-04-02 07:40:59.8|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 07:56:00.0|Info|RssSyncService|Starting RSS Sync
+2026-04-02 07:57:40.0|Warn|Torznab|Pirate Bay server is currently unavailable. https://apollo.dillonjason.dev/jackett/api/v2.0/indexers/thepiratebay/results/torznab/api?t=book&cat=3000,3030,7000,7020,7030,7050,100102,100601,100602&extended=1&apikey=(removed)&offset=0&limit=100 Http request timed out
+2026-04-02 07:57:40.0|Info|DownloadDecisionMaker|No results found
+2026-04-02 07:57:40.0|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 08:13:00.1|Info|RssSyncService|Starting RSS Sync
+2026-04-02 08:13:00.1|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 08:13:00.1|Info|DownloadDecisionMaker|No results found
+2026-04-02 08:13:00.1|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 08:28:00.3|Info|RssSyncService|Starting RSS Sync
+2026-04-02 08:28:00.3|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 08:28:00.3|Info|DownloadDecisionMaker|No results found
+2026-04-02 08:28:00.3|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 08:43:00.4|Info|RssSyncService|Starting RSS Sync
+2026-04-02 08:43:00.4|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 08:43:00.4|Info|DownloadDecisionMaker|No results found
+2026-04-02 08:43:00.4|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 08:58:00.5|Info|RssSyncService|Starting RSS Sync
+2026-04-02 08:58:00.5|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 08:58:00.5|Info|DownloadDecisionMaker|No results found
+2026-04-02 08:58:00.5|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 09:13:00.6|Info|RssSyncService|Starting RSS Sync
+2026-04-02 09:13:00.6|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 09:13:00.6|Info|DownloadDecisionMaker|No results found
+2026-04-02 09:13:00.6|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 09:28:00.7|Info|RssSyncService|Starting RSS Sync
+2026-04-02 09:28:00.7|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 09:28:00.7|Info|DownloadDecisionMaker|No results found
+2026-04-02 09:28:00.7|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 09:43:00.9|Info|RssSyncService|Starting RSS Sync
+2026-04-02 09:43:00.9|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 09:43:00.9|Info|DownloadDecisionMaker|No results found
+2026-04-02 09:43:00.9|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 09:58:01.1|Info|RssSyncService|Starting RSS Sync
+2026-04-02 09:58:01.1|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 09:58:01.1|Info|DownloadDecisionMaker|No results found
+2026-04-02 09:58:01.1|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 10:13:01.4|Info|RssSyncService|Starting RSS Sync
+2026-04-02 10:13:01.4|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 10:13:01.4|Info|DownloadDecisionMaker|No results found
+2026-04-02 10:13:01.4|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 10:28:01.5|Info|RssSyncService|Starting RSS Sync
+2026-04-02 10:28:01.5|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 10:28:01.5|Info|DownloadDecisionMaker|No results found
+2026-04-02 10:28:01.5|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 10:43:01.7|Info|RssSyncService|Starting RSS Sync
+2026-04-02 10:43:01.7|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 10:43:01.7|Info|DownloadDecisionMaker|No results found
+2026-04-02 10:43:01.7|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 10:58:02.0|Info|RssSyncService|Starting RSS Sync
+2026-04-02 10:58:02.0|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 10:58:02.0|Info|DownloadDecisionMaker|No results found
+2026-04-02 10:58:02.0|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 11:13:02.2|Info|RssSyncService|Starting RSS Sync
+2026-04-02 11:13:02.2|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 11:13:02.2|Info|DownloadDecisionMaker|No results found
+2026-04-02 11:13:02.2|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 11:28:02.4|Info|RssSyncService|Starting RSS Sync
+2026-04-02 11:28:02.4|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 11:28:02.4|Info|DownloadDecisionMaker|No results found
+2026-04-02 11:28:02.4|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 11:43:02.6|Info|RssSyncService|Starting RSS Sync
+2026-04-02 11:43:02.6|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 11:43:02.6|Info|DownloadDecisionMaker|No results found
+2026-04-02 11:43:02.6|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 11:58:02.7|Info|RssSyncService|Starting RSS Sync
+2026-04-02 11:58:02.8|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 11:58:02.8|Info|DownloadDecisionMaker|No results found
+2026-04-02 11:58:02.8|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 12:13:03.0|Info|RssSyncService|Starting RSS Sync
+2026-04-02 12:13:03.0|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 12:13:03.0|Info|DownloadDecisionMaker|No results found
+2026-04-02 12:13:03.0|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 12:28:03.3|Info|RssSyncService|Starting RSS Sync
+2026-04-02 12:28:03.3|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 12:28:03.3|Info|DownloadDecisionMaker|No results found
+2026-04-02 12:28:03.3|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 12:43:03.5|Info|RssSyncService|Starting RSS Sync
+2026-04-02 12:43:03.5|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 12:43:03.5|Info|DownloadDecisionMaker|No results found
+2026-04-02 12:43:03.5|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 12:58:03.7|Info|RssSyncService|Starting RSS Sync
+2026-04-02 12:58:03.7|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 12:58:03.7|Info|DownloadDecisionMaker|No results found
+2026-04-02 12:58:03.7|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 13:13:03.9|Info|RssSyncService|Starting RSS Sync
+2026-04-02 13:13:03.9|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 13:13:03.9|Info|DownloadDecisionMaker|No results found
+2026-04-02 13:13:03.9|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 13:28:04.1|Info|RssSyncService|Starting RSS Sync
+2026-04-02 13:28:04.1|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 13:28:04.1|Info|DownloadDecisionMaker|No results found
+2026-04-02 13:28:04.1|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 13:43:04.3|Info|RssSyncService|Starting RSS Sync
+2026-04-02 13:43:04.3|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 13:43:04.3|Info|DownloadDecisionMaker|No results found
+2026-04-02 13:43:04.3|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 13:58:04.6|Info|RssSyncService|Starting RSS Sync
+2026-04-02 13:59:44.6|Warn|Torznab|Pirate Bay server is currently unavailable. https://apollo.dillonjason.dev/jackett/api/v2.0/indexers/thepiratebay/results/torznab/api?t=book&cat=3000,3030,7000,7020,7030,7050,100102,100601,100602&extended=1&apikey=(removed)&offset=0&limit=100 Http request timed out
+2026-04-02 13:59:44.6|Info|DownloadDecisionMaker|No results found
+2026-04-02 13:59:44.6|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 14:15:04.7|Info|RssSyncService|Starting RSS Sync
+2026-04-02 14:15:04.7|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 14:15:04.7|Info|DownloadDecisionMaker|No results found
+2026-04-02 14:15:04.7|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 14:30:04.9|Info|RssSyncService|Starting RSS Sync
+2026-04-02 14:30:04.9|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 14:30:04.9|Info|DownloadDecisionMaker|No results found
+2026-04-02 14:30:04.9|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 14:45:05.1|Info|RssSyncService|Starting RSS Sync
+2026-04-02 14:45:05.2|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 14:45:05.2|Info|DownloadDecisionMaker|No results found
+2026-04-02 14:45:05.2|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 15:00:05.4|Info|RssSyncService|Starting RSS Sync
+2026-04-02 15:00:05.4|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 15:00:05.4|Info|DownloadDecisionMaker|No results found
+2026-04-02 15:00:05.4|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 15:00:35.4|Info|DiskScanService|Scanning /data/media/books
+2026-04-02 15:00:35.4|Warn|DiskScanService|Scan folder /data/media/books is empty.
+2026-04-02 15:00:35.4|Info|TrackGroupingService|Grouping 0 tracks
+2026-04-02 15:00:35.4|Info|ImportApprovedBooks|Importing 0 files
+2026-04-02 15:00:35.4|Info|HousekeepingService|Running housecleaning tasks
+2026-04-02 15:00:35.5|Info|Database|Vacuuming Cache database
+2026-04-02 15:00:35.5|Info|Database|Cache database compressed
+2026-04-02 15:00:35.5|Info|Database|Vacuuming Log database
+2026-04-02 15:00:35.5|Info|Database|Log database compressed
+2026-04-02 15:00:35.5|Info|Database|Vacuuming Main database
+2026-04-02 15:00:35.5|Info|Database|Main database compressed
+2026-04-02 15:00:35.5|Error|CommandExecutor|Error occurred while executing task RefreshAuthor
+
+[v0.4.17.2801] System.Net.Http.HttpRequestException: Name does not resolve (api.bookinfo.club:443)
+ ---> System.Net.Sockets.SocketException (0xFFFDFFFF): Name does not resolve
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|277_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+   at NzbDrone.Common.Http.Dispatchers.ManagedHttpDispatcher.attemptConnection(AddressFamily addressFamily, SocketsHttpConnectionContext context, CancellationToken cancellationToken) in ./Readarr.Common/Http/Dispatchers/ManagedHttpDispatcher.cs:line 340
+   at NzbDrone.Common.Http.Dispatchers.ManagedHttpDispatcher.onConnect(SocketsHttpConnectionContext context, CancellationToken cancellationToken) in ./Readarr.Common/Http/Dispatchers/ManagedHttpDispatcher.cs:line 316
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.AddHttp2ConnectionAsync(HttpRequestMessage request)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.GetHttp2ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.AuthenticationHelper.SendWithAuthAsync(HttpRequestMessage request, Uri authUri, Boolean async, ICredentials credentials, Boolean preAuthenticate, Boolean isProxyAuth, Boolean doRequestAuth, HttpConnectionPool pool, CancellationToken cancellationToken)
+   at System.Net.Http.DecompressionHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at NzbDrone.Common.Http.Dispatchers.ManagedHttpDispatcher.GetResponseAsync(HttpRequest request, CookieContainer cookies) in ./Readarr.Common/Http/Dispatchers/ManagedHttpDispatcher.cs:line 116
+   at NzbDrone.Common.Http.HttpClient.ExecuteRequestAsync(HttpRequest request, CookieContainer cookieContainer) in ./Readarr.Common/Http/HttpClient.cs:line 157
+   at NzbDrone.Common.Http.HttpClient.ExecuteAsync(HttpRequest request) in ./Readarr.Common/Http/HttpClient.cs:line 70
+   at NzbDrone.Common.Http.HttpClient.GetAsync[T](HttpRequest request) in ./Readarr.Common/Http/HttpClient.cs:line 336
+   at NzbDrone.Common.Http.HttpClient.Get[T](HttpRequest request)
+   at NzbDrone.Core.MetadataSource.BookInfo.BookInfoProxy.GetChangedAuthors(DateTime startTime) in ./Readarr.Core/MetadataSource/BookInfo/BookInfoProxy.cs:line 81
+   at NzbDrone.Core.Books.RefreshAuthorService.Execute(RefreshAuthorCommand message) in ./Readarr.Core/Books/Services/RefreshAuthorService.cs:line 369
+   at NzbDrone.Core.Messaging.Commands.CommandExecutor.ExecuteCommand[TCommand](TCommand command, CommandModel commandModel) in ./Readarr.Core/Messaging/Commands/CommandExecutor.cs:line 111
+   at System.Dynamic.UpdateDelegates.UpdateAndExecuteVoid3[T0,T1,T2](CallSite site, T0 arg0, T1 arg1, T2 arg2)
+   at NzbDrone.Core.Messaging.Commands.CommandExecutor.ExecuteCommands() in ./Readarr.Core/Messaging/Commands/CommandExecutor.cs:line 42
+
+
+2026-04-02 15:15:05.6|Info|RssSyncService|Starting RSS Sync
+2026-04-02 15:15:05.6|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 15:15:05.6|Info|DownloadDecisionMaker|No results found
+2026-04-02 15:15:05.6|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 15:30:05.8|Info|RssSyncService|Starting RSS Sync
+2026-04-02 15:30:05.8|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 15:30:05.8|Info|DownloadDecisionMaker|No results found
+2026-04-02 15:30:05.8|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 15:45:06.0|Info|RssSyncService|Starting RSS Sync
+2026-04-02 15:45:06.0|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 15:45:06.0|Info|DownloadDecisionMaker|No results found
+2026-04-02 15:45:06.0|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 16:00:06.2|Info|RssSyncService|Starting RSS Sync
+2026-04-02 16:00:06.2|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 16:00:06.2|Info|DownloadDecisionMaker|No results found
+2026-04-02 16:00:06.2|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 16:15:06.4|Info|RssSyncService|Starting RSS Sync
+2026-04-02 16:15:06.4|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 16:15:06.4|Info|DownloadDecisionMaker|No results found
+2026-04-02 16:15:06.4|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 16:30:06.6|Info|RssSyncService|Starting RSS Sync
+2026-04-02 16:30:06.6|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 16:30:06.6|Info|DownloadDecisionMaker|No results found
+2026-04-02 16:30:06.6|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 16:45:06.8|Info|RssSyncService|Starting RSS Sync
+2026-04-02 16:45:06.8|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 16:45:06.8|Info|DownloadDecisionMaker|No results found
+2026-04-02 16:45:06.8|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 17:00:07.0|Info|RssSyncService|Starting RSS Sync
+2026-04-02 17:00:07.0|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 17:00:07.0|Info|DownloadDecisionMaker|No results found
+2026-04-02 17:00:07.0|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 17:15:07.2|Info|RssSyncService|Starting RSS Sync
+2026-04-02 17:15:07.3|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 17:15:07.3|Info|DownloadDecisionMaker|No results found
+2026-04-02 17:15:07.3|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 17:30:07.5|Info|RssSyncService|Starting RSS Sync
+2026-04-02 17:30:07.5|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 17:30:07.5|Info|DownloadDecisionMaker|No results found
+2026-04-02 17:30:07.5|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 17:45:07.7|Info|RssSyncService|Starting RSS Sync
+2026-04-02 17:45:07.7|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 17:45:07.7|Info|DownloadDecisionMaker|No results found
+2026-04-02 17:45:07.7|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 18:00:07.8|Info|RssSyncService|Starting RSS Sync
+2026-04-02 18:00:07.8|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 18:00:07.8|Info|DownloadDecisionMaker|No results found
+2026-04-02 18:00:07.8|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 18:15:08.0|Info|RssSyncService|Starting RSS Sync
+2026-04-02 18:15:08.0|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 18:15:08.0|Info|DownloadDecisionMaker|No results found
+2026-04-02 18:15:08.0|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 18:30:08.2|Info|RssSyncService|Starting RSS Sync
+2026-04-02 18:30:08.2|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 18:30:08.2|Info|DownloadDecisionMaker|No results found
+2026-04-02 18:30:08.2|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 18:45:08.4|Info|RssSyncService|Starting RSS Sync
+2026-04-02 18:45:08.4|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 18:45:08.4|Info|DownloadDecisionMaker|No results found
+2026-04-02 18:45:08.4|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 19:00:08.6|Info|RssSyncService|Starting RSS Sync
+2026-04-02 19:00:08.6|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 19:00:08.6|Info|DownloadDecisionMaker|No results found
+2026-04-02 19:00:08.6|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 19:15:08.8|Info|RssSyncService|Starting RSS Sync
+2026-04-02 19:15:08.8|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 19:15:08.8|Info|DownloadDecisionMaker|No results found
+2026-04-02 19:15:08.8|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 19:28:09.0|Warn|DownloadMonitoringService|Unable to retrieve queue and history items from Transmission
+
+[v0.4.17.2801] System.Net.Http.HttpRequestException: Name does not resolve (transmission:9091)
+ ---> System.Net.Sockets.SocketException (0xFFFDFFFF): Name does not resolve
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|277_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+   at NzbDrone.Common.Http.Dispatchers.ManagedHttpDispatcher.attemptConnection(AddressFamily addressFamily, SocketsHttpConnectionContext context, CancellationToken cancellationToken) in ./Readarr.Common/Http/Dispatchers/ManagedHttpDispatcher.cs:line 340
+   at NzbDrone.Common.Http.Dispatchers.ManagedHttpDispatcher.onConnect(SocketsHttpConnectionContext context, CancellationToken cancellationToken) in ./Readarr.Common/Http/Dispatchers/ManagedHttpDispatcher.cs:line 316
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.AddHttp11ConnectionAsync(HttpRequestMessage request)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.GetHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.AuthenticationHelper.SendWithAuthAsync(HttpRequestMessage request, Uri authUri, Boolean async, ICredentials credentials, Boolean preAuthenticate, Boolean isProxyAuth, Boolean doRequestAuth, HttpConnectionPool pool, CancellationToken cancellationToken)
+   at System.Net.Http.DecompressionHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at NzbDrone.Common.Http.Dispatchers.ManagedHttpDispatcher.GetResponseAsync(HttpRequest request, CookieContainer cookies) in ./Readarr.Common/Http/Dispatchers/ManagedHttpDispatcher.cs:line 116
+   at NzbDrone.Common.Http.HttpClient.ExecuteRequestAsync(HttpRequest request, CookieContainer cookieContainer) in ./Readarr.Common/Http/HttpClient.cs:line 157
+   at NzbDrone.Common.Http.HttpClient.ExecuteAsync(HttpRequest request) in ./Readarr.Common/Http/HttpClient.cs:line 70
+   at NzbDrone.Common.Http.HttpClient.Execute(HttpRequest request) in ./Readarr.Common/Http/HttpClient.cs:line 128
+   at NzbDrone.Core.Download.Clients.Transmission.TransmissionProxy.ProcessRequest(String action, Object arguments, TransmissionSettings settings) in ./Readarr.Core/Download/Clients/Transmission/TransmissionProxy.cs:line 319
+   at NzbDrone.Core.Download.Clients.Transmission.TransmissionProxy.GetTorrentStatus(IEnumerable`1 hashStrings, TransmissionSettings settings) in ./Readarr.Core/Download/Clients/Transmission/TransmissionProxy.cs:line 194
+   at NzbDrone.Core.Download.Clients.Transmission.TransmissionProxy.GetTorrents(TransmissionSettings settings) in ./Readarr.Core/Download/Clients/Transmission/TransmissionProxy.cs:line 44
+   at NzbDrone.Core.Download.Clients.Transmission.TransmissionBase.GetItems() in ./Readarr.Core/Download/Clients/Transmission/TransmissionBase.cs:line 38
+   at NzbDrone.Core.Download.TrackedDownloads.DownloadMonitoringService.ProcessClientDownloads(IDownloadClient downloadClient) in ./Readarr.Core/Download/TrackedDownloads/DownloadMonitoringService.cs:line 89
+
+
+2026-04-02 19:30:09.1|Info|RssSyncService|Starting RSS Sync
+2026-04-02 19:30:09.1|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 19:30:09.1|Info|DownloadDecisionMaker|No results found
+2026-04-02 19:30:09.1|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0
+2026-04-02 19:45:09.3|Info|RssSyncService|Starting RSS Sync
+2026-04-02 19:45:09.3|Warn|FetchAndParseRssService|No available indexers. check your configuration.
+2026-04-02 19:45:09.3|Info|DownloadDecisionMaker|No results found
+2026-04-02 19:45:09.3|Info|RssSyncService|RSS Sync Completed. Reports found: 0, Reports grabbed: 0

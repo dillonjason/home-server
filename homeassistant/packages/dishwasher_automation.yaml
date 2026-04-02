@@ -1,0 +1,114 @@
+###############################################################################
+# Dishwasher Power Monitoring & Notification Package (fixed)
+# - Uses statistics sensors and templates to detect dishwasher on a shared feed
+###############################################################################
+
+# 1) SENSOR PLATFORMS (statistics + history_stats)
+sensor:
+  # Rolling stats to recognize low-but-steady circulation phases
+  - platform: statistics
+    name: Dishwasher Power 10m Mean
+    entity_id: sensor.dishwasher_power_minute_average
+    state_characteristic: mean
+    max_age:
+      minutes: 10
+
+  - platform: statistics
+    name: Dishwasher Power 20m Median
+    entity_id: sensor.dishwasher_power_minute_average
+    state_characteristic: median
+    max_age:
+      minutes: 20
+
+  # “Recent heater spike” minutes in last 30 minutes (dishwasher heater signature)
+  - platform: history_stats
+    name: Dishwasher Heater Spike Minutes (30m)
+    entity_id: binary_sensor.dishwasher_heater_spike_now
+    state: "on"
+    type: time
+    duration:
+      minutes: 30
+    end: "{{ now() }}"
+
+# 2) TEMPLATE BINARY SENSORS
+template:
+  - binary_sensor:
+      # Instantaneous heater spike (>900 W)
+      - name: "Dishwasher Heater Spike Now"
+        unique_id: dishwasher_heater_spike_now
+        device_class: heat
+        state: >
+          {{ states('sensor.dishwasher_power_minute_average')|float(0) > 900 }}
+        availability: >
+          {{ states('sensor.dishwasher_power_minute_average')|is_number }}
+
+      # Main debounced "running" state (spike OR sustained low/med activity)
+      - name: "Dishwasher Running"
+        unique_id: dishwasher_running_debounced
+        device_class: running
+        state: >
+          {% set p = states('sensor.dishwasher_power_minute_average')|float(0) %}
+          {% set mean10 = states('sensor.dishwasher_power_10m_mean')|float(0) %}
+          {% set med20 = states('sensor.dishwasher_power_20m_median')|float(0) %}
+          {% set spike_mins = states('sensor.dishwasher_heater_spike_minutes_30m')|float(0) %}
+          {{ spike_mins > 0
+             or p > 35
+             or mean10 > 25
+             or med20 > 20 }}
+        availability: >
+          {{ states('sensor.dishwasher_power_minute_average')|is_number }}
+        delay_on:
+          minutes: 4
+        delay_off:
+          minutes: 12
+
+# 3) HELPER – last start timestamp
+input_datetime:
+  dishwasher_started:
+    name: Dishwasher Started
+    has_date: true
+    has_time: true
+
+# 4) AUTOMATIONS
+automation:
+  # Stamp the start time when the dishwasher begins a cycle
+  - alias: Dishwasher Cycle Started Timestamp
+    id: dishwasher_started_timestamp
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.dishwasher_running
+        from: "off"
+        to: "on"
+    action:
+      - service: input_datetime.set_datetime
+        target:
+          entity_id: input_datetime.dishwasher_started
+        data:
+          datetime: "{{ now().isoformat() }}"
+    mode: single
+
+  # Notify when dishwasher finishes (ON -> OFF), with min runtime + cooldown
+  - alias: Dishwasher Done Notification
+    id: dishwasher_done_notification
+    description: "Notify when dishwasher finished after a real cycle"
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.dishwasher_running
+        from: "on"
+        to: "off"
+    condition:
+      # Minimum runtime: > 45 minutes
+      - condition: template
+        value_template: >
+          {% set start = states('input_datetime.dishwasher_started') %}
+          {{ start != 'unknown' and (as_timestamp(now()) - as_timestamp(start)) > 2700 }}
+      # Cooldown: > 45 minutes since last alert
+      - condition: template
+        value_template: >
+          {% set last = state_attr(this.entity_id,'last_triggered') %}
+          {{ last is none or (as_timestamp(now()) - as_timestamp(last)) > 2700 }}
+    action:
+      - service: script.notify_people_who_are_home
+        data:
+          message: "Dishwasher is done!"
+    mode: single

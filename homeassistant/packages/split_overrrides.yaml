@@ -1,0 +1,49 @@
+input_datetime:
+  guest_override_until:
+    name: Guest override until
+    has_date: true
+    has_time: false
+template:
+  - binary_sensor:
+      - name: Guest Override Active
+        unique_id: guest_override_active
+        state: >
+          {% set s = states('input_datetime.guest_override_until') %}
+          {% if s in ['unknown','unavailable',''] %} false
+          {% else %}
+            {% set cutoff = as_datetime(s).date() %}
+            {{ now().date() < cutoff }}
+          {% endif %}
+script:
+  guest_override_clear_today:
+    alias: Guest Override • Clear (today)
+    sequence:
+      - service: input_datetime.set_datetime
+        data:
+          entity_id: input_datetime.guest_override_until
+          date: "{{ now().date().isoformat() }}"
+
+input_select:
+  splits_temp_override_mode:
+    name: Splits Temp Override Mode
+    options:
+      - "Off"
+      - "Cool"
+      - "Heat"
+      - "Fan"
+    icon: mdi:thermostat-auto
+
+script:
+  split_temp_override_clear:
+    alias: Splits Override • Clear Next Day
+    triggers:
+      - trigger: time
+        at: "06:35:00"  # after your 06:30 HVAC run
+    conditions: []
+    actions:
+      - action: input_select.select_option
+        target:
+          entity_id: input_select.splits_temp_override_mode
+        data:
+          option: "Off"
+    mode: single

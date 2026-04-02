@@ -39,6 +39,7 @@ services:
     ports:
       - 443:443
     restart: unless-stopped
+
   authelia:
     image: authelia/authelia
     container_name: authelia
@@ -73,6 +74,8 @@ services:
     container_name: jellyfin
     # user: uid:gid
     # network_mode: "bridge"
+    ports:
+      - 8096:8096
     volumes:
       - ./jellyfin/config:/config
       - ./jellyfin/cache:/cache
@@ -103,6 +106,10 @@ services:
     volumes:
       - ./transmission/config:/config
       - /mnt/Media/torrents:/downloads
+    ports:
+      - 9091:9091
+    devices:
+      - /dev/net/tun
     cap_add:
       - NET_ADMIN
     env_file:
@@ -217,7 +224,7 @@ services:
     devices:
       - "/dev/kvm:/dev/kvm"
   homebridge:
-    image: oznu/homebridge:ubuntu
+    image: homebridge/homebridge:latest
     container_name: homebridge
     restart: always
     network_mode: host
@@ -254,6 +261,9 @@ services:
     volumes:
       - ./homeassistant:/config
       - /etc/localtime:/etc/localtime:ro
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0
+      - /dev/serial/by-id/usb-SMLIGHT_SMLIGHT_SLZB-06_12a38960836eef11b349e9c2c169b110-if00-port0:/dev/serial/by-id/usb-SMLIGHT_SMLIGHT_SLZB-06_12a38960836eef11b349e9c2c169b110-if00-port0
     restart: unless-stopped
     privileged: true
     network_mode: host
@@ -273,3 +283,9 @@ services:
     restart: always
     stop_grace_period: 2m
     network_mode: host
+  airconnect:
+    container_name: airconnect
+    image: 1activegeek/airconnect
+    restart: unless-stopped
+    network_mode: host
+

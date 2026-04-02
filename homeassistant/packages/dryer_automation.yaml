@@ -1,0 +1,81 @@
+###############################################################################
+# Dryer Power Monitoring & Notification Package
+# Components:
+#  1. Template binary sensor - determines when dryer is running (debounced)
+#  2. Input datetime helper - records last dryer start time
+#  3. Automation 1 - stamps start time when dryer turns on
+#  4. Automation 2 - notifies when dryer finishes (with minimum runtime & cooldown)
+###############################################################################
+
+template:
+  - binary_sensor:
+      - name: "Dryer Running"
+        unique_id: dryer_running_debounced
+        device_class: running
+        state: >
+          {{ states('sensor.dryer_power_minute_average')|float(0) > 250 }}
+        availability: >
+          {{ states('sensor.dryer_power_minute_average')|is_number }}
+        delay_on:
+          minutes: 2       # must stay above 250 W for 2 min to count as running
+        delay_off:
+          minutes: 6       # must stay below 250 W for 6 min to count as off
+
+###############################################################################
+# Helper - stores the datetime when the dryer last started
+###############################################################################
+input_datetime:
+  dryer_started:
+    name: Dryer Started
+    has_date: true
+    has_time: true
+
+###############################################################################
+# Automation - store timestamp when dryer starts
+###############################################################################
+automation:
+  - alias: Dryer Cycle Started Timestamp
+    id: dryer_started_timestamp
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.dryer_running
+        from: "off"
+        to: "on"
+    action:
+      - service: input_datetime.set_datetime
+        target:
+          entity_id: input_datetime.dryer_started
+        data:
+          datetime: "{{ now().isoformat() }}"
+    mode: single
+
+###############################################################################
+# Automation - notify when dryer finishes
+###############################################################################
+  - alias: Dryer Done Notification
+    id: dryer_done_notification
+    description: "Notify when dryer finished after a real cycle"
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.dryer_running
+        from: "on"
+        to: "off"
+
+    condition:
+      # Ensure it ran at least 10 minutes
+      - condition: template
+        value_template: >
+          {% set start = states('input_datetime.dryer_started') %}
+          {{ start != 'unknown' and (as_timestamp(now()) - as_timestamp(start)) > 600 }}
+      
+      # Ensure last alert was > 10 minutes ago (cooldown)
+      - condition: template
+        value_template: >
+          {% set last = state_attr(this.entity_id,'last_triggered') %}
+          {{ last is none or (as_timestamp(now()) - as_timestamp(last)) > 600 }}
+
+    action:
+      - service: script.notify_people_who_are_home
+        data:
+          message: "Dryer is done!"
+    mode: single

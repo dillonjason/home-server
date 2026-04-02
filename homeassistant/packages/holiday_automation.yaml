@@ -1,0 +1,111 @@
+###############################################################################
+# Christmas Lights Package
+# - Presence + midnight automation
+# - Holiday Mode activation sync
+###############################################################################
+
+automation:
+
+  - alias: Christmas Lights • Presence + Midnight
+    description: Turn Christmas lights on when someone is home (6am–midnight), off when all gone or at midnight, only during Holiday Mode.
+    mode: single
+
+    triggers:
+      - id: person
+        trigger: state
+        entity_id:
+          - person.dillon
+          - person.nick
+
+      - id: midnight
+        trigger: time
+        at: "00:00:00"
+
+      - id: morning
+        trigger: time
+        at: "06:00:00"
+
+    conditions:
+      - condition: state
+        entity_id: input_boolean.holiday_mode
+        state: "on"
+
+    actions:
+      - choose:
+
+          # ➕ CASE 1: Turn ON
+          # - Real arrival (not_home -> home) between 06:00 and 23:59
+          # - OR 06:00 time trigger when someone is already home
+          - conditions:
+              - condition: time
+                after: "05:59:59"
+                before: "23:59:59"
+              - condition: template
+                value_template: >
+                  {{
+                    (
+                      trigger.id == 'person'
+                      and trigger.to_state is not none
+                      and trigger.from_state is not none
+                      and trigger.from_state.state != 'home'
+                      and trigger.to_state.state == 'home'
+                    )
+                    or
+                    (
+                      trigger.id == 'morning'
+                      and (
+                        is_state('person.dillon', 'home')
+                        or is_state('person.nick', 'home')
+                      )
+                    )
+                  }}
+            sequence:
+              - service: switch.turn_on
+                target:
+                  entity_id: switch.christmas_lights_2
+
+          # ➖ CASE 2: Turn OFF
+          # - Both away (any time)
+          # - OR midnight time trigger
+          - conditions:
+              - condition: or
+                conditions:
+                  - condition: template
+                    value_template: >
+                      {{ is_state('person.dillon', 'not_home')
+                         and is_state('person.nick', 'not_home') }}
+                  - condition: template
+                    value_template: >
+                      {{ trigger.id == 'midnight' }}
+            sequence:
+              - service: switch.turn_off
+                target:
+                  entity_id: switch.christmas_lights_2
+
+
+  - alias: Christmas Lights • Holiday Mode Sync
+    description: When Holiday Mode turns on, turn on lights if anyone is home.
+    mode: single
+
+    triggers:
+      - trigger: state
+        entity_id: input_boolean.holiday_mode
+        to: "on"
+
+    conditions: []
+
+    actions:
+      - choose:
+          - conditions:
+              - condition: or
+                conditions:
+                  - condition: state
+                    entity_id: person.dillon
+                    state: home
+                  - condition: state
+                    entity_id: person.nick
+                    state: home
+            sequence:
+              - service: switch.turn_on
+                target:
+                  entity_id: switch.christmas_lights_2

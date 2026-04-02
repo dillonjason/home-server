@@ -1,0 +1,64 @@
+###############################################################################
+# Household notification routing (robust script version)
+###############################################################################
+notify:
+  - platform: group
+    name: household_devices          # service: notify.household_devices
+    services:
+      - service: mobile_app_pixel_8_pro
+      - service: mobile_app_dillons_iphone
+      - service: mobile_app_dillons_ipad
+
+  - platform: group
+    name: household_phones           # service: notify.household_phones
+    services:
+      - service: mobile_app_pixel_8_pro
+      - service: mobile_app_dillons_iphone
+
+script:
+  notify_people_who_are_home:
+    alias: Notify People Who Are Home
+    mode: parallel
+
+    fields:
+      title:
+        description: Notification title (optional)
+        example: "Alert"
+        required: false
+      message:
+        description: Notification message
+        example: "Something happened"
+
+    variables:
+      # Map each person to their devices
+      person_devices:
+        person.dillon:
+          - notify.mobile_app_dillons_iphone
+          - notify.mobile_app_dillons_ipad
+        person.nick:
+          - notify.mobile_app_pixel_8_pro
+
+      # Build a list of device lists for people who are in group.people AND home
+      people_home: >
+        {% set ns = namespace(devs=[]) %}
+        {% set group_people = expand('group.family') %}
+        {% set group_ids = group_people | map(attribute='entity_id') | list %}
+        {% for person in group_ids %}
+          {% if is_state(person, 'home') and person in person_devices %}
+            {% set ns.devs = ns.devs + [ person_devices[person] ] %}
+          {% endif %}
+        {% endfor %}
+        {{ ns.devs }}
+
+    sequence:
+      - repeat:
+          for_each: "{{ people_home }}"
+          sequence:
+            - repeat:
+                for_each: "{{ repeat.item }}"
+                sequence:
+                  - service: "{{ repeat.item }}"
+                    data:
+                      # title is optional; default to empty string if not provided
+                      title: "{{ title | default('', true) }}"
+                      message: "{{ message }}"
