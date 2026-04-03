@@ -987,6 +987,4 @@ actual-data/user-files/group-9e43d7b6-c710-445f-96d2-8e0608620a70.sqlite
 actual-data/.migrate
 homeassistant/.ha_run.lock
 homeassistant/zigbee.db
-readarr/config/readarr.db-shm
-readarr/config/readarr.db-wal
-readarr/config/logs/readarr.debug.txt
+homeassistant/.cache/*
