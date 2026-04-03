@@ -978,6 +978,7 @@ homeassistant/www/community/my-cards/my-slider-v2.js.gz
 homeassistant/www/community/my-cards/my-slider.js
 homeassistant/www/community/my-cards/my-slider.js.gz
 readarr/config/*
+!readarr/config/config.xml
 homeassistant/zigbee.db-shm
 homeassistant/zigbee.db-wal
 homeassistant/backups
