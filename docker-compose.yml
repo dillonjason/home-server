@@ -19,6 +19,8 @@ networks:
       ipam:  
         config: 
          - subnet: 172.24.0.0/24
+  swag_proxy:
+    external: true
 
 services:
   swag:
@@ -31,14 +33,19 @@ services:
       - PGID=985
       - TZ=America/New_York
       - URL=dillonjason.dev
-      - SUBDOMAINS=apollo,code-server
+      - SUBDOMAINS=apollo,code-server,openclaw
       - VALIDATION=dns
       - DNSPLUGIN=cloudflare
+      - EMAIL=djasuar@gmail.com
+      - PROPAGATION=60
     volumes:
       - ./swag/config:/config
     ports:
       - 443:443
     restart: unless-stopped
+    networks:
+      - default
+      - swag_proxy
 
   authelia:
     image: authelia/authelia
@@ -93,6 +100,7 @@ services:
       - ./code-server/config:/home/coder/.config
       - /home/dillon/Projects:/home/coder/project
       - /home/dillon/Packages/home-server:/home/coder/home-server
+      - /home/dillon/Packages/openclaw:/home/coder/openclaw
     environment:
       - UID=1000
       - GID=985

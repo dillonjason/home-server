@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "homebridge": "1.11.2",
+    "homebridge": "1.11.4",
     "homebridge-nest": "^4.6.9",
     "homebridge-tplink-smarthome": "8.0.3"
   }
