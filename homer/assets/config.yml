@@ -90,6 +90,12 @@ services:
         tag: "tool"
         url: "https://virt-manager.dillonjason.dev/"
         target: "_blank"
+      - name: "Openclaw"
+        logo: "assets/tools/openclaw.png"
+        subtitle: "Personal AI assistant"
+        tag: "app"
+        url: "https://openclaw.dillonjason.dev"
+        target: "_blank"
   - name: "Services"
     icon: "fas fa-cogs"
     items:
