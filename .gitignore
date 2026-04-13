@@ -4,6 +4,7 @@ swag/config/*
 jellyfin
 code-server/config/code-server/config.yaml
 code-server/config/.ssh/*
+code-server/data/*
 authelia/config/*
 !authelia/config/configuration.yml
 authelia/secrets

@@ -16,8 +16,8 @@ volumes:
 
 networks:
   default:
-      ipam:  
-        config: 
+      ipam:
+        config:
          - subnet: 172.24.0.0/24
   swag_proxy:
     external: true
@@ -43,6 +43,8 @@ services:
     ports:
       - 443:443
     restart: unless-stopped
+    mem_limit: 256m
+    cpus: 1
     networks:
       - default
       - swag_proxy
@@ -66,6 +68,9 @@ services:
     volumes:
       - ./authelia/config:/config
     restart: unless-stopped
+    mem_limit: 256m
+    cpus: 0.5
+
   homer:
     image: b4bz/homer:latest
     volumes:
@@ -76,6 +81,9 @@ services:
       - UID=1000
       - GID=985
     restart: unless-stopped
+    mem_limit: 64m
+    cpus: 0.25
+
   jellyfin:
     image: jellyfin/jellyfin
     container_name: jellyfin
@@ -92,12 +100,16 @@ services:
       - TZ=America/New_York
       - UID=1000
       - GID=985
+    mem_limit: 4g
+    cpus: 2
+
   code-server:
     image: codercom/code-server:latest
     container_name: code-server
     volumes:
       - ./code-server/config/.ssh:/home/coder/.ssh
       - ./code-server/config:/home/coder/.config
+      - ./code-server/data:/home/coder/.local/share/code-server
       - /home/dillon/Projects:/home/coder/project
       - /home/dillon/Packages/home-server:/home/coder/home-server
       - /home/dillon/Packages/openclaw:/home/coder/openclaw
@@ -107,6 +119,9 @@ services:
       - DOCKER_USER=$USER
       - TZ=America/New_York
     restart: unless-stopped
+    mem_limit: 2g
+    cpus: 2
+
   transmission:
     image: haugene/transmission-openvpn
     container_name: transmission
@@ -122,6 +137,9 @@ services:
       - NET_ADMIN
     env_file:
       - ./transmission/.env
+    mem_limit: 512m
+    cpus: 1
+
   redis:
     image: redis:alpine
     container_name: redis
@@ -130,6 +148,9 @@ services:
     restart: unless-stopped
     environment:
       - TZ=America/New_York
+    mem_limit: 128m
+    cpus: 0.25
+
   jackett:
     image: lscr.io/linuxserver/jackett
     container_name: jackett
@@ -142,6 +163,9 @@ services:
       - ./jackett/config:/config
       - ./jackett/downloads:/downloads
     restart: unless-stopped
+    mem_limit: 256m
+    cpus: 0.5
+
   sonarr:
     image: lscr.io/linuxserver/sonarr
     container_name: sonarr
@@ -153,6 +177,9 @@ services:
       - ./sonarr/config:/config
       - /mnt/Media:/data
     restart: unless-stopped
+    mem_limit: 512m
+    cpus: 1
+
   radarr:
     image: lscr.io/linuxserver/radarr
     container_name: radarr
@@ -164,6 +191,9 @@ services:
       - ./radarr/config:/config
       - /mnt/Media:/data
     restart: unless-stopped
+    mem_limit: 512m
+    cpus: 1
+
   grafana:
     image: grafana/grafana-oss
     container_name: grafana
@@ -178,6 +208,9 @@ services:
       - ./grafana/data:/var/lib/grafana
       - ./grafana/config/grafana.ini:/etc/grafana/grafana.ini
     restart: unless-stopped
+    mem_limit: 512m
+    cpus: 1
+
   prometheus:
     image: prom/prometheus
     container_name: prometheus
@@ -190,6 +223,9 @@ services:
       - "--web.external-url=https://prometheus.dillonjason.dev"
       - "--web.route-prefix=/"
       - "--storage.tsdb.retention.time=30d"
+    mem_limit: 1g
+    cpus: 1
+
   node_exporter:
     image: quay.io/prometheus/node-exporter
     container_name: node_exporter
@@ -199,6 +235,9 @@ services:
     restart: unless-stopped
     volumes:
       - '/:/host:ro,rslave'
+    mem_limit: 128m
+    cpus: 0.25
+
   cadvisor:
     image: gcr.io/cadvisor/cadvisor
     container_name: cadvisor
@@ -211,6 +250,9 @@ services:
     devices:
       - /dev/kmsg
     restart: unless-stopped
+    mem_limit: 256m
+    cpus: 0.5
+
   portainer:
     image: portainer/portainer-ce
     container_name: portainer
@@ -218,6 +260,9 @@ services:
       - portainer-data:/data
       - /var/run/docker.sock:/var/run/docker.sock
     restart: always
+    mem_limit: 256m
+    cpus: 0.5
+
   virt-manager:
     image: mber5/virt-manager
     container_name: virt-manager
@@ -232,6 +277,9 @@ services:
       - "/dev/disk:/dev/disk"
     devices:
       - "/dev/kvm:/dev/kvm"
+    mem_limit: 256m
+    cpus: 0.5
+
   homebridge:
     image: homebridge/homebridge:latest
     container_name: homebridge
@@ -246,6 +294,9 @@ services:
       - HOMEBRIDGE_CONFIG_UI_PORT=8581
     volumes:
       - ./homebridge:/homebridge
+    mem_limit: 512m
+    cpus: 0.5
+
   bazarr:
     image: lscr.io/linuxserver/bazarr:latest
     container_name: bazarr
@@ -260,6 +311,9 @@ services:
     ports:
       - 6767:6767
     restart: unless-stopped
+    mem_limit: 256m
+    cpus: 0.5
+
   homeassistant:
     container_name: homeassistant
     image: "ghcr.io/home-assistant/home-assistant:stable"
@@ -276,15 +330,18 @@ services:
     restart: unless-stopped
     privileged: true
     network_mode: host
-  valheim: 
+    mem_limit: 1g
+    cpus: 2
+
+  valheim:
     container_name: valheim
     image: ghcr.io/lloesche/valheim-server
     cap_add:
       - sys_nice
-    volumes: 
+    volumes:
       - ./valheim-server/config:/config
       - ./valheim-server/data:/opt/valheim
-    ports: 
+    ports:
       - "2456-2458:2456-2458/udp"
       - "9001:9001/tcp"
     env_file:
@@ -292,9 +349,13 @@ services:
     restart: always
     stop_grace_period: 2m
     network_mode: host
+    mem_limit: 4g
+    cpus: 2
+
   airconnect:
     container_name: airconnect
     image: 1activegeek/airconnect
     restart: unless-stopped
     network_mode: host
-
+    mem_limit: 64m
+    cpus: 0.25
