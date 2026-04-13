@@ -189,6 +189,7 @@ services:
       - "--config.file=/config/prometheus.yml"
       - "--web.external-url=https://prometheus.dillonjason.dev"
       - "--web.route-prefix=/"
+      - "--storage.tsdb.retention.time=30d"
   node_exporter:
     image: quay.io/prometheus/node-exporter
     container_name: node_exporter
