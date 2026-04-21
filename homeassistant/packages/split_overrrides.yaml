@@ -23,6 +23,16 @@ script:
           entity_id: input_datetime.guest_override_until
           date: "{{ now().date().isoformat() }}"
 
+  split_temp_override_clear:
+    alias: Splits Override • Clear Next Day
+    mode: single
+    sequence:
+      - action: input_select.select_option
+        target:
+          entity_id: input_select.splits_temp_override_mode
+        data:
+          option: "Off"
+
 input_select:
   splits_temp_override_mode:
     name: Splits Temp Override Mode
@@ -33,17 +43,17 @@ input_select:
       - "Fan"
     icon: mdi:thermostat-auto
 
-script:
-  split_temp_override_clear:
-    alias: Splits Override • Clear Next Day
+automation:
+  - alias: "Splits Override • Clear at 06:35"
+    id: splits_override_clear_0635
+    description: >-
+      Resets splits_temp_override_mode to Off each morning at 06:35,
+      5 min after the Seasonal HVAC automation runs. Triggers the HVAC
+      automation to re-evaluate with no override.
     triggers:
       - trigger: time
-        at: "06:35:00"  # after your 06:30 HVAC run
+        at: "06:35:00"
     conditions: []
     actions:
-      - action: input_select.select_option
-        target:
-          entity_id: input_select.splits_temp_override_mode
-        data:
-          option: "Off"
+      - action: script.split_temp_override_clear
     mode: single
