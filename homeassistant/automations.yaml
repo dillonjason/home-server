@@ -1,0 +1,988 @@
+- id: splits_auto_apply_on_change
+  alias: Splits — Auto-Apply on Helper Change
+  trigger:
+  - platform: state
+    entity_id:
+    - input_select.splits_hvac_mode
+    - input_number.splits_target_temp
+    - input_select.splits_fan_mode
+  condition: []
+  action:
+  - service: script.apply_split_settings
+- id: '1699191016782'
+  alias: Living room switch on
+  description: ''
+  trigger:
+  - platform: device
+    type: turned_on
+    device_id: 3aaf3199504ec7d3d7585f9ca518c13f
+    entity_id: ad0f4baeb9f0d546fc8b7738649b325e
+    domain: switch
+  condition: []
+  action:
+  - type: turn_on
+    device_id: 5bb6b71ea7ae755ed033268241ecd661
+    entity_id: 130f26da6a7d0abdc9926d23dbadf51a
+    domain: light
+  - type: turn_on
+    device_id: 35c1c010a03d85229d36932f57834859
+    entity_id: 8319122379ae8de71fdb95890cfa27f6
+    domain: switch
+  mode: single
+- id: '1701555383478'
+  alias: Christmas Color Loop
+  description: Color loop the front door light for christmas
+  use_blueprint:
+    path: mdolnik/color_loop.yaml
+    input:
+      light: light.hue_color_lamp_1
+      transition:
+        hours: 0
+        minutes: 0
+        seconds: 10
+      color_1:
+      - 187
+      - 37
+      - 40
+      color_2:
+      - 255
+      - 255
+      - 255
+      color_3:
+      - 20
+      - 107
+      - 58
+      helper_toggle: light.hue_color_lamp_1
+      max_color_distance: 180
+      color_4:
+      - 255
+      - 255
+      - 255
+- id: '1702223565790'
+  alias: Living room switch off
+  description: ''
+  trigger:
+  - platform: device
+    type: turned_off
+    device_id: 3aaf3199504ec7d3d7585f9ca518c13f
+    entity_id: ad0f4baeb9f0d546fc8b7738649b325e
+    domain: switch
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 5bb6b71ea7ae755ed033268241ecd661
+    entity_id: 130f26da6a7d0abdc9926d23dbadf51a
+    domain: light
+  - type: turn_off
+    device_id: 35c1c010a03d85229d36932f57834859
+    entity_id: 8319122379ae8de71fdb95890cfa27f6
+    domain: switch
+  mode: single
+- id: '1708390591970'
+  alias: Front Porch On
+  description: ''
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: 0
+  condition: []
+  action:
+  - type: turn_on
+    device_id: dacf33c399ef3a974f3e267bed66d700
+    entity_id: 617a0ab8b5fbb18e3257377372d544ea
+    domain: switch
+  mode: single
+- id: '1708390619957'
+  alias: Front Porch Off
+  description: ''
+  trigger:
+  - platform: sun
+    event: sunrise
+    offset: 0
+  condition: []
+  action:
+  - type: turn_off
+    device_id: dacf33c399ef3a974f3e267bed66d700
+    entity_id: 617a0ab8b5fbb18e3257377372d544ea
+    domain: switch
+  mode: single
+- id: '1737839822856'
+  alias: Turn off all Nick's office lights
+  description: ''
+  triggers:
+  - type: turned_off
+    device_id: 492147db970d0c9de2e5461b0e66aef4
+    entity_id: 286f0a66f16816621bbf11fac87bd622
+    domain: light
+    trigger: device
+  conditions: []
+  actions:
+  - type: turn_off
+    device_id: cfe52359fe3d35a6d422cdc9ed8cbf45
+    entity_id: f115198e9698ae58125498598125d5a9
+    domain: switch
+  - type: turn_off
+    device_id: 06cd6c583ee59eff735768b959832470
+    entity_id: 722a983a771be00a97cf3dbed705ecfc
+    domain: switch
+  mode: single
+- id: '1737841052004'
+  alias: Turn off all upstairs bathroom lights
+  description: ''
+  triggers:
+  - type: turned_off
+    device_id: 9abee6e6f158ad47efb015109a9eca13
+    entity_id: f14f0efccbe4281a9d58bced4df17e2f
+    domain: switch
+    trigger: device
+  conditions:
+  - condition: device
+    type: is_on
+    device_id: cd380d56ca873f4910c99ea232bf765d
+    entity_id: 96549e5131b7206f7de5b801ec1ff9ff
+    domain: switch
+  actions:
+  - type: turn_off
+    device_id: cd380d56ca873f4910c99ea232bf765d
+    entity_id: 96549e5131b7206f7de5b801ec1ff9ff
+    domain: switch
+  mode: single
+- id: '1737841150809'
+  alias: Turn on all upstairs bathroom fans
+  description: ''
+  triggers:
+  - type: turned_on
+    device_id: 38a7307f3ac5da1de19bfb3f167a96b7
+    entity_id: e2b67b51f8da77207d4accaae5906f44
+    domain: switch
+    trigger: device
+  - type: turned_on
+    device_id: fa0efe91f66087e5b63d89ba496842e7
+    entity_id: 2b62b2dd7f39fee36f5ca804049eef18
+    domain: switch
+    trigger: device
+  conditions: []
+  actions:
+  - type: turn_off
+    device_id: 38a7307f3ac5da1de19bfb3f167a96b7
+    entity_id: 5719a7206edd6fd6e843be8208d2874f
+    domain: fan
+  - type: turn_on
+    device_id: fa0efe91f66087e5b63d89ba496842e7
+    entity_id: 2b62b2dd7f39fee36f5ca804049eef18
+    domain: switch
+  mode: single
+- id: '1737841183805'
+  alias: Turn off all upstairs bathroom fans
+  description: ''
+  triggers:
+  - type: turned_off
+    device_id: 38a7307f3ac5da1de19bfb3f167a96b7
+    entity_id: e2b67b51f8da77207d4accaae5906f44
+    domain: switch
+    trigger: device
+  - type: turned_off
+    device_id: fa0efe91f66087e5b63d89ba496842e7
+    entity_id: 2b62b2dd7f39fee36f5ca804049eef18
+    domain: switch
+    trigger: device
+  conditions: []
+  actions:
+  - type: turn_off
+    device_id: 38a7307f3ac5da1de19bfb3f167a96b7
+    entity_id: e2b67b51f8da77207d4accaae5906f44
+    domain: switch
+  - type: turn_off
+    device_id: fa0efe91f66087e5b63d89ba496842e7
+    entity_id: 2b62b2dd7f39fee36f5ca804049eef18
+    domain: switch
+  mode: single
+- id: '1737934176091'
+  alias: Auto turn on Dillon's Christmas lights
+  description: ''
+  triggers:
+  - trigger: sun
+    event: sunset
+    offset: 0
+  conditions: []
+  actions:
+  - type: turn_on
+    device_id: 55c18031d8469e660b1279730ba76794
+    entity_id: b89c1d06d412f5a5ee44106beff52b91
+    domain: switch
+  mode: single
+- id: '1737934235933'
+  alias: Auto turn off Dillon's christmas lights
+  description: ''
+  triggers:
+  - trigger: time
+    at: '22:00:00'
+  conditions: []
+  actions:
+  - type: turn_off
+    device_id: 55c18031d8469e660b1279730ba76794
+    entity_id: b89c1d06d412f5a5ee44106beff52b91
+    domain: switch
+  mode: single
+- id: '1746066477183'
+  alias: Winter Night AC Automation
+  description: ''
+  triggers:
+  - trigger: time
+    at: '21:00:00'
+  conditions:
+  - condition: numeric_state
+    entity_id: weather.openweathermap
+    below: 55
+    attribute: temperature
+  actions:
+  - action: climate.turn_on
+    metadata: {}
+    data: {}
+    target:
+      device_id:
+      - b935b7e61c3c9fcfe1ef525af504fee3
+      - 61d5f718f20de181c42981a36387f0c0
+  - action: climate.set_temperature
+    metadata: {}
+    data:
+      temperature: 60
+      hvac_mode: heat
+    target:
+      device_id:
+      - 0d5bd9d93bd157b94c72de559e2513d8
+      - c6dd8485bbcc56b3338c898596c0e62b
+      - 61d5f718f20de181c42981a36387f0c0
+      - b3b114e3648e05c0efb5a57113a28dfc
+      - b935b7e61c3c9fcfe1ef525af504fee3
+  - action: climate.set_fan_mode
+    metadata: {}
+    data:
+      fan_mode: auto
+    target:
+      device_id:
+      - b935b7e61c3c9fcfe1ef525af504fee3
+      - 0d5bd9d93bd157b94c72de559e2513d8
+      - c6dd8485bbcc56b3338c898596c0e62b
+      - 61d5f718f20de181c42981a36387f0c0
+      - b3b114e3648e05c0efb5a57113a28dfc
+  - action: climate.turn_off
+    metadata: {}
+    data: {}
+    target:
+      device_id:
+      - 0d5bd9d93bd157b94c72de559e2513d8
+      - c6dd8485bbcc56b3338c898596c0e62b
+      - b3b114e3648e05c0efb5a57113a28dfc
+  - action: weather.get_forecasts
+    target:
+      entity_id: weather.openweathermap
+    data:
+      type: daily
+    response_variable: own_data
+  mode: single
+- id: '1746067166321'
+  alias: Winter Day AC Automation
+  description: ''
+  triggers:
+  - trigger: time
+    at: 06:30:00
+  conditions:
+  - condition: numeric_state
+    entity_id: weather.openweathermap
+    below: 55
+    attribute: temperature
+  actions:
+  - action: climate.turn_on
+    metadata: {}
+    data: {}
+    target:
+      device_id:
+      - b935b7e61c3c9fcfe1ef525af504fee3
+      - 0d5bd9d93bd157b94c72de559e2513d8
+      - c6dd8485bbcc56b3338c898596c0e62b
+      - 61d5f718f20de181c42981a36387f0c0
+      - b3b114e3648e05c0efb5a57113a28dfc
+  - action: climate.set_temperature
+    metadata: {}
+    data:
+      temperature: 70
+      hvac_mode: heat
+    target:
+      device_id:
+      - 0d5bd9d93bd157b94c72de559e2513d8
+      - c6dd8485bbcc56b3338c898596c0e62b
+      - 61d5f718f20de181c42981a36387f0c0
+      - b3b114e3648e05c0efb5a57113a28dfc
+      - b935b7e61c3c9fcfe1ef525af504fee3
+  - action: climate.set_fan_mode
+    metadata: {}
+    data:
+      fan_mode: auto
+    target:
+      device_id:
+      - b935b7e61c3c9fcfe1ef525af504fee3
+      - 0d5bd9d93bd157b94c72de559e2513d8
+      - c6dd8485bbcc56b3338c898596c0e62b
+      - 61d5f718f20de181c42981a36387f0c0
+      - b3b114e3648e05c0efb5a57113a28dfc
+  mode: single
+- id: '1746067358905'
+  alias: Summer Night AC Automation
+  description: Uses OWM tonight's low (templow) instead of current temp
+  triggers:
+  - trigger: time
+    at: '21:45:00'
+  actions:
+  - action: weather.get_forecasts
+    target:
+      entity_id: weather.openweathermap
+    data:
+      type: daily
+    response_variable: owm_data
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ owm_data[''weather.openweathermap''].forecast[0].temperature
+          | float(0) >= 54 }}'
+      sequence:
+      - action: climate.turn_on
+        target:
+          device_id: b935b7e61c3c9fcfe1ef525af504fee3
+      - action: climate.set_fan_mode
+        data:
+          fan_mode: auto
+        target:
+          device_id:
+          - b935b7e61c3c9fcfe1ef525af504fee3
+          - 0d5bd9d93bd157b94c72de559e2513d8
+          - c6dd8485bbcc56b3338c898596c0e62b
+          - 61d5f718f20de181c42981a36387f0c0
+          - b3b114e3648e05c0efb5a57113a28dfc
+      - action: climate.set_temperature
+        data:
+          hvac_mode: cool
+          temperature: 61
+        target:
+          device_id: b935b7e61c3c9fcfe1ef525af504fee3
+      - device_id: b935b7e61c3c9fcfe1ef525af504fee3
+        domain: climate
+        entity_id: 3d6470d1c5d65488a02318c59e9466f8
+        type: set_preset_mode
+        preset_mode: none
+      - action: climate.turn_off
+        target:
+          device_id:
+          - 0d5bd9d93bd157b94c72de559e2513d8
+          - c6dd8485bbcc56b3338c898596c0e62b
+          - 61d5f718f20de181c42981a36387f0c0
+          - b3b114e3648e05c0efb5a57113a28dfc
+  mode: single
+- id: '1746067424188'
+  alias: Summer Day AC Automation
+  description: Uses OWM daily forecast high instead of current temp
+  triggers:
+  - trigger: time
+    at: 06:30:00
+  actions:
+  - action: weather.get_forecasts
+    target:
+      entity_id: weather.openweathermap
+    data:
+      type: daily
+    response_variable: owm_data
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ owm_data[''weather.openweathermap''].forecast[0].temperature
+          | float(0) >= 54 }}'
+      sequence:
+      - action: climate.turn_on
+        target:
+          device_id:
+          - b935b7e61c3c9fcfe1ef525af504fee3
+          - 61d5f718f20de181c42981a36387f0c0
+          - 0d5bd9d93bd157b94c72de559e2513d8
+          - b3b114e3648e05c0efb5a57113a28dfc
+      - action: climate.set_temperature
+        data:
+          hvac_mode: cool
+          temperature: 70
+        target:
+          device_id:
+          - 0d5bd9d93bd157b94c72de559e2513d8
+          - c6dd8485bbcc56b3338c898596c0e62b
+          - 61d5f718f20de181c42981a36387f0c0
+          - b3b114e3648e05c0efb5a57113a28dfc
+          - b935b7e61c3c9fcfe1ef525af504fee3
+      - action: climate.set_fan_mode
+        data:
+          fan_mode: auto
+        target:
+          device_id:
+          - b935b7e61c3c9fcfe1ef525af504fee3
+          - 0d5bd9d93bd157b94c72de559e2513d8
+          - c6dd8485bbcc56b3338c898596c0e62b
+          - 61d5f718f20de181c42981a36387f0c0
+          - b3b114e3648e05c0efb5a57113a28dfc
+      - device_id: b935b7e61c3c9fcfe1ef525af504fee3
+        domain: climate
+        entity_id: 3d6470d1c5d65488a02318c59e9466f8
+        type: set_preset_mode
+        preset_mode: none
+  - action: climate.turn_off
+    target:
+      device_id:
+      - c6dd8485bbcc56b3338c898596c0e62b
+  mode: single
+- id: '1746908732622'
+  alias: Dishwasher Done Notification
+  description: ''
+  triggers:
+  - trigger: numeric_state
+    entity_id:
+    - sensor.dishwasher_power_minute_average
+    below: 1
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  conditions: []
+  actions:
+  - action: notify.mobile_app_pixel_8a
+    metadata: {}
+    data:
+      message: Dishwasher is done!
+  - action: notify.mobile_app_pixel_8_pro
+    metadata: {}
+    data:
+      message: Dishwasher is done!
+  mode: single
+- id: '1746912287775'
+  alias: Dryer Done Notification
+  description: ''
+  triggers:
+  - trigger: numeric_state
+    entity_id:
+    - sensor.dryer_power_minute_average
+    below: 5
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  conditions: []
+  actions:
+  - action: notify.mobile_app_pixel_8_pro
+    metadata: {}
+    data:
+      message: Dryer is done!
+  - action: notify.mobile_app_dillons_ipad
+    metadata: {}
+    data:
+      message: Dryer is done!
+  - action: notify.mobile_app_dillons_iphone
+    metadata: {}
+    data:
+      message: Dryer is done!
+  mode: single
+- id: '1746912327202'
+  alias: Washer Done Notification
+  description: ''
+  triggers:
+  - trigger: numeric_state
+    entity_id:
+    - sensor.washer_power_minute_average
+    below: 15
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  conditions: []
+  actions:
+  - action: notify.mobile_app_pixel_8_pro
+    metadata: {}
+    data:
+      message: Washer is done!
+  - action: notify.mobile_app_dillons_ipad
+    metadata: {}
+    data:
+      message: Washer is done!
+  - action: notify.mobile_app_dillons_iphone
+    metadata: {}
+    data:
+      message: Washer is done!
+  mode: single
+- id: '1747357094426'
+  alias: Nick’s Reminder
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - light.all_lights
+    from: 'on'
+    to: 'off'
+    for:
+      hours: 0
+      minutes: 30
+      seconds: 0
+  conditions:
+  - condition: sun
+    after: sunset
+  - condition: state
+    entity_id: sensor.pixel_8_pro_battery_state
+    state: discharging
+  - condition: state
+    entity_id: person.nick
+    state: home
+  actions:
+  - action: tts.speak
+    metadata: {}
+    data:
+      cache: true
+      media_player_entity_id: media_player.bedroom
+      message: Nick’s phone is not plugged in
+    target:
+      entity_id: tts.home_assistant_cloud
+  mode: single
+- id: '1749167726273'
+  alias: No one home light notification
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - group.family
+  conditions:
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: group.family
+      state: home
+  - condition: state
+    entity_id: light.all_lights
+    state: 'on'
+  actions:
+  - action: notify.mobile_app_pixel_8_pro
+    data:
+      message: No one is home. Would you like to turn off all the lights?
+      data:
+        actions:
+        - action: TURN_OFF_LIGHTS_YES
+          title: 'Yes'
+        - action: TURN_OFF_LIGHTS_NO
+          title: 'No'
+  - action: notify.mobile_app_dillons_iphone
+    metadata: {}
+    data:
+      message: No one is home. Would you like to turn off all the lights?
+      data:
+        actions:
+        - action: TURN_OFF_LIGHTS_YES
+          title: 'Yes'
+        - action: TURN_OFF_LIGHTS_NO
+          title: 'No'
+  mode: single
+- id: '1749168151597'
+  alias: Turn Off Lights When Confirmed
+  description: ''
+  triggers:
+  - trigger: event
+    event_type: mobile_app_notification_action
+    event_data:
+      action: TURN_OFF_LIGHTS_YES
+  conditions: []
+  actions:
+  - action: light.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: light.all_lights
+  mode: single
+- id: '1749684291496'
+  alias: Balcony at sunset
+  description: ''
+  triggers:
+  - trigger: sun
+    event: sunset
+    offset: 0
+  conditions: []
+  actions:
+  - type: turn_on
+    device_id: 1075bfb76b1dc803eae5fe35baac1179
+    entity_id: 3b41812bb01f84435d1847f5ff862294
+    domain: light
+  mode: single
+- id: '1749684334126'
+  alias: Balcony lights off
+  description: ''
+  triggers:
+  - trigger: time
+    at: '22:00:00'
+  conditions:
+  - condition: device
+    type: is_on
+    device_id: 1075bfb76b1dc803eae5fe35baac1179
+    entity_id: 3b41812bb01f84435d1847f5ff862294
+    domain: light
+  actions:
+  - type: turn_off
+    device_id: 1075bfb76b1dc803eae5fe35baac1179
+    entity_id: 3b41812bb01f84435d1847f5ff862294
+    domain: light
+  mode: single
+- id: '1749686343489'
+  alias: Record Last Precipitation Time
+  description: ''
+  triggers:
+  - trigger: numeric_state
+    entity_id:
+    - sensor.home_precipitation
+    above: 0
+  conditions:
+  - condition: template
+    value_template: '{{ now().isoformat()[:19] != states(''input_datetime.last_rain_time'')
+      }}'
+  actions:
+  - action: input_datetime.set_datetime
+    target:
+      entity_id: input_datetime.last_precipitation_time
+    data:
+      datetime: '{{ now().isoformat() }}'
+  mode: single
+- id: '1749780771154'
+  alias: Nick leaving work
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - person.nick
+    from: HelloFresh
+  conditions: []
+  actions:
+  - action: notify.mobile_app_dillons_iphone
+    metadata: {}
+    data:
+      message: Nick is leaving work!
+  mode: single
+- id: '1749780842274'
+  alias: Dillon Leaving Work
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - person.dillon
+    from: Google - SJT
+  conditions: []
+  actions:
+  - action: notify.mobile_app_pixel_8_pro
+    metadata: {}
+    data:
+      message: Dillon is leaving work!
+  mode: single
+- id: '1749856561977'
+  alias: Balcony switch on
+  description: ''
+  triggers:
+  - type: turned_on
+    device_id: d0de414a52d9a5d6019f00cc70b749d0
+    entity_id: 391df9f2dcb96611bc04f111e913d40d
+    domain: switch
+    trigger: device
+  conditions: []
+  actions:
+  - type: turn_on
+    device_id: 1075bfb76b1dc803eae5fe35baac1179
+    entity_id: 3b41812bb01f84435d1847f5ff862294
+    domain: light
+  mode: single
+- id: '1749856588169'
+  alias: Balcony switch off
+  description: ''
+  triggers:
+  - type: turned_off
+    device_id: d0de414a52d9a5d6019f00cc70b749d0
+    entity_id: 391df9f2dcb96611bc04f111e913d40d
+    domain: switch
+    trigger: device
+  conditions: []
+  actions:
+  - type: turn_off
+    device_id: 1075bfb76b1dc803eae5fe35baac1179
+    entity_id: 3b41812bb01f84435d1847f5ff862294
+    domain: light
+  mode: single
+- id: '1749921893429'
+  alias: Upstairs Bathroom High Humidity
+  description: ''
+  triggers:
+  - type: humidity
+    device_id: 1dbf4cce83f67d0d128e1f10aa99b5c7
+    entity_id: 17a8c04399ef63e546ef217d451d8ddd
+    domain: sensor
+    trigger: device
+    above: 80
+  conditions:
+  - condition: or
+    conditions:
+    - condition: device
+      device_id: 38a7307f3ac5da1de19bfb3f167a96b7
+      domain: fan
+      entity_id: 5719a7206edd6fd6e843be8208d2874f
+      type: is_off
+    - condition: device
+      device_id: fa0efe91f66087e5b63d89ba496842e7
+      domain: fan
+      entity_id: 6aa42518e7b13878f0dad2511b9ac656
+      type: is_off
+  actions:
+  - type: turn_on
+    device_id: fa0efe91f66087e5b63d89ba496842e7
+    entity_id: 6aa42518e7b13878f0dad2511b9ac656
+    domain: fan
+  mode: single
+- id: '1749921950726'
+  alias: Upstairs Bathroom Normal Humidity
+  description: ''
+  triggers:
+  - type: humidity
+    device_id: 1dbf4cce83f67d0d128e1f10aa99b5c7
+    entity_id: 17a8c04399ef63e546ef217d451d8ddd
+    domain: sensor
+    trigger: device
+    below: 70
+  conditions:
+  - condition: or
+    conditions:
+    - condition: device
+      device_id: 38a7307f3ac5da1de19bfb3f167a96b7
+      domain: fan
+      entity_id: 5719a7206edd6fd6e843be8208d2874f
+      type: is_on
+    - condition: device
+      device_id: fa0efe91f66087e5b63d89ba496842e7
+      domain: fan
+      entity_id: 6aa42518e7b13878f0dad2511b9ac656
+      type: is_on
+  actions:
+  - type: turn_off
+    device_id: 38a7307f3ac5da1de19bfb3f167a96b7
+    entity_id: 5719a7206edd6fd6e843be8208d2874f
+    domain: fan
+  - type: turn_off
+    device_id: fa0efe91f66087e5b63d89ba496842e7
+    entity_id: 6aa42518e7b13878f0dad2511b9ac656
+    domain: fan
+  mode: single
+- id: '1749922140480'
+  alias: 'Upstairs bathroom low temperature warning '
+  description: ''
+  triggers:
+  - type: temperature
+    device_id: 1dbf4cce83f67d0d128e1f10aa99b5c7
+    entity_id: 438e9f11f7214ccfc1ff1f506295fd49
+    domain: sensor
+    trigger: device
+    below: 50
+  conditions:
+  - condition: state
+    entity_id: group.family
+    state: home
+  actions:
+  - action: notify.mobile_app_pixel_8a
+    metadata: {}
+    data:
+      message: Upstairs bathroom has dropped below 50 degrees. Maybe open a door?
+      title: Upstairs bathroom is cold
+  - action: notify.mobile_app_pixel_8_pro
+    metadata: {}
+    data:
+      message: Upstairs bathroom has dropped below 50 degrees. Maybe open a door?
+      title: Upstairs bathroom is cold
+  mode: single
+- id: '1752942837858'
+  alias: Judy Litter Visit
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id: binary_sensor.judy_litter_session
+    from: 'off'
+    to: 'on'
+  conditions:
+  - condition: numeric_state
+    entity_id: sensor.judy_litter_sensor_illuminance
+    below: 600
+  actions:
+  - action: counter.increment
+    target:
+      entity_id: counter.judy_litter_visits
+    data: {}
+  mode: single
+- id: '1752942959321'
+  alias: Auto Reset Judy Litter Vists
+  description: ''
+  triggers:
+  - trigger: numeric_state
+    entity_id:
+    - sensor.judy_litter_sensor_illuminance
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 30
+    above: 700
+  conditions: []
+  actions:
+  - action: counter.reset
+    target:
+      entity_id: counter.judy_litter_visits
+    data: {}
+  mode: single
+- id: '1760066127120'
+  alias: Seasonal HVAC (OWM • day/night + fan-only shoulder + override)
+  description: Two triggers (06:30, 21:45) with optional Cool/Heat/Fan override.
+  triggers:
+  - id: morning
+    trigger: time
+    at: 06:30:00
+  - id: night
+    trigger: time
+    at: '21:45:00'
+  - trigger: state
+    entity_id: input_select.splits_temp_override_mode
+  actions:
+  - action: weather.get_forecasts
+    target:
+      entity_id: weather.openweathermap
+    data:
+      type: daily
+    response_variable: owm
+  - variables:
+      COOL_DAY_ON_ABOVE: 75
+      HEAT_DAY_ON_BELOW: 60
+      todays_high: "{{ owm['weather.openweathermap'].forecast[0].temperature | float(0)\n
+        \  if owm and 'weather.openweathermap' in owm else 0 }}"
+      now_hms: '{{ now().strftime(''%H:%M:%S'') }}'
+      branch: "{% if trigger is defined and trigger.id %}\n  {{ trigger.id }}\n{%
+        else %}\n  {% if now_hms >= '21:45:00' or now_hms < '06:30:00' %}night{% else
+        %}morning{% endif %}\n{% endif %}"
+      override: '{{ states(''input_select.splits_temp_override_mode'') }}'
+  - action: logbook.log
+    data:
+      name: Seasonal HVAC
+      message: branch={{ branch }}, todays_high={{ todays_high }}, override={{ override
+        }}
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ override != ''Off'' }}'
+      sequence:
+      - choose:
+        - conditions:
+          - condition: template
+            value_template: '{{ override == ''Cool'' }}'
+          sequence:
+          - action: script.splits_apply_preset
+            data:
+              preset: '{{ ''summer_day'' if branch == ''morning'' else ''summer_night''
+                }}'
+        - conditions:
+          - condition: template
+            value_template: '{{ override == ''Heat'' }}'
+          sequence:
+          - action: script.splits_apply_preset
+            data:
+              preset: '{{ ''winter_day'' if branch == ''morning'' else ''winter_night''
+                }}'
+        - conditions:
+          - condition: template
+            value_template: '{{ override == ''Fan'' }}'
+          sequence:
+          - action: script.splits_apply_preset
+            data:
+              preset: '{{ ''fan_day'' if branch == ''morning'' else ''fan_night''
+                }}'
+    - conditions:
+      - condition: template
+        value_template: '{{ override == ''Off'' and branch == ''morning'' }}'
+      sequence:
+      - choose:
+        - conditions:
+          - condition: template
+            value_template: '{{ todays_high >= COOL_DAY_ON_ABOVE }}'
+          sequence:
+          - action: script.splits_apply_preset
+            data:
+              preset: summer_day
+        - conditions:
+          - condition: template
+            value_template: '{{ todays_high <= HEAT_DAY_ON_BELOW }}'
+          sequence:
+          - action: script.splits_apply_preset
+            data:
+              preset: winter_day
+        default:
+        - action: script.splits_apply_preset
+          data:
+            preset: fan_day
+    - conditions:
+      - condition: template
+        value_template: '{{ override == ''Off'' and branch == ''night'' }}'
+      sequence:
+      - choose:
+        - conditions:
+          - condition: template
+            value_template: '{{ todays_high <= HEAT_DAY_ON_BELOW }}'
+          sequence:
+          - action: script.splits_apply_preset
+            data:
+              preset: winter_night
+        - conditions:
+          - condition: template
+            value_template: '{{ todays_high > HEAT_DAY_ON_BELOW }}'
+          sequence:
+          - action: script.splits_apply_preset
+            data:
+              preset: summer_night
+  mode: single
+- id: '1761517666587'
+  alias: Judy Litter – Reset Counter from Notification
+  description: ''
+  triggers:
+  - event_type: mobile_app_notification_action
+    event_data:
+      action: RESET_JUDY_COUNTER
+    trigger: event
+  actions:
+  - target:
+      entity_id: counter.judy_litter_visits
+    action: counter.reset
+  mode: single
+- id: '1764547515317'
+  alias: Front Christmas Lights Automation
+  description: Toggle front Christmas lights
+  triggers:
+  - id: sunset
+    trigger: sun
+    event: sunset
+  - id: sunrise
+    trigger: sun
+    event: sunrise
+  conditions:
+  - condition: state
+    entity_id: input_boolean.holiday_mode
+    state: 'on'
+  actions:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: sunset
+      sequence:
+      - action: light.turn_on
+        target:
+          entity_id: light.front_christmas_lights
+    - conditions:
+      - condition: trigger
+        id: sunrise
+      sequence:
+      - action: light.turn_off
+        target:
+          entity_id: light.front_christmas_lights
+  mode: single
