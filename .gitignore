@@ -44,10 +44,6 @@ homeassistant/home-assistant.log
 homeassistant/home-assistant.log.1
 homeassistant/home-assistant.log.fault
 homeassistant/secrets.yaml
-homeassistant/automations.yaml
-homeassistant/configuration.yaml
-homeassistant/scenes.yaml
-homeassistant/scripts.yaml
 homeassistant/.storage/*
 homeassistant/zigbee.db
 homeassistant/zigbee.db-shm
@@ -84,3 +80,13 @@ actual-data/server-files/account.sqlite
 actual-data/user-files/file-97d32f8b-248c-4e55-803f-da42d43857c9.blob
 actual-data/user-files/group-9e43d7b6-c710-445f-96d2-8e0608620a70.sqlite
 actual-data/.migrate
+
+# Catch-all safety patterns (never commit secrets)
+homeassistant/**/*.key
+homeassistant/**/*.pem
+homeassistant/**/*_secret*
+homeassistant/**/*_password*
+homeassistant/**/*_token*
+homeassistant/**/credentials*
+homeassistant/**/.env
+homeassistant/**/.env.*

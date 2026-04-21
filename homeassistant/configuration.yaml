@@ -1,0 +1,79 @@
+
+# Loads default set of integrations. Do not remove.
+default_config:
+
+# Top-level Home Assistant settings
+homeassistant:
+  packages: !include_dir_named packages
+
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+recorder:
+  exclude:
+    entities:
+      # Exclude any logging of the chosen light.
+      - light.hue_color_lamp_1
+      # Exclude any logging of this color loop script.
+      - automation.christmas_color_loop
+    event_types:
+      # Do not record ANY service calls
+      - call_service
+
+http:
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 172.24.0.0/24
+
+group:
+  family:
+    name: Family
+    entities:
+      - person.nick
+      - person.dillon
+  all_splits:
+    name: All Splits
+    entities:
+      - climate.bedroom_split
+      - climate.dillon_s_office_split
+      - climate.dinning_room_split
+      - climate.living_room_split
+      - climate.nick_s_office_split
+
+input_select:
+  splits_hvac_mode:
+    name: Splits • HVAC Mode
+    options:
+      - auto
+      - cool
+      - dry
+      - fan_only
+      - heat
+      - "off"
+
+  splits_fan_mode:
+    name: Splits • Fan Mode
+    options:
+      - auto
+      - low
+      - medium low
+      - medium
+      - medium high
+      - high
+
+input_number:
+  splits_target_temp:
+    name: Splits • Target Temp
+    min: 61
+    max: 86
+    step: 1
+    unit_of_measurement: "°F"

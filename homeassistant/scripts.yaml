@@ -1,0 +1,200 @@
+debug_openweathermap_get_forecasts:
+  alias: Debug OpenWeatherMap get_forecasts
+  sequence:
+  - action: weather.get_forecasts
+    metadata: {}
+    data:
+      type: daily
+    target:
+      entity_id: weather.openweathermap
+    response_variable: owm_forecast_data
+  - data:
+      level: info
+      message: '{{ owm_forecast_data | tojson }}
+
+        '
+    action: system_log.write
+  description: ''
+apply_split_settings:
+  alias: Apply Split Settings (All)
+  mode: queued
+  sequence:
+  - variables:
+      targets: '{{ expand(''group.all_splits'') | map(attribute=''entity_id'') | list
+        }}'
+      hvac: '{{ states(''input_select.splits_hvac_mode'') }}'
+      temp: '{{ states(''input_number.splits_target_temp'') | float(0) }}'
+      fan: '{{ states(''input_select.splits_fan_mode'') }}'
+  - service: climate.set_hvac_mode
+    target:
+      entity_id: '{{ targets }}'
+    data:
+      hvac_mode: '{{ hvac }}'
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ hvac in [''heat'',''cool'', ''fan_only'', ''auto''] }}'
+      sequence:
+      - service: climate.set_temperature
+        target:
+          entity_id: '{{ targets }}'
+        data:
+          temperature: '{{ temp }}'
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ fan not in ['''',''unknown'',''unavailable''] }}'
+      sequence:
+      - service: climate.set_fan_mode
+        target:
+          entity_id: '{{ targets }}'
+        data:
+          fan_mode: '{{ fan }}'
+splits_apply_preset:
+  alias: Splits • Apply Preset
+  mode: queued
+  fields:
+    preset:
+      description: Preset key to apply
+      example: summer_day
+      required: true
+      selector:
+        select:
+          options:
+          - summer_day
+          - summer_night
+          - winter_day
+          - winter_night
+          - fan_day
+          - fan_night
+  variables:
+    presets:
+      summer_day:
+        hvac: cool
+        temp: 70
+        fan: auto
+        targets: group.all_splits
+      summer_night:
+        hvac: cool
+        temp: 61
+        fan: auto
+        targets: climate.bedroom_split
+        per_entity:
+          climate.dillon_s_office_split:
+            hvac: 'off'
+          climate.dinning_room_split:
+            hvac: 'off'
+          climate.living_room_split:
+            hvac: 'off'
+          climate.nick_s_office_split:
+            hvac: 'off'
+      winter_day:
+        hvac: heat
+        temp: 70
+        fan: auto
+        targets: group.all_splits
+        per_entity:
+          climate.dillon_s_office_split:
+            temp: 65
+          climate.nick_s_office_split:
+            temp: 65
+      winter_night:
+        hvac: heat
+        temp: 65
+        fan: auto
+        targets: group.all_splits
+      fan_day:
+        hvac: fan_only
+        temp: 70
+        fan: auto
+        targets: group.all_splits
+      fan_night:
+        hvac: fan_only
+        temp: 61
+        fan: auto
+        targets: group.all_splits
+    bedroom: climate.bedroom_split
+    office_entities:
+    - climate.dillon_s_office_split
+    - climate.nick_s_office_split
+    sel: '{{ presets[preset] }}'
+    hvac: '{{ sel.hvac }}'
+    temp: '{{ sel.temp | default(None) }}'
+    fan: '{{ sel.fan  | default(None) }}'
+    per_entity: '{{ sel.per_entity | default({}) }}'
+    night: '{{ preset.endswith(''_night'') }}'
+    guest_active: '{{ is_state(''binary_sensor.guest_override_active'',''on'') }}'
+    _targets_base: "{% set t = sel.targets %}\n{% if t is string and t.startswith('group.')
+      %}\n  {{ expand(t) | map(attribute='entity_id') | list }}\n{% elif t is string
+      %}\n  {{ [t] }}\n{% elif t is sequence %}\n  {{ t | list }}\n{% else %}\n  {{
+      [] }}\n{% endif %}\n"
+    _targets_guest: "{% set base = _targets_base %} {% if guest_active and night and
+      (bedroom in base) %}\n  {{ (base + office_entities) | unique | list }}\n{% else
+      %}\n  {{ base }}\n{% endif %}\n"
+    targets: '{% set per = per_entity.keys() | list %} {{ (_targets_guest + per) |
+      unique | list }}
+
+      '
+    target_count: '{{ targets | count }}'
+  sequence:
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ target_count == 0 }}'
+      sequence:
+      - action: persistent_notification.create
+        data:
+          title: Splits — No Targets
+          message: Preset {{ preset }} had no target entities.
+      - stop: No climate entities found for preset
+  - repeat:
+      for_each: '{{ targets }}'
+      sequence:
+      - variables:
+          e: '{{ repeat.item }}'
+          overrides: '{{ per_entity.get(e, {}) }}'
+          hvac_e: '{{ overrides.hvac | default(hvac) }}'
+          temp_e: '{{ overrides.temp | default(temp) }}'
+          fan_e: '{{ overrides.fan | default(fan) }}'
+          can_temp: '{{ temp_e is not none and hvac_e not in [''off''] }}'
+          can_fan: '{{ fan_e is not none and hvac_e not in [''off''] }}'
+      - choose:
+        - conditions:
+          - condition: template
+            value_template: '{{ hvac_e == ''off'' }}'
+          sequence:
+          - action: climate.turn_off
+            target:
+              entity_id: '{{ e }}'
+        - conditions:
+          - condition: template
+            value_template: '{{ hvac_e != ''off'' }}'
+          sequence:
+          - action: climate.turn_on
+            target:
+              entity_id: '{{ e }}'
+          - action: climate.set_hvac_mode
+            target:
+              entity_id: '{{ e }}'
+            data:
+              hvac_mode: '{{ hvac_e }}'
+          - choose:
+            - conditions:
+              - condition: template
+                value_template: '{{ can_temp }}'
+              sequence:
+              - action: climate.set_temperature
+                target:
+                  entity_id: '{{ e }}'
+                data:
+                  temperature: '{{ temp_e }}'
+          - choose:
+            - conditions:
+              - condition: template
+                value_template: '{{ can_fan }}'
+              sequence:
+              - action: climate.set_fan_mode
+                target:
+                  entity_id: '{{ e }}'
+                data:
+                  fan_mode: '{{ fan_e }}'
