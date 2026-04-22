@@ -1,0 +1,25 @@
+# packages/lighting/nicks_office.yaml
+# Nick's office lighting automations.
+# Turns off all office lights when the main office light is switched off.
+
+automation:
+  - id: '1737839822856'
+    alias: Turn off all Nick's office lights
+    description: ''
+    triggers:
+      - type: turned_off
+        device_id: 492147db970d0c9de2e5461b0e66aef4
+        entity_id: 286f0a66f16816621bbf11fac87bd622
+        domain: light
+        trigger: device
+    conditions: []
+    actions:
+      - type: turn_off
+        device_id: cfe52359fe3d35a6d422cdc9ed8cbf45
+        entity_id: f115198e9698ae58125498598125d5a9
+        domain: switch
+      - type: turn_off
+        device_id: 06cd6c583ee59eff735768b959832470
+        entity_id: 722a983a771be00a97cf3dbed705ecfc
+        domain: switch
+    mode: single

@@ -9,123 +9,6 @@
   condition: []
   action:
   - service: script.apply_split_settings
-- id: '1699191016782'
-  alias: Living room switch on
-  description: ''
-  trigger:
-  - platform: device
-    type: turned_on
-    device_id: 3aaf3199504ec7d3d7585f9ca518c13f
-    entity_id: ad0f4baeb9f0d546fc8b7738649b325e
-    domain: switch
-  condition: []
-  action:
-  - type: turn_on
-    device_id: 5bb6b71ea7ae755ed033268241ecd661
-    entity_id: 130f26da6a7d0abdc9926d23dbadf51a
-    domain: light
-  - type: turn_on
-    device_id: 35c1c010a03d85229d36932f57834859
-    entity_id: 8319122379ae8de71fdb95890cfa27f6
-    domain: switch
-  mode: single
-- id: '1701555383478'
-  alias: Christmas Color Loop
-  description: Color loop the front door light for christmas
-  use_blueprint:
-    path: mdolnik/color_loop.yaml
-    input:
-      light: light.hue_color_lamp_1
-      transition:
-        hours: 0
-        minutes: 0
-        seconds: 10
-      color_1:
-      - 187
-      - 37
-      - 40
-      color_2:
-      - 255
-      - 255
-      - 255
-      color_3:
-      - 20
-      - 107
-      - 58
-      helper_toggle: light.hue_color_lamp_1
-      max_color_distance: 180
-      color_4:
-      - 255
-      - 255
-      - 255
-- id: '1702223565790'
-  alias: Living room switch off
-  description: ''
-  trigger:
-  - platform: device
-    type: turned_off
-    device_id: 3aaf3199504ec7d3d7585f9ca518c13f
-    entity_id: ad0f4baeb9f0d546fc8b7738649b325e
-    domain: switch
-  condition: []
-  action:
-  - type: turn_off
-    device_id: 5bb6b71ea7ae755ed033268241ecd661
-    entity_id: 130f26da6a7d0abdc9926d23dbadf51a
-    domain: light
-  - type: turn_off
-    device_id: 35c1c010a03d85229d36932f57834859
-    entity_id: 8319122379ae8de71fdb95890cfa27f6
-    domain: switch
-  mode: single
-- id: '1708390591970'
-  alias: Front Porch On
-  description: ''
-  trigger:
-  - platform: sun
-    event: sunset
-    offset: 0
-  condition: []
-  action:
-  - type: turn_on
-    device_id: dacf33c399ef3a974f3e267bed66d700
-    entity_id: 617a0ab8b5fbb18e3257377372d544ea
-    domain: switch
-  mode: single
-- id: '1708390619957'
-  alias: Front Porch Off
-  description: ''
-  trigger:
-  - platform: sun
-    event: sunrise
-    offset: 0
-  condition: []
-  action:
-  - type: turn_off
-    device_id: dacf33c399ef3a974f3e267bed66d700
-    entity_id: 617a0ab8b5fbb18e3257377372d544ea
-    domain: switch
-  mode: single
-- id: '1737839822856'
-  alias: Turn off all Nick's office lights
-  description: ''
-  triggers:
-  - type: turned_off
-    device_id: 492147db970d0c9de2e5461b0e66aef4
-    entity_id: 286f0a66f16816621bbf11fac87bd622
-    domain: light
-    trigger: device
-  conditions: []
-  actions:
-  - type: turn_off
-    device_id: cfe52359fe3d35a6d422cdc9ed8cbf45
-    entity_id: f115198e9698ae58125498598125d5a9
-    domain: switch
-  - type: turn_off
-    device_id: 06cd6c583ee59eff735768b959832470
-    entity_id: 722a983a771be00a97cf3dbed705ecfc
-    domain: switch
-  mode: single
 - id: '1737841052004'
   alias: Turn off all upstairs bathroom lights
   description: ''
@@ -195,33 +78,6 @@
   - type: turn_off
     device_id: fa0efe91f66087e5b63d89ba496842e7
     entity_id: 2b62b2dd7f39fee36f5ca804049eef18
-    domain: switch
-  mode: single
-- id: '1737934176091'
-  alias: Auto turn on Dillon's Christmas lights
-  description: ''
-  triggers:
-  - trigger: sun
-    event: sunset
-    offset: 0
-  conditions: []
-  actions:
-  - type: turn_on
-    device_id: 55c18031d8469e660b1279730ba76794
-    entity_id: b89c1d06d412f5a5ee44106beff52b91
-    domain: switch
-  mode: single
-- id: '1737934235933'
-  alias: Auto turn off Dillon's christmas lights
-  description: ''
-  triggers:
-  - trigger: time
-    at: '22:00:00'
-  conditions: []
-  actions:
-  - type: turn_off
-    device_id: 55c18031d8469e660b1279730ba76794
-    entity_id: b89c1d06d412f5a5ee44106beff52b91
     domain: switch
   mode: single
 - id: '1746066477183'
@@ -513,7 +369,7 @@
       message: Washer is done!
   mode: single
 - id: '1747357094426'
-  alias: Nick’s Reminder
+  alias: Nick's Reminder
   description: ''
   triggers:
   - trigger: state
@@ -540,7 +396,7 @@
     data:
       cache: true
       media_player_entity_id: media_player.bedroom
-      message: Nick’s phone is not plugged in
+      message: Nick's phone is not plugged in
     target:
       entity_id: tts.home_assistant_cloud
   mode: single
@@ -597,38 +453,6 @@
     target:
       entity_id: light.all_lights
   mode: single
-- id: '1749684291496'
-  alias: Balcony at sunset
-  description: ''
-  triggers:
-  - trigger: sun
-    event: sunset
-    offset: 0
-  conditions: []
-  actions:
-  - type: turn_on
-    device_id: 1075bfb76b1dc803eae5fe35baac1179
-    entity_id: 3b41812bb01f84435d1847f5ff862294
-    domain: light
-  mode: single
-- id: '1749684334126'
-  alias: Balcony lights off
-  description: ''
-  triggers:
-  - trigger: time
-    at: '22:00:00'
-  conditions:
-  - condition: device
-    type: is_on
-    device_id: 1075bfb76b1dc803eae5fe35baac1179
-    entity_id: 3b41812bb01f84435d1847f5ff862294
-    domain: light
-  actions:
-  - type: turn_off
-    device_id: 1075bfb76b1dc803eae5fe35baac1179
-    entity_id: 3b41812bb01f84435d1847f5ff862294
-    domain: light
-  mode: single
 - id: '1749686343489'
   alias: Record Last Precipitation Time
   description: ''
@@ -677,38 +501,6 @@
     metadata: {}
     data:
       message: Dillon is leaving work!
-  mode: single
-- id: '1749856561977'
-  alias: Balcony switch on
-  description: ''
-  triggers:
-  - type: turned_on
-    device_id: d0de414a52d9a5d6019f00cc70b749d0
-    entity_id: 391df9f2dcb96611bc04f111e913d40d
-    domain: switch
-    trigger: device
-  conditions: []
-  actions:
-  - type: turn_on
-    device_id: 1075bfb76b1dc803eae5fe35baac1179
-    entity_id: 3b41812bb01f84435d1847f5ff862294
-    domain: light
-  mode: single
-- id: '1749856588169'
-  alias: Balcony switch off
-  description: ''
-  triggers:
-  - type: turned_off
-    device_id: d0de414a52d9a5d6019f00cc70b749d0
-    entity_id: 391df9f2dcb96611bc04f111e913d40d
-    domain: switch
-    trigger: device
-  conditions: []
-  actions:
-  - type: turn_off
-    device_id: 1075bfb76b1dc803eae5fe35baac1179
-    entity_id: 3b41812bb01f84435d1847f5ff862294
-    domain: light
   mode: single
 - id: '1749921893429'
   alias: Upstairs Bathroom High Humidity
@@ -954,35 +746,4 @@
   - target:
       entity_id: counter.judy_litter_visits
     action: counter.reset
-  mode: single
-- id: '1764547515317'
-  alias: Front Christmas Lights Automation
-  description: Toggle front Christmas lights
-  triggers:
-  - id: sunset
-    trigger: sun
-    event: sunset
-  - id: sunrise
-    trigger: sun
-    event: sunrise
-  conditions:
-  - condition: state
-    entity_id: input_boolean.holiday_mode
-    state: 'on'
-  actions:
-  - choose:
-    - conditions:
-      - condition: trigger
-        id: sunset
-      sequence:
-      - action: light.turn_on
-        target:
-          entity_id: light.front_christmas_lights
-    - conditions:
-      - condition: trigger
-        id: sunrise
-      sequence:
-      - action: light.turn_off
-        target:
-          entity_id: light.front_christmas_lights
   mode: single

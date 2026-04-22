@@ -1,0 +1,102 @@
+# packages/lighting/outdoor.yaml
+# Outdoor lighting automations.
+# Covers front porch and balcony — schedule-based and switch-based control.
+
+automation:
+  - id: '1708390591970'
+    alias: Front Porch On
+    description: ''
+    trigger:
+      - platform: sun
+        event: sunset
+        offset: 0
+    condition: []
+    action:
+      - type: turn_on
+        device_id: dacf33c399ef3a974f3e267bed66d700
+        entity_id: 617a0ab8b5fbb18e3257377372d544ea
+        domain: switch
+    mode: single
+
+  - id: '1708390619957'
+    alias: Front Porch Off
+    description: ''
+    trigger:
+      - platform: sun
+        event: sunrise
+        offset: 0
+    condition: []
+    action:
+      - type: turn_off
+        device_id: dacf33c399ef3a974f3e267bed66d700
+        entity_id: 617a0ab8b5fbb18e3257377372d544ea
+        domain: switch
+    mode: single
+
+  - id: '1749684291496'
+    alias: Balcony at sunset
+    description: ''
+    triggers:
+      - trigger: sun
+        event: sunset
+        offset: 0
+    conditions: []
+    actions:
+      - type: turn_on
+        device_id: 1075bfb76b1dc803eae5fe35baac1179
+        entity_id: 3b41812bb01f84435d1847f5ff862294
+        domain: light
+    mode: single
+
+  - id: '1749684334126'
+    alias: Balcony lights off
+    description: ''
+    triggers:
+      - trigger: time
+        at: '22:00:00'
+    conditions:
+      - condition: device
+        type: is_on
+        device_id: 1075bfb76b1dc803eae5fe35baac1179
+        entity_id: 3b41812bb01f84435d1847f5ff862294
+        domain: light
+    actions:
+      - type: turn_off
+        device_id: 1075bfb76b1dc803eae5fe35baac1179
+        entity_id: 3b41812bb01f84435d1847f5ff862294
+        domain: light
+    mode: single
+
+  - id: '1749856561977'
+    alias: Balcony switch on
+    description: ''
+    triggers:
+      - type: turned_on
+        device_id: d0de414a52d9a5d6019f00cc70b749d0
+        entity_id: 391df9f2dcb96611bc04f111e913d40d
+        domain: switch
+        trigger: device
+    conditions: []
+    actions:
+      - type: turn_on
+        device_id: 1075bfb76b1dc803eae5fe35baac1179
+        entity_id: 3b41812bb01f84435d1847f5ff862294
+        domain: light
+    mode: single
+
+  - id: '1749856588169'
+    alias: Balcony switch off
+    description: ''
+    triggers:
+      - type: turned_off
+        device_id: d0de414a52d9a5d6019f00cc70b749d0
+        entity_id: 391df9f2dcb96611bc04f111e913d40d
+        domain: switch
+        trigger: device
+    conditions: []
+    actions:
+      - type: turn_off
+        device_id: 1075bfb76b1dc803eae5fe35baac1179
+        entity_id: 3b41812bb01f84435d1847f5ff862294
+        domain: light
+    mode: single
