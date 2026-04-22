@@ -1,0 +1,96 @@
+# packages/lighting/holiday.yaml
+# Holiday / seasonal lighting automations.
+# Christmas color loop, Dillon's Christmas lights, and the holiday_mode-gated
+# front Christmas lights schedule.
+
+automation:
+  - id: '1701555383478'
+    alias: Christmas Color Loop
+    description: Color loop the front door light for christmas
+    use_blueprint:
+      path: mdolnik/color_loop.yaml
+      input:
+        light: light.hue_color_lamp_1
+        transition:
+          hours: 0
+          minutes: 0
+          seconds: 10
+        color_1:
+          - 187
+          - 37
+          - 40
+        color_2:
+          - 255
+          - 255
+          - 255
+        color_3:
+          - 20
+          - 107
+          - 58
+        helper_toggle: light.hue_color_lamp_1
+        max_color_distance: 180
+        color_4:
+          - 255
+          - 255
+          - 255
+
+  - id: '1737934176091'
+    alias: Auto turn on Dillon's Christmas lights
+    description: ''
+    triggers:
+      - trigger: sun
+        event: sunset
+        offset: 0
+    conditions: []
+    actions:
+      - type: turn_on
+        device_id: 55c18031d8469e660b1279730ba76794
+        entity_id: b89c1d06d412f5a5ee44106beff52b91
+        domain: switch
+    mode: single
+
+  - id: '1737934235933'
+    alias: Auto turn off Dillon's christmas lights
+    description: ''
+    triggers:
+      - trigger: time
+        at: '22:00:00'
+    conditions: []
+    actions:
+      - type: turn_off
+        device_id: 55c18031d8469e660b1279730ba76794
+        entity_id: b89c1d06d412f5a5ee44106beff52b91
+        domain: switch
+    mode: single
+
+  - id: '1764547515317'
+    alias: Front Christmas Lights Automation
+    description: Toggle front Christmas lights
+    triggers:
+      - id: sunset
+        trigger: sun
+        event: sunset
+      - id: sunrise
+        trigger: sun
+        event: sunrise
+    conditions:
+      - condition: state
+        entity_id: input_boolean.holiday_mode
+        state: 'on'
+    actions:
+      - choose:
+          - conditions:
+              - condition: trigger
+                id: sunset
+            sequence:
+              - action: light.turn_on
+                target:
+                  entity_id: light.front_christmas_lights
+          - conditions:
+              - condition: trigger
+                id: sunrise
+            sequence:
+              - action: light.turn_off
+                target:
+                  entity_id: light.front_christmas_lights
+    mode: single

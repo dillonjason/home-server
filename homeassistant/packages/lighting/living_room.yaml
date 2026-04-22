@@ -1,0 +1,46 @@
+# packages/lighting/living_room.yaml
+# Living room lighting automations.
+# Controls the living room lights via the physical switch.
+
+automation:
+  - id: '1699191016782'
+    alias: Living room switch on
+    description: ''
+    trigger:
+      - platform: device
+        type: turned_on
+        device_id: 3aaf3199504ec7d3d7585f9ca518c13f
+        entity_id: ad0f4baeb9f0d546fc8b7738649b325e
+        domain: switch
+    condition: []
+    action:
+      - type: turn_on
+        device_id: 5bb6b71ea7ae755ed033268241ecd661
+        entity_id: 130f26da6a7d0abdc9926d23dbadf51a
+        domain: light
+      - type: turn_on
+        device_id: 35c1c010a03d85229d36932f57834859
+        entity_id: 8319122379ae8de71fdb95890cfa27f6
+        domain: switch
+    mode: single
+
+  - id: '1702223565790'
+    alias: Living room switch off
+    description: ''
+    trigger:
+      - platform: device
+        type: turned_off
+        device_id: 3aaf3199504ec7d3d7585f9ca518c13f
+        entity_id: ad0f4baeb9f0d546fc8b7738649b325e
+        domain: switch
+    condition: []
+    action:
+      - type: turn_off
+        device_id: 5bb6b71ea7ae755ed033268241ecd661
+        entity_id: 130f26da6a7d0abdc9926d23dbadf51a
+        domain: light
+      - type: turn_off
+        device_id: 35c1c010a03d85229d36932f57834859
+        entity_id: 8319122379ae8de71fdb95890cfa27f6
+        domain: switch
+    mode: single
