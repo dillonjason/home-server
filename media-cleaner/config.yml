@@ -1,0 +1,17 @@
+# Media Cleaner Configuration
+# Title matching is case-insensitive and must match the title in Sonarr/Radarr exactly.
+# Jellyfin favorites (per any user) will always protect an episode/movie from deletion.
+
+shows:
+  # Keep only the 5 most recent episodes; delete oldest when over limit
+  # - title: "The Daily Show"
+  #   max_episodes: 5
+
+  # Delete any episode after it has been watched by any user
+  # - title: "Last Week Tonight"
+  #   delete_after_watched: true
+
+movies:
+  # Delete after any user has watched it
+  # - title: "Some Movie"
+  #   delete_after_watched: true

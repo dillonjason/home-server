@@ -360,3 +360,14 @@ services:
     network_mode: host
     mem_limit: 64m
     cpus: 0.25
+
+  media-cleaner:
+    build: ./media-cleaner
+    container_name: media-cleaner
+    restart: unless-stopped
+    env_file:
+      - ./media-cleaner/.env
+    volumes:
+      - ./media-cleaner/config.yml:/config/config.yml:ro
+    mem_limit: 128m
+    cpus: 0.25

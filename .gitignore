@@ -75,6 +75,9 @@ homeassistant/www/community/
 # Home Assistant - Nest media
 homeassistant/nest/event_media/
 
+# Media Cleaner - secrets (copy .env.example → .env and fill in values)
+media-cleaner/.env
+
 # Claude Code - sensitive/ephemeral data (keep memory files)
 code-server/.claude/.credentials.json
 code-server/.claude/backups/
