@@ -26,13 +26,13 @@ class MediaCleaner:
         users = self.jellyfin.get_users()
         log.info("Found %d Jellyfin user(s)", len(users))
 
-        for show_cfg in self.config.get("shows", []):
+        for show_cfg in self.config.get("shows") or []:
             try:
                 self._process_show(show_cfg, users)
             except Exception as e:
                 log.error("Error processing show '%s': %s", show_cfg.get("title"), e, exc_info=True)
 
-        for movie_cfg in self.config.get("movies", []):
+        for movie_cfg in self.config.get("movies") or []:
             try:
                 self._process_movie(movie_cfg, users)
             except Exception as e:
