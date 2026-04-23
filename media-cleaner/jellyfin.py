@@ -15,17 +15,28 @@ class JellyfinClient:
             f'Device="docker", DeviceId="media-cleaner", Version="1.0"'
         )
         self.session.headers["X-Emby-Token"] = api_key
+        self.session.headers["Accept"] = "application/json"
 
     def _get(self, path: str, **params) -> dict | list:
         url = f"{self.base}{path}"
         r = self.session.get(url, params=params or None)
-        if not r.ok or not r.content:
+        if not r.ok:
             log.error(
-                "Jellyfin request failed: %s %s — status=%d body=%r",
-                "GET", url, r.status_code, r.text[:300],
+                "Jellyfin GET %s — status=%d body=%r",
+                url, r.status_code, r.text[:500],
             )
-        r.raise_for_status()
-        return r.json()
+            r.raise_for_status()
+        if not r.content:
+            log.error("Jellyfin GET %s — empty body (status=%d)", url, r.status_code)
+            raise ValueError(f"Empty response from Jellyfin: GET {url}")
+        try:
+            return r.json()
+        except Exception:
+            log.error(
+                "Jellyfin GET %s — non-JSON body (status=%d) body=%r",
+                url, r.status_code, r.text[:500],
+            )
+            raise
 
     def get_users(self) -> list[dict]:
         return self._get("/Users")
