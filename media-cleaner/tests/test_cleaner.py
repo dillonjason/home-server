@@ -211,6 +211,19 @@ class TestErrorResilience:
         cleaner.run()
         sonarr.delete_file.assert_not_called()
 
+    def test_null_shows_key_does_not_crash(self):
+        # YAML `shows:` with only comments parses as None, not []
+        cleaner, jellyfin, sonarr, _ = _make_cleaner({"shows": None, "movies": []})
+        jellyfin.get_users.return_value = [{"Id": "u1", "Name": "User"}]
+        cleaner.run()
+        sonarr.delete_file.assert_not_called()
+
+    def test_null_movies_key_does_not_crash(self):
+        cleaner, jellyfin, _, radarr = _make_cleaner({"shows": [], "movies": None})
+        jellyfin.get_users.return_value = [{"Id": "u1", "Name": "User"}]
+        cleaner.run()
+        radarr.delete_file.assert_not_called()
+
     def test_jellyfin_user_failure_continues(self):
         config = {"shows": [{"title": "Test Show", "delete_after_watched": True}]}
         cleaner, jellyfin, sonarr, _ = _make_cleaner(config)
