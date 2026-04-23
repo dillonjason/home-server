@@ -1,4 +1,5 @@
 import logging
+from datetime import datetime, timedelta, timezone
 
 from jellyfin import JellyfinClient
 from radarr import RadarrClient
@@ -15,12 +16,23 @@ class MediaCleaner:
         sonarr: SonarrClient,
         radarr: RadarrClient,
         dry_run: bool = False,
+        min_file_age_hours: int = 24,
     ):
         self.config = config
         self.jellyfin = jellyfin
         self.sonarr = sonarr
         self.radarr = radarr
         self.dry_run = dry_run
+        self.min_file_age_hours = min_file_age_hours
+
+    def _is_old_enough(self, date_added: str | None) -> bool:
+        if not date_added:
+            return True
+        try:
+            added = datetime.fromisoformat(date_added.replace("Z", "+00:00"))
+            return datetime.now(timezone.utc) - added >= timedelta(hours=self.min_file_age_hours)
+        except ValueError:
+            return True
 
     def run(self):
         users = self.jellyfin.get_users()
@@ -95,6 +107,9 @@ class MediaCleaner:
             if ep_status.get(key, {}).get("protected"):
                 log.info("Skipping favorited S%02dE%02d", key[0], key[1])
                 continue
+            if not self._is_old_enough(ef.get("dateAdded")):
+                log.info("Skipping too-new S%02dE%02d (file %d)", key[0], key[1], ef["id"])
+                continue
             log.info("Deleting S%02dE%02d (file %d) — over max limit of %d", key[0], key[1], ef["id"], limit)
             self.sonarr.unmonitor_episode(ep["id"], self.dry_run)
             self.sonarr.delete_file(ef["id"], self.dry_run)
@@ -121,6 +136,9 @@ class MediaCleaner:
                 log.info("Skipping favorited S%02dE%02d", key[0], key[1])
                 continue
             if status.get("watched"):
+                if not self._is_old_enough(ef.get("dateAdded")):
+                    log.info("Skipping too-new S%02dE%02d (file %d)", key[0], key[1], ef["id"])
+                    continue
                 log.info("Deleting watched S%02dE%02d (file %d)", key[0], key[1], ef["id"])
                 self.sonarr.unmonitor_episode(ep["id"], self.dry_run)
                 self.sonarr.delete_file(ef["id"], self.dry_run)
@@ -154,7 +172,10 @@ class MediaCleaner:
             return
 
         if status["watched"]:
-            log.info("Deleting watched movie '%s'", title)
             for mf in self.radarr.get_movie_files(radarr_movie["id"]):
+                if not self._is_old_enough(mf.get("dateAdded")):
+                    log.info("Skipping too-new movie file for '%s'", title)
+                    continue
+                log.info("Deleting watched movie '%s'", title)
                 self.radarr.unmonitor_movie(radarr_movie["id"], self.dry_run)
                 self.radarr.delete_file(mf["id"], self.dry_run)

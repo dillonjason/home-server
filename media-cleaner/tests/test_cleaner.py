@@ -1,3 +1,4 @@
+from datetime import datetime, timedelta, timezone
 from unittest.mock import MagicMock
 
 import pytest
@@ -5,16 +6,21 @@ import pytest
 from cleaner import MediaCleaner
 
 
-def _make_cleaner(config: dict, dry_run: bool = False):
+def _make_cleaner(config: dict, dry_run: bool = False, min_file_age_hours: int = 24):
     jellyfin = MagicMock()
     sonarr = MagicMock()
     radarr = MagicMock()
-    cleaner = MediaCleaner(config, jellyfin, sonarr, radarr, dry_run=dry_run)
+    cleaner = MediaCleaner(config, jellyfin, sonarr, radarr, dry_run=dry_run, min_file_age_hours=min_file_age_hours)
     return cleaner, jellyfin, sonarr, radarr
 
 
 def _ep_file(id: int, date: str) -> dict:
     return {"id": id, "dateAdded": date}
+
+
+def _hours_ago(n: float) -> str:
+    dt = datetime.now(timezone.utc) - timedelta(hours=n)
+    return dt.strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
 def _episode(id: int, file_id: int, season: int, ep: int, air_date: str) -> dict:
@@ -237,3 +243,82 @@ class TestErrorResilience:
         # No watched status → no deletions
         cleaner.run()
         sonarr.delete_file.assert_not_called()
+
+
+# --- file age filter ---
+
+class TestFileAgeFilter:
+    def _show_cleaner(self, min_file_age_hours: int):
+        config = {"shows": [{"title": "Test Show", "delete_after_watched": True}]}
+        cleaner, jellyfin, sonarr, _ = _make_cleaner(config, min_file_age_hours=min_file_age_hours)
+        sonarr.find_series.return_value = {"id": 1, "title": "Test Show"}
+        jellyfin.find_series.return_value = {"Id": "jf-1", "Name": "Test Show"}
+        jellyfin.get_users.return_value = [{"Id": "u1", "Name": "User"}]
+        sonarr.get_episodes.return_value = [_episode(1, 1, 1, 1, "2024-01-01T00:00:00Z")]
+        jellyfin.aggregate_episode_status.return_value = {
+            (1, 1): {"watched": True, "protected": False},
+        }
+        return cleaner, sonarr
+
+    def test_delete_after_watched_skips_new_file(self):
+        cleaner, sonarr = self._show_cleaner(min_file_age_hours=24)
+        sonarr.get_episode_files.return_value = [_ep_file(1, _hours_ago(1))]
+        cleaner.run()
+        sonarr.delete_file.assert_not_called()
+
+    def test_delete_after_watched_deletes_old_file(self):
+        cleaner, sonarr = self._show_cleaner(min_file_age_hours=24)
+        sonarr.get_episode_files.return_value = [_ep_file(1, _hours_ago(25))]
+        cleaner.run()
+        sonarr.delete_file.assert_called_once()
+
+    def test_max_episodes_skips_new_file(self):
+        config = {"shows": [{"title": "Test Show", "max_episodes": 1}]}
+        cleaner, jellyfin, sonarr, _ = _make_cleaner(config, min_file_age_hours=24)
+        sonarr.find_series.return_value = {"id": 1, "title": "Test Show"}
+        jellyfin.find_series.return_value = {"Id": "jf-1", "Name": "Test Show"}
+        jellyfin.get_users.return_value = [{"Id": "u1", "Name": "User"}]
+        sonarr.get_episodes.return_value = [
+            _episode(1, 1, 1, 1, "2024-01-01T00:00:00Z"),
+            _episode(2, 2, 1, 2, "2024-01-02T00:00:00Z"),
+        ]
+        sonarr.get_episode_files.return_value = [
+            _ep_file(1, _hours_ago(25)),   # old — eligible
+            _ep_file(2, _hours_ago(1)),    # new — skipped
+        ]
+        jellyfin.aggregate_episode_status.return_value = {
+            (1, 1): {"watched": True, "protected": False},
+            (1, 2): {"watched": True, "protected": False},
+        }
+        cleaner.run()
+        # Only the old file should be deleted
+        deleted = {c.args[0] for c in sonarr.delete_file.call_args_list}
+        assert deleted == {1}
+
+    def test_movie_skips_new_file(self):
+        config = {"movies": [{"title": "Test Movie", "delete_after_watched": True}]}
+        cleaner, jellyfin, _, radarr = _make_cleaner(config, min_file_age_hours=24)
+        jellyfin.get_users.return_value = [{"Id": "u1", "Name": "User"}]
+        radarr.find_movie.return_value = {"id": 10, "title": "Test Movie", "hasFile": True}
+        jellyfin.find_movie.return_value = {"Id": "jf-m1", "Name": "Test Movie"}
+        jellyfin.get_movie_status.return_value = {"watched": True, "protected": False}
+        radarr.get_movie_files.return_value = [{"id": 99, "dateAdded": _hours_ago(1)}]
+        cleaner.run()
+        radarr.delete_file.assert_not_called()
+
+    def test_movie_deletes_old_file(self):
+        config = {"movies": [{"title": "Test Movie", "delete_after_watched": True}]}
+        cleaner, jellyfin, _, radarr = _make_cleaner(config, min_file_age_hours=24)
+        jellyfin.get_users.return_value = [{"Id": "u1", "Name": "User"}]
+        radarr.find_movie.return_value = {"id": 10, "title": "Test Movie", "hasFile": True}
+        jellyfin.find_movie.return_value = {"Id": "jf-m1", "Name": "Test Movie"}
+        jellyfin.get_movie_status.return_value = {"watched": True, "protected": False}
+        radarr.get_movie_files.return_value = [{"id": 99, "dateAdded": _hours_ago(25)}]
+        cleaner.run()
+        radarr.delete_file.assert_called_once_with(99, False)
+
+    def test_missing_date_added_is_treated_as_old_enough(self):
+        cleaner, sonarr = self._show_cleaner(min_file_age_hours=24)
+        sonarr.get_episode_files.return_value = [{"id": 1}]  # no dateAdded key
+        cleaner.run()
+        sonarr.delete_file.assert_called_once()

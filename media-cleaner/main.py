@@ -18,6 +18,7 @@ log = logging.getLogger(__name__)
 CONFIG_PATH = os.getenv("CONFIG_PATH", "/config/config.yml")
 INTERVAL_SECONDS = int(os.getenv("RUN_INTERVAL_MINUTES", "60")) * 60
 DRY_RUN = os.getenv("DRY_RUN", "false").lower() == "true"
+MIN_FILE_AGE_HOURS = int(os.getenv("MIN_FILE_AGE_HOURS", "24"))
 
 
 def load_config() -> dict:
@@ -43,7 +44,7 @@ def main():
         try:
             config = load_config()
             jellyfin, sonarr, radarr = build_clients()
-            MediaCleaner(config, jellyfin, sonarr, radarr, dry_run=DRY_RUN).run()
+            MediaCleaner(config, jellyfin, sonarr, radarr, dry_run=DRY_RUN, min_file_age_hours=MIN_FILE_AGE_HOURS).run()
             log.info("Cleanup run complete")
         except Exception as e:
             log.error("Run failed: %s", e, exc_info=True)
