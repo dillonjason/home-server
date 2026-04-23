@@ -9,10 +9,21 @@ class JellyfinClient:
     def __init__(self, url: str, api_key: str):
         self.base = url.rstrip("/")
         self.session = requests.Session()
+        # Jellyfin prefers the Authorization header; X-Emby-Token is kept for compatibility
+        self.session.headers["Authorization"] = (
+            f'MediaBrowser Token="{api_key}", Client="media-cleaner", '
+            f'Device="docker", DeviceId="media-cleaner", Version="1.0"'
+        )
         self.session.headers["X-Emby-Token"] = api_key
 
     def _get(self, path: str, **params) -> dict | list:
-        r = self.session.get(f"{self.base}{path}", params=params or None)
+        url = f"{self.base}{path}"
+        r = self.session.get(url, params=params or None)
+        if not r.ok or not r.content:
+            log.error(
+                "Jellyfin request failed: %s %s — status=%d body=%r",
+                "GET", url, r.status_code, r.text[:300],
+            )
         r.raise_for_status()
         return r.json()
 

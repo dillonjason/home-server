@@ -12,7 +12,10 @@ class SonarrClient:
         self.session.headers["X-Api-Key"] = api_key
 
     def _get(self, path: str, **params) -> dict | list:
-        r = self.session.get(f"{self.base}{path}", params=params or None)
+        url = f"{self.base}{path}"
+        r = self.session.get(url, params=params or None)
+        if not r.ok or not r.content:
+            log.error("Sonarr request failed: GET %s — status=%d body=%r", url, r.status_code, r.text[:300])
         r.raise_for_status()
         return r.json()
 
