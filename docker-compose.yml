@@ -110,6 +110,7 @@ services:
       - ./code-server/config/.ssh:/home/coder/.ssh
       - ./code-server/config:/home/coder/.config
       - ./code-server/data:/home/coder/.local/share/code-server
+      - ./code-server/.claude:/home/coder/.claude
       - /home/dillon/Projects:/home/coder/project
       - /home/dillon/Packages/home-server:/home/coder/home-server
       - /home/dillon/Packages/openclaw:/home/coder/openclaw

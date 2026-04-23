@@ -75,6 +75,16 @@ homeassistant/www/community/
 # Home Assistant - Nest media
 homeassistant/nest/event_media/
 
+# Claude Code - sensitive/ephemeral data (keep memory files)
+code-server/.claude/.credentials.json
+code-server/.claude/backups/
+code-server/.claude/file-history/
+code-server/.claude/ide/
+code-server/.claude/projects/**/*.jsonl
+code-server/.claude/session-env/
+code-server/.claude/sessions/
+code-server/.claude/shell-snapshots/
+
 # Actual Budget
 actual-data/server-files/account.sqlite
 actual-data/user-files/file-97d32f8b-248c-4e55-803f-da42d43857c9.blob
