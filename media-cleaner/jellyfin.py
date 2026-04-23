@@ -86,8 +86,15 @@ class JellyfinClient:
     ) -> dict[tuple, dict]:
         """Returns {(season, episode): {'watched': bool, 'protected': bool}} across all users."""
         status: dict[tuple, dict] = {}
+        series_favorited = False
         for user in users:
             uid = user["Id"]
+            try:
+                series_item = self.get_user_item(uid, series_id)
+                if series_item.get("UserData", {}).get("IsFavorite"):
+                    series_favorited = True
+            except Exception as e:
+                log.warning("Failed to get series item for user %s: %s", user.get("Name"), e)
             try:
                 episodes = self.get_user_episodes(uid, series_id)
             except Exception as e:
@@ -101,6 +108,9 @@ class JellyfinClient:
                     s["watched"] = True
                 if ud.get("IsFavorite"):
                     s["protected"] = True
+        if series_favorited:
+            for s in status.values():
+                s["protected"] = True
         return status
 
     def get_movie_status(self, item_id: str, users: list[dict]) -> dict:
