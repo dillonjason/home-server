@@ -38,7 +38,7 @@ services:
       - PGID=985
       - TZ=America/New_York
       - URL=dillonjason.dev
-      - SUBDOMAINS=apollo,code-server,openclaw,sabnzbd,prowlarr
+      - SUBDOMAINS=apollo,code-server,openclaw,sabnzbd,prowlarr,jellyseerr
       - VALIDATION=dns
       - DNSPLUGIN=cloudflare
       - EMAIL=djasuar@gmail.com
@@ -158,6 +158,17 @@ services:
       - 6767:6767
     restart: unless-stopped
     mem_limit: 256m
+    cpus: 0.5
+
+  jellyseerr:
+    image: fallenbagel/jellyseerr:latest
+    container_name: jellyseerr
+    environment:
+      - TZ=America/New_York
+    volumes:
+      - ./jellyseerr/config:/app/config
+    restart: unless-stopped
+    mem_limit: 512m
     cpus: 0.5
 
   media-cleaner:
