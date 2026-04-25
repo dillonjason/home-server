@@ -81,6 +81,7 @@ media-cleaner/.env
 
 # Claude Code - sensitive/ephemeral data (keep memory files)
 code-server/.claude/.credentials.json
+code-server/.claude/mcp-needs-auth-cache.json
 code-server/.claude/backups/
 code-server/.claude/file-history/
 code-server/.claude/ide/
