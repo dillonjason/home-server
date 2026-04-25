@@ -58,7 +58,7 @@ services:
         url: "https://apollo.dillonjason.dev/jellyfin"
         target: "_blank"
       - name: "Seerr"
-        logo: "assets/tools/seerr.svg"
+        logo: "assets/tools/seerr.png"
         subtitle: "Request movies & TV shows"
         tag: "app"
         url: "https://seerr.dillonjason.dev"

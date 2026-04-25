@@ -165,6 +165,8 @@ services:
     container_name: seerr
     init: true
     environment:
+      - PUID=1000
+      - PGID=985
       - TZ=America/New_York
     volumes:
       - ./seerr/config:/app/config
