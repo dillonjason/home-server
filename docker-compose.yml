@@ -33,7 +33,7 @@ services:
       - PGID=985
       - TZ=America/New_York
       - URL=dillonjason.dev
-      - SUBDOMAINS=apollo,code-server,openclaw,sabnzbd
+      - SUBDOMAINS=apollo,code-server,openclaw,sabnzbd,prowlarr
       - VALIDATION=dns
       - DNSPLUGIN=cloudflare
       - EMAIL=djasuar@gmail.com
@@ -387,4 +387,27 @@ services:
       - 8085:8080
     restart: unless-stopped
     mem_limit: 1g
+    cpus: 1
+
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    environment:
+      - PUID=1000
+      - PGID=985
+      - TZ=America/New_York
+    volumes:
+      - ./prowlarr/config:/config
+    restart: unless-stopped
+    mem_limit: 256m
+    cpus: 0.5
+
+  flaresolverr:
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    container_name: flaresolverr
+    environment:
+      - TZ=America/New_York
+      - LOG_LEVEL=info
+    restart: unless-stopped
+    mem_limit: 512m
     cpus: 1

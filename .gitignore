@@ -12,6 +12,7 @@ deluge/*
 redis/data
 jackett/*
 sabnzbd/*
+prowlarr/*
 sonarr/*
 radarr/*
 bazarr/*

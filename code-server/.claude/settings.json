@@ -1,1 +1,8 @@
-{}
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C /home/coder/home-server status)",
+      "Bash(git -C /home/coder/home-server diff)"
+    ]
+  }
+}
