@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(git -C /home/coder/home-server status)",
-      "Bash(git -C /home/coder/home-server diff)"
+      "Bash(git -C /home/coder/home-server diff)",
+      "WebFetch(domain:docs.seerr.dev)"
     ]
   }
 }

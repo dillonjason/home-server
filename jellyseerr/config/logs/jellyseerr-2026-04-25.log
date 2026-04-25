@@ -1,0 +1,133 @@
+2026-04-25T16:52:57.513Z [info]: Commit Tag: $GIT_SHA 
+2026-04-25T16:52:58.230Z [info]: Starting Jellyseerr version 2.7.3 
+2026-04-25T16:52:59.620Z [info][Notifications]: Registered notification agents 
+2026-04-25T16:52:59.623Z [info][Server]: Skipping starting the scheduled jobs as we have no Plex/Jellyfin/Emby servers setup yet 
+2026-04-25T16:52:59.625Z [info][Discover Slider]: Creating built-in discovery slider {"slider":{"type":1,"enabled":true,"isBuiltIn":true,"order":0}}
+2026-04-25T16:52:59.640Z [info][Discover Slider]: Creating built-in discovery slider {"slider":{"type":2,"enabled":true,"isBuiltIn":true,"order":1}}
+2026-04-25T16:52:59.647Z [info][Discover Slider]: Creating built-in discovery slider {"slider":{"type":3,"enabled":true,"isBuiltIn":true,"order":2}}
+2026-04-25T16:52:59.655Z [info][Discover Slider]: Creating built-in discovery slider {"slider":{"type":4,"enabled":true,"isBuiltIn":true,"order":3}}
+2026-04-25T16:52:59.663Z [info][Discover Slider]: Creating built-in discovery slider {"slider":{"type":5,"enabled":true,"isBuiltIn":true,"order":4}}
+2026-04-25T16:52:59.671Z [info][Discover Slider]: Creating built-in discovery slider {"slider":{"type":6,"enabled":true,"isBuiltIn":true,"order":5}}
+2026-04-25T16:52:59.678Z [info][Discover Slider]: Creating built-in discovery slider {"slider":{"type":7,"enabled":true,"isBuiltIn":true,"order":6}}
+2026-04-25T16:52:59.687Z [info][Discover Slider]: Creating built-in discovery slider {"slider":{"type":8,"enabled":true,"isBuiltIn":true,"order":7}}
+2026-04-25T16:52:59.694Z [info][Discover Slider]: Creating built-in discovery slider {"slider":{"type":9,"enabled":true,"isBuiltIn":true,"order":8}}
+2026-04-25T16:52:59.702Z [info][Discover Slider]: Creating built-in discovery slider {"slider":{"type":10,"enabled":true,"isBuiltIn":true,"order":9}}
+2026-04-25T16:52:59.710Z [info][Discover Slider]: Creating built-in discovery slider {"slider":{"type":11,"enabled":true,"isBuiltIn":true,"order":10}}
+2026-04-25T16:52:59.717Z [info][Discover Slider]: Creating built-in discovery slider {"slider":{"type":12,"enabled":true,"isBuiltIn":true,"order":11}}
+2026-04-25T16:53:00.002Z [info][Server]: Server ready on port 5055 
+2026-04-25T16:57:49.610Z [info][API]: Sign-in attempt from Jellyfin user with access to the media server; creating initial admin user for Jellyseerr {"ip":"::ffff:172.24.0.8","jellyfinUsername":"dillon"}
+2026-04-25T16:57:49.646Z [info][Jobs]: Scheduled jobs loaded 
+2026-04-25T16:58:00.004Z [debug][Jobs]: Starting scheduled job: Download Sync 
+2026-04-25T16:59:00.005Z [debug][Jobs]: Starting scheduled job: Download Sync 
+2026-04-25T17:00:00.003Z [debug][Jobs]: Starting scheduled job: Download Sync 
+2026-04-25T17:00:00.005Z [info][Jobs]: Starting scheduled job: Jellyfin Recently Added Scan 
+2026-04-25T17:00:00.006Z [info][Jellyfin Sync]: Jellyfin Sync Starting {"sessionId":"5889cca5-1a8d-4560-8e7a-9caac2a836c8"}
+2026-04-25T17:00:00.008Z [info][Jellyfin Sync]: Beginning to process recently added for library: Movies 
+2026-04-25T17:00:00.414Z [debug][Jellyfin Sync]: Saved The Long Walk 
+2026-04-25T17:00:00.425Z [debug][Jellyfin Sync]: Saved The Fantastic 4: First Steps 
+2026-04-25T17:00:00.437Z [debug][Jellyfin Sync]: Saved Weapons 
+2026-04-25T17:00:00.503Z [debug][Jellyfin Sync]: Saved Mickey 17 
+2026-04-25T17:00:00.503Z [debug][Jellyfin Sync]: Saved Pink Floyd: The Wall 
+2026-04-25T17:00:00.512Z [debug][Jellyfin Sync]: Saved Star Wars: Episode III - Revenge of the Sith 
+2026-04-25T17:00:00.514Z [debug][Jellyfin Sync]: Saved The Wild Robot 
+2026-04-25T17:00:00.514Z [debug][Jellyfin Sync]: Saved Rogue One: A Star Wars Story 
+2026-04-25T17:00:00.520Z [debug][Jellyfin Sync]: Saved Beavis and Butt-Head Do America 
+2026-04-25T17:00:00.529Z [debug][Jellyfin Sync]: Saved Joker: Folie à Deux 
+2026-04-25T17:00:00.537Z [debug][Jellyfin Sync]: Saved The Benchwarmers 
+2026-04-25T17:00:00.552Z [debug][Jellyfin Sync]: Saved Hocus Pocus 
+2026-04-25T17:00:04.553Z [info][Jellyfin Sync]: Beginning to process recently added for library: Shows 
+2026-04-25T17:00:04.938Z [debug][Jellyfin Sync]: Saved Frieren: Beyond Journey's End 
+2026-04-25T17:00:05.011Z [debug][Jellyfin Sync]: Saved Andor 
+2026-04-25T17:00:05.109Z [debug][Jellyfin Sync]: Saved Parenthood 
+2026-04-25T17:00:05.174Z [debug][Jellyfin Sync]: Saved The Daily Show 
+2026-04-25T17:00:05.269Z [debug][Jellyfin Sync]: Saved Adventure Time 
+2026-04-25T17:00:09.272Z [info][Jellyfin Sync]: Recently Added Scan Complete 
+2026-04-25T17:01:00.002Z [debug][Jobs]: Starting scheduled job: Download Sync 
+2026-04-25T17:01:53.403Z [debug][Image Cache]: Something went wrong caching image. {"errorMessage":"Request failed with status code 404"}
+2026-04-25T17:02:00.002Z [debug][Jobs]: Starting scheduled job: Download Sync 
+2026-04-25T17:03:00.002Z [debug][Jobs]: Starting scheduled job: Download Sync 
+2026-04-25T17:03:53.376Z [debug][Image Cache]: Something went wrong caching image. {"errorMessage":"Request failed with status code 404"}
+2026-04-25T17:03:59.326Z [debug][Image Cache]: Something went wrong caching image. {"errorMessage":"Request failed with status code 404"}
+2026-04-25T17:04:00.003Z [debug][Jobs]: Starting scheduled job: Download Sync 
+2026-04-25T17:04:00.456Z [debug][Image Cache]: Something went wrong caching image. {"errorMessage":"Request failed with status code 404"}
+2026-04-25T17:04:03.527Z [debug][Image Cache]: Something went wrong caching image. {"errorMessage":"Request failed with status code 404"}
+2026-04-25T17:04:03.547Z [debug][Image Cache]: Something went wrong caching image. {"errorMessage":"Request failed with status code 404"}
+2026-04-25T17:04:43.416Z [debug][Image Cache]: Something went wrong caching image. {"errorMessage":"Request failed with status code 404"}
+2026-04-25T17:05:00.005Z [debug][Jobs]: Starting scheduled job: Download Sync 
+2026-04-25T17:05:00.010Z [info][Jobs]: Starting scheduled job: Jellyfin Recently Added Scan 
+2026-04-25T17:05:00.010Z [info][Jellyfin Sync]: Jellyfin Sync Starting {"sessionId":"6b652874-4e32-4534-a77d-32301796b5c2"}
+2026-04-25T17:05:00.014Z [info][Jellyfin Sync]: Beginning to process recently added for library: Movies 
+2026-04-25T17:05:00.096Z [debug][Jellyfin Sync]: Title already exists and no new media types found The Long Walk 
+2026-04-25T17:05:00.119Z [debug][Jellyfin Sync]: Title already exists and no new media types found The Fantastic 4: First Steps 
+2026-04-25T17:05:00.142Z [debug][Jellyfin Sync]: Title already exists and no new media types found Weapons 
+2026-04-25T17:05:00.166Z [debug][Jellyfin Sync]: Title already exists and no new media types found Mickey 17 
+2026-04-25T17:05:00.187Z [debug][Jellyfin Sync]: Title already exists and no new media types found The Wild Robot 
+2026-04-25T17:05:00.188Z [debug][Jellyfin Sync]: Title already exists and no new media types found Joker: Folie à Deux 
+2026-04-25T17:05:00.191Z [debug][Jellyfin Sync]: Title already exists and no new media types found Beavis and Butt-Head Do America 
+2026-04-25T17:05:00.208Z [debug][Jellyfin Sync]: Title already exists and no new media types found The Benchwarmers 
+2026-04-25T17:05:00.208Z [debug][Jellyfin Sync]: Title already exists and no new media types found Rogue One: A Star Wars Story 
+2026-04-25T17:05:00.222Z [debug][Jellyfin Sync]: Title already exists and no new media types found Pink Floyd: The Wall 
+2026-04-25T17:05:00.243Z [debug][Jellyfin Sync]: Title already exists and no new media types found Star Wars: Episode III - Revenge of the Sith 
+2026-04-25T17:05:00.244Z [debug][Jellyfin Sync]: Title already exists and no new media types found Hocus Pocus 
+2026-04-25T17:05:04.247Z [info][Jellyfin Sync]: Beginning to process recently added for library: Shows 
+2026-04-25T17:05:04.326Z [debug][Jellyfin Sync]: Updating existing title: Frieren: Beyond Journey's End 
+2026-04-25T17:05:04.399Z [debug][Jellyfin Sync]: Updating existing title: Andor 
+2026-04-25T17:05:04.466Z [debug][Jellyfin Sync]: Updating existing title: Parenthood 
+2026-04-25T17:05:04.522Z [debug][Jellyfin Sync]: Updating existing title: The Daily Show 
+2026-04-25T17:05:04.706Z [debug][Jellyfin Sync]: Updating existing title: Adventure Time 
+2026-04-25T17:05:08.710Z [info][Jellyfin Sync]: Recently Added Scan Complete 
+2026-04-25T17:05:58.475Z [debug][Image Cache]: Something went wrong caching image. {"errorMessage":"Request failed with status code 404"}
+2026-04-25T17:06:00.003Z [debug][Jobs]: Starting scheduled job: Download Sync 
+2026-04-25T17:07:00.002Z [debug][Jobs]: Starting scheduled job: Download Sync 
+2026-04-25T17:08:00.004Z [debug][Jobs]: Starting scheduled job: Download Sync 
+2026-04-25T17:09:00.006Z [debug][Jobs]: Starting scheduled job: Download Sync 
+2026-04-25T17:10:00.002Z [debug][Jobs]: Starting scheduled job: Download Sync 
+2026-04-25T17:10:00.004Z [info][Jobs]: Starting scheduled job: Jellyfin Recently Added Scan 
+2026-04-25T17:10:00.005Z [info][Jellyfin Sync]: Jellyfin Sync Starting {"sessionId":"5429c38b-1baa-4b09-98f3-6ba622f938f4"}
+2026-04-25T17:10:00.007Z [info][Jellyfin Sync]: Beginning to process recently added for library: Movies 
+2026-04-25T17:10:00.492Z [debug][Jellyfin Sync]: Title already exists and no new media types found The Long Walk 
+2026-04-25T17:10:00.509Z [debug][Jellyfin Sync]: Title already exists and no new media types found Weapons 
+2026-04-25T17:10:00.537Z [debug][Jellyfin Sync]: Title already exists and no new media types found The Fantastic 4: First Steps 
+2026-04-25T17:10:00.555Z [debug][Jellyfin Sync]: Title already exists and no new media types found Beavis and Butt-Head Do America 
+2026-04-25T17:10:00.581Z [debug][Jellyfin Sync]: Title already exists and no new media types found Mickey 17 
+2026-04-25T17:10:00.601Z [debug][Jellyfin Sync]: Title already exists and no new media types found The Wild Robot 
+2026-04-25T17:10:00.644Z [debug][Jellyfin Sync]: Title already exists and no new media types found Joker: Folie à Deux 
+2026-04-25T17:10:00.671Z [debug][Jellyfin Sync]: Title already exists and no new media types found Rogue One: A Star Wars Story 
+2026-04-25T17:10:00.707Z [debug][Jellyfin Sync]: Title already exists and no new media types found The Benchwarmers 
+2026-04-25T17:10:00.722Z [debug][Jellyfin Sync]: Title already exists and no new media types found Pink Floyd: The Wall 
+2026-04-25T17:10:00.748Z [debug][Jellyfin Sync]: Title already exists and no new media types found Star Wars: Episode III - Revenge of the Sith 
+2026-04-25T17:10:00.807Z [debug][Jellyfin Sync]: Title already exists and no new media types found Hocus Pocus 
+2026-04-25T17:10:04.812Z [info][Jellyfin Sync]: Beginning to process recently added for library: Shows 
+2026-04-25T17:10:04.997Z [debug][Jellyfin Sync]: Updating existing title: Frieren: Beyond Journey's End 
+2026-04-25T17:10:05.099Z [debug][Jellyfin Sync]: Updating existing title: Andor 
+2026-04-25T17:10:05.233Z [debug][Jellyfin Sync]: Updating existing title: Parenthood 
+2026-04-25T17:10:05.322Z [debug][Jellyfin Sync]: Updating existing title: The Daily Show 
+2026-04-25T17:10:05.380Z [debug][Jellyfin Sync]: Updating existing title: Adventure Time 
+2026-04-25T17:10:09.384Z [info][Jellyfin Sync]: Recently Added Scan Complete 
+2026-04-25T17:11:00.005Z [debug][Jobs]: Starting scheduled job: Download Sync 
+2026-04-25T17:12:00.005Z [debug][Jobs]: Starting scheduled job: Download Sync 
+2026-04-25T17:13:00.002Z [debug][Jobs]: Starting scheduled job: Download Sync 
+2026-04-25T17:14:00.002Z [debug][Jobs]: Starting scheduled job: Download Sync 
+2026-04-25T17:15:00.005Z [debug][Jobs]: Starting scheduled job: Download Sync 
+2026-04-25T17:15:00.010Z [info][Jobs]: Starting scheduled job: Jellyfin Recently Added Scan 
+2026-04-25T17:15:00.011Z [info][Jellyfin Sync]: Jellyfin Sync Starting {"sessionId":"5cfef6ca-f054-4598-823c-46b83a06b5c0"}
+2026-04-25T17:15:00.014Z [info][Jellyfin Sync]: Beginning to process recently added for library: Movies 
+2026-04-25T17:15:00.112Z [debug][Jellyfin Sync]: Title already exists and no new media types found The Long Walk 
+2026-04-25T17:15:00.130Z [debug][Jellyfin Sync]: Title already exists and no new media types found Weapons 
+2026-04-25T17:15:00.140Z [debug][Jellyfin Sync]: Title already exists and no new media types found The Fantastic 4: First Steps 
+2026-04-25T17:15:00.160Z [debug][Jellyfin Sync]: Title already exists and no new media types found Mickey 17 
+2026-04-25T17:15:00.213Z [debug][Jellyfin Sync]: Title already exists and no new media types found Beavis and Butt-Head Do America 
+2026-04-25T17:15:00.237Z [debug][Jellyfin Sync]: Title already exists and no new media types found Joker: Folie à Deux 
+2026-04-25T17:15:00.238Z [debug][Jellyfin Sync]: Title already exists and no new media types found The Wild Robot 
+2026-04-25T17:15:00.266Z [debug][Jellyfin Sync]: Title already exists and no new media types found Rogue One: A Star Wars Story 
+2026-04-25T17:15:00.266Z [debug][Jellyfin Sync]: Title already exists and no new media types found The Benchwarmers 
+2026-04-25T17:15:00.276Z [debug][Jellyfin Sync]: Title already exists and no new media types found Pink Floyd: The Wall 
+2026-04-25T17:15:00.283Z [debug][Jellyfin Sync]: Title already exists and no new media types found Star Wars: Episode III - Revenge of the Sith 
+2026-04-25T17:15:00.330Z [debug][Jellyfin Sync]: Title already exists and no new media types found Hocus Pocus 
+2026-04-25T17:15:04.334Z [info][Jellyfin Sync]: Beginning to process recently added for library: Shows 
+2026-04-25T17:15:04.400Z [debug][Jellyfin Sync]: Updating existing title: Frieren: Beyond Journey's End 
+2026-04-25T17:15:04.411Z [debug][Jellyfin Sync]: Updating existing title: Andor 
+2026-04-25T17:15:04.532Z [debug][Jellyfin Sync]: Updating existing title: Parenthood 
+2026-04-25T17:15:04.602Z [debug][Jellyfin Sync]: Updating existing title: The Daily Show 
+2026-04-25T17:15:04.866Z [debug][Jellyfin Sync]: Updating existing title: Adventure Time 
+2026-04-25T17:15:08.869Z [info][Jellyfin Sync]: Recently Added Scan Complete 

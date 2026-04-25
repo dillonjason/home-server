@@ -1,0 +1,133 @@
+{"level":"info","message":"Commit Tag: $GIT_SHA","timestamp":"2026-04-25T16:52:57.513Z"}
+{"level":"info","message":"Starting Jellyseerr version 2.7.3","timestamp":"2026-04-25T16:52:58.230Z"}
+{"label":"Notifications","level":"info","message":"Registered notification agents","timestamp":"2026-04-25T16:52:59.620Z"}
+{"label":"Server","level":"info","message":"Skipping starting the scheduled jobs as we have no Plex/Jellyfin/Emby servers setup yet","timestamp":"2026-04-25T16:52:59.623Z"}
+{"label":"Discover Slider","level":"info","message":"Creating built-in discovery slider","slider":{"enabled":true,"isBuiltIn":true,"order":0,"type":1},"timestamp":"2026-04-25T16:52:59.625Z"}
+{"label":"Discover Slider","level":"info","message":"Creating built-in discovery slider","slider":{"enabled":true,"isBuiltIn":true,"order":1,"type":2},"timestamp":"2026-04-25T16:52:59.640Z"}
+{"label":"Discover Slider","level":"info","message":"Creating built-in discovery slider","slider":{"enabled":true,"isBuiltIn":true,"order":2,"type":3},"timestamp":"2026-04-25T16:52:59.647Z"}
+{"label":"Discover Slider","level":"info","message":"Creating built-in discovery slider","slider":{"enabled":true,"isBuiltIn":true,"order":3,"type":4},"timestamp":"2026-04-25T16:52:59.655Z"}
+{"label":"Discover Slider","level":"info","message":"Creating built-in discovery slider","slider":{"enabled":true,"isBuiltIn":true,"order":4,"type":5},"timestamp":"2026-04-25T16:52:59.663Z"}
+{"label":"Discover Slider","level":"info","message":"Creating built-in discovery slider","slider":{"enabled":true,"isBuiltIn":true,"order":5,"type":6},"timestamp":"2026-04-25T16:52:59.671Z"}
+{"label":"Discover Slider","level":"info","message":"Creating built-in discovery slider","slider":{"enabled":true,"isBuiltIn":true,"order":6,"type":7},"timestamp":"2026-04-25T16:52:59.678Z"}
+{"label":"Discover Slider","level":"info","message":"Creating built-in discovery slider","slider":{"enabled":true,"isBuiltIn":true,"order":7,"type":8},"timestamp":"2026-04-25T16:52:59.687Z"}
+{"label":"Discover Slider","level":"info","message":"Creating built-in discovery slider","slider":{"enabled":true,"isBuiltIn":true,"order":8,"type":9},"timestamp":"2026-04-25T16:52:59.694Z"}
+{"label":"Discover Slider","level":"info","message":"Creating built-in discovery slider","slider":{"enabled":true,"isBuiltIn":true,"order":9,"type":10},"timestamp":"2026-04-25T16:52:59.702Z"}
+{"label":"Discover Slider","level":"info","message":"Creating built-in discovery slider","slider":{"enabled":true,"isBuiltIn":true,"order":10,"type":11},"timestamp":"2026-04-25T16:52:59.710Z"}
+{"label":"Discover Slider","level":"info","message":"Creating built-in discovery slider","slider":{"enabled":true,"isBuiltIn":true,"order":11,"type":12},"timestamp":"2026-04-25T16:52:59.717Z"}
+{"label":"Server","level":"info","message":"Server ready on port 5055","timestamp":"2026-04-25T16:53:00.002Z"}
+{"ip":"::ffff:172.24.0.8","jellyfinUsername":"dillon","label":"API","level":"info","message":"Sign-in attempt from Jellyfin user with access to the media server; creating initial admin user for Jellyseerr","timestamp":"2026-04-25T16:57:49.610Z"}
+{"label":"Jobs","level":"info","message":"Scheduled jobs loaded","timestamp":"2026-04-25T16:57:49.646Z"}
+{"label":"Jobs","level":"debug","message":"Starting scheduled job: Download Sync","timestamp":"2026-04-25T16:58:00.004Z"}
+{"label":"Jobs","level":"debug","message":"Starting scheduled job: Download Sync","timestamp":"2026-04-25T16:59:00.005Z"}
+{"label":"Jobs","level":"debug","message":"Starting scheduled job: Download Sync","timestamp":"2026-04-25T17:00:00.003Z"}
+{"label":"Jobs","level":"info","message":"Starting scheduled job: Jellyfin Recently Added Scan","timestamp":"2026-04-25T17:00:00.005Z"}
+{"label":"Jellyfin Sync","level":"info","message":"Jellyfin Sync Starting","sessionId":"5889cca5-1a8d-4560-8e7a-9caac2a836c8","timestamp":"2026-04-25T17:00:00.006Z"}
+{"label":"Jellyfin Sync","level":"info","message":"Beginning to process recently added for library: Movies","timestamp":"2026-04-25T17:00:00.008Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Saved The Long Walk","timestamp":"2026-04-25T17:00:00.414Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Saved The Fantastic 4: First Steps","timestamp":"2026-04-25T17:00:00.425Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Saved Weapons","timestamp":"2026-04-25T17:00:00.437Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Saved Mickey 17","timestamp":"2026-04-25T17:00:00.503Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Saved Pink Floyd: The Wall","timestamp":"2026-04-25T17:00:00.503Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Saved Star Wars: Episode III - Revenge of the Sith","timestamp":"2026-04-25T17:00:00.512Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Saved The Wild Robot","timestamp":"2026-04-25T17:00:00.514Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Saved Rogue One: A Star Wars Story","timestamp":"2026-04-25T17:00:00.514Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Saved Beavis and Butt-Head Do America","timestamp":"2026-04-25T17:00:00.520Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Saved Joker: Folie à Deux","timestamp":"2026-04-25T17:00:00.529Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Saved The Benchwarmers","timestamp":"2026-04-25T17:00:00.537Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Saved Hocus Pocus","timestamp":"2026-04-25T17:00:00.552Z"}
+{"label":"Jellyfin Sync","level":"info","message":"Beginning to process recently added for library: Shows","timestamp":"2026-04-25T17:00:04.553Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Saved Frieren: Beyond Journey's End","timestamp":"2026-04-25T17:00:04.938Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Saved Andor","timestamp":"2026-04-25T17:00:05.011Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Saved Parenthood","timestamp":"2026-04-25T17:00:05.109Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Saved The Daily Show","timestamp":"2026-04-25T17:00:05.174Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Saved Adventure Time","timestamp":"2026-04-25T17:00:05.269Z"}
+{"label":"Jellyfin Sync","level":"info","message":"Recently Added Scan Complete","timestamp":"2026-04-25T17:00:09.272Z"}
+{"label":"Jobs","level":"debug","message":"Starting scheduled job: Download Sync","timestamp":"2026-04-25T17:01:00.002Z"}
+{"errorMessage":"Request failed with status code 404","label":"Image Cache","level":"debug","message":"Something went wrong caching image.","timestamp":"2026-04-25T17:01:53.403Z"}
+{"label":"Jobs","level":"debug","message":"Starting scheduled job: Download Sync","timestamp":"2026-04-25T17:02:00.002Z"}
+{"label":"Jobs","level":"debug","message":"Starting scheduled job: Download Sync","timestamp":"2026-04-25T17:03:00.002Z"}
+{"errorMessage":"Request failed with status code 404","label":"Image Cache","level":"debug","message":"Something went wrong caching image.","timestamp":"2026-04-25T17:03:53.376Z"}
+{"errorMessage":"Request failed with status code 404","label":"Image Cache","level":"debug","message":"Something went wrong caching image.","timestamp":"2026-04-25T17:03:59.326Z"}
+{"label":"Jobs","level":"debug","message":"Starting scheduled job: Download Sync","timestamp":"2026-04-25T17:04:00.003Z"}
+{"errorMessage":"Request failed with status code 404","label":"Image Cache","level":"debug","message":"Something went wrong caching image.","timestamp":"2026-04-25T17:04:00.456Z"}
+{"errorMessage":"Request failed with status code 404","label":"Image Cache","level":"debug","message":"Something went wrong caching image.","timestamp":"2026-04-25T17:04:03.527Z"}
+{"errorMessage":"Request failed with status code 404","label":"Image Cache","level":"debug","message":"Something went wrong caching image.","timestamp":"2026-04-25T17:04:03.547Z"}
+{"errorMessage":"Request failed with status code 404","label":"Image Cache","level":"debug","message":"Something went wrong caching image.","timestamp":"2026-04-25T17:04:43.416Z"}
+{"label":"Jobs","level":"debug","message":"Starting scheduled job: Download Sync","timestamp":"2026-04-25T17:05:00.005Z"}
+{"label":"Jobs","level":"info","message":"Starting scheduled job: Jellyfin Recently Added Scan","timestamp":"2026-04-25T17:05:00.010Z"}
+{"label":"Jellyfin Sync","level":"info","message":"Jellyfin Sync Starting","sessionId":"6b652874-4e32-4534-a77d-32301796b5c2","timestamp":"2026-04-25T17:05:00.010Z"}
+{"label":"Jellyfin Sync","level":"info","message":"Beginning to process recently added for library: Movies","timestamp":"2026-04-25T17:05:00.014Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Title already exists and no new media types found The Long Walk","timestamp":"2026-04-25T17:05:00.096Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Title already exists and no new media types found The Fantastic 4: First Steps","timestamp":"2026-04-25T17:05:00.119Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Title already exists and no new media types found Weapons","timestamp":"2026-04-25T17:05:00.142Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Title already exists and no new media types found Mickey 17","timestamp":"2026-04-25T17:05:00.166Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Title already exists and no new media types found The Wild Robot","timestamp":"2026-04-25T17:05:00.187Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Title already exists and no new media types found Joker: Folie à Deux","timestamp":"2026-04-25T17:05:00.188Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Title already exists and no new media types found Beavis and Butt-Head Do America","timestamp":"2026-04-25T17:05:00.191Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Title already exists and no new media types found The Benchwarmers","timestamp":"2026-04-25T17:05:00.208Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Title already exists and no new media types found Rogue One: A Star Wars Story","timestamp":"2026-04-25T17:05:00.208Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Title already exists and no new media types found Pink Floyd: The Wall","timestamp":"2026-04-25T17:05:00.222Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Title already exists and no new media types found Star Wars: Episode III - Revenge of the Sith","timestamp":"2026-04-25T17:05:00.243Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Title already exists and no new media types found Hocus Pocus","timestamp":"2026-04-25T17:05:00.244Z"}
+{"label":"Jellyfin Sync","level":"info","message":"Beginning to process recently added for library: Shows","timestamp":"2026-04-25T17:05:04.247Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Updating existing title: Frieren: Beyond Journey's End","timestamp":"2026-04-25T17:05:04.326Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Updating existing title: Andor","timestamp":"2026-04-25T17:05:04.399Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Updating existing title: Parenthood","timestamp":"2026-04-25T17:05:04.466Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Updating existing title: The Daily Show","timestamp":"2026-04-25T17:05:04.522Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Updating existing title: Adventure Time","timestamp":"2026-04-25T17:05:04.706Z"}
+{"label":"Jellyfin Sync","level":"info","message":"Recently Added Scan Complete","timestamp":"2026-04-25T17:05:08.710Z"}
+{"errorMessage":"Request failed with status code 404","label":"Image Cache","level":"debug","message":"Something went wrong caching image.","timestamp":"2026-04-25T17:05:58.475Z"}
+{"label":"Jobs","level":"debug","message":"Starting scheduled job: Download Sync","timestamp":"2026-04-25T17:06:00.003Z"}
+{"label":"Jobs","level":"debug","message":"Starting scheduled job: Download Sync","timestamp":"2026-04-25T17:07:00.002Z"}
+{"label":"Jobs","level":"debug","message":"Starting scheduled job: Download Sync","timestamp":"2026-04-25T17:08:00.004Z"}
+{"label":"Jobs","level":"debug","message":"Starting scheduled job: Download Sync","timestamp":"2026-04-25T17:09:00.006Z"}
+{"label":"Jobs","level":"debug","message":"Starting scheduled job: Download Sync","timestamp":"2026-04-25T17:10:00.002Z"}
+{"label":"Jobs","level":"info","message":"Starting scheduled job: Jellyfin Recently Added Scan","timestamp":"2026-04-25T17:10:00.004Z"}
+{"label":"Jellyfin Sync","level":"info","message":"Jellyfin Sync Starting","sessionId":"5429c38b-1baa-4b09-98f3-6ba622f938f4","timestamp":"2026-04-25T17:10:00.005Z"}
+{"label":"Jellyfin Sync","level":"info","message":"Beginning to process recently added for library: Movies","timestamp":"2026-04-25T17:10:00.007Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Title already exists and no new media types found The Long Walk","timestamp":"2026-04-25T17:10:00.492Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Title already exists and no new media types found Weapons","timestamp":"2026-04-25T17:10:00.509Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Title already exists and no new media types found The Fantastic 4: First Steps","timestamp":"2026-04-25T17:10:00.537Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Title already exists and no new media types found Beavis and Butt-Head Do America","timestamp":"2026-04-25T17:10:00.555Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Title already exists and no new media types found Mickey 17","timestamp":"2026-04-25T17:10:00.581Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Title already exists and no new media types found The Wild Robot","timestamp":"2026-04-25T17:10:00.601Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Title already exists and no new media types found Joker: Folie à Deux","timestamp":"2026-04-25T17:10:00.644Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Title already exists and no new media types found Rogue One: A Star Wars Story","timestamp":"2026-04-25T17:10:00.671Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Title already exists and no new media types found The Benchwarmers","timestamp":"2026-04-25T17:10:00.707Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Title already exists and no new media types found Pink Floyd: The Wall","timestamp":"2026-04-25T17:10:00.722Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Title already exists and no new media types found Star Wars: Episode III - Revenge of the Sith","timestamp":"2026-04-25T17:10:00.748Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Title already exists and no new media types found Hocus Pocus","timestamp":"2026-04-25T17:10:00.807Z"}
+{"label":"Jellyfin Sync","level":"info","message":"Beginning to process recently added for library: Shows","timestamp":"2026-04-25T17:10:04.812Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Updating existing title: Frieren: Beyond Journey's End","timestamp":"2026-04-25T17:10:04.997Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Updating existing title: Andor","timestamp":"2026-04-25T17:10:05.099Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Updating existing title: Parenthood","timestamp":"2026-04-25T17:10:05.233Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Updating existing title: The Daily Show","timestamp":"2026-04-25T17:10:05.322Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Updating existing title: Adventure Time","timestamp":"2026-04-25T17:10:05.380Z"}
+{"label":"Jellyfin Sync","level":"info","message":"Recently Added Scan Complete","timestamp":"2026-04-25T17:10:09.384Z"}
+{"label":"Jobs","level":"debug","message":"Starting scheduled job: Download Sync","timestamp":"2026-04-25T17:11:00.005Z"}
+{"label":"Jobs","level":"debug","message":"Starting scheduled job: Download Sync","timestamp":"2026-04-25T17:12:00.005Z"}
+{"label":"Jobs","level":"debug","message":"Starting scheduled job: Download Sync","timestamp":"2026-04-25T17:13:00.002Z"}
+{"label":"Jobs","level":"debug","message":"Starting scheduled job: Download Sync","timestamp":"2026-04-25T17:14:00.002Z"}
+{"label":"Jobs","level":"debug","message":"Starting scheduled job: Download Sync","timestamp":"2026-04-25T17:15:00.005Z"}
+{"label":"Jobs","level":"info","message":"Starting scheduled job: Jellyfin Recently Added Scan","timestamp":"2026-04-25T17:15:00.010Z"}
+{"label":"Jellyfin Sync","level":"info","message":"Jellyfin Sync Starting","sessionId":"5cfef6ca-f054-4598-823c-46b83a06b5c0","timestamp":"2026-04-25T17:15:00.011Z"}
+{"label":"Jellyfin Sync","level":"info","message":"Beginning to process recently added for library: Movies","timestamp":"2026-04-25T17:15:00.014Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Title already exists and no new media types found The Long Walk","timestamp":"2026-04-25T17:15:00.112Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Title already exists and no new media types found Weapons","timestamp":"2026-04-25T17:15:00.130Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Title already exists and no new media types found The Fantastic 4: First Steps","timestamp":"2026-04-25T17:15:00.140Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Title already exists and no new media types found Mickey 17","timestamp":"2026-04-25T17:15:00.160Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Title already exists and no new media types found Beavis and Butt-Head Do America","timestamp":"2026-04-25T17:15:00.213Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Title already exists and no new media types found Joker: Folie à Deux","timestamp":"2026-04-25T17:15:00.237Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Title already exists and no new media types found The Wild Robot","timestamp":"2026-04-25T17:15:00.238Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Title already exists and no new media types found Rogue One: A Star Wars Story","timestamp":"2026-04-25T17:15:00.266Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Title already exists and no new media types found The Benchwarmers","timestamp":"2026-04-25T17:15:00.266Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Title already exists and no new media types found Pink Floyd: The Wall","timestamp":"2026-04-25T17:15:00.276Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Title already exists and no new media types found Star Wars: Episode III - Revenge of the Sith","timestamp":"2026-04-25T17:15:00.283Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Title already exists and no new media types found Hocus Pocus","timestamp":"2026-04-25T17:15:00.330Z"}
+{"label":"Jellyfin Sync","level":"info","message":"Beginning to process recently added for library: Shows","timestamp":"2026-04-25T17:15:04.334Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Updating existing title: Frieren: Beyond Journey's End","timestamp":"2026-04-25T17:15:04.400Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Updating existing title: Andor","timestamp":"2026-04-25T17:15:04.411Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Updating existing title: Parenthood","timestamp":"2026-04-25T17:15:04.532Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Updating existing title: The Daily Show","timestamp":"2026-04-25T17:15:04.602Z"}
+{"label":"Jellyfin Sync","level":"debug","message":"Updating existing title: Adventure Time","timestamp":"2026-04-25T17:15:04.866Z"}
+{"label":"Jellyfin Sync","level":"info","message":"Recently Added Scan Complete","timestamp":"2026-04-25T17:15:08.869Z"}
