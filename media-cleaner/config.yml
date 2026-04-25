@@ -4,8 +4,12 @@
 
 shows:
   # Keep only the 5 most recent episodes; delete oldest when over limit
-  # - title: "The Daily Show"
-  #   max_episodes: 5
+  - title: "The Late Show with Stephen Colbert"
+    max_episodes: 5
+    delete_after_watched: true
+  - title: "The Daily Show"
+    max_episodes: 5
+    delete_after_watched: true
 
   # Delete any episode after it has been watched by any user
   # - title: "Last Week Tonight"
@@ -19,7 +23,3 @@ movies:
   # Delete after any user has watched it
   # - title: "Some Movie"
   #   delete_after_watched: true
-  - title: "Joker: Folie à Deux"
-    delete_after_watched: true
-  - title: "Pillion"
-    delete_after_watched: true
