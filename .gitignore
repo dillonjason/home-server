@@ -11,6 +11,7 @@ authelia/secrets
 deluge/*
 redis/data
 jackett/*
+sabnzbd/*
 sonarr/*
 radarr/*
 bazarr/*

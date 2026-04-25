@@ -33,7 +33,7 @@ services:
       - PGID=985
       - TZ=America/New_York
       - URL=dillonjason.dev
-      - SUBDOMAINS=apollo,code-server,openclaw
+      - SUBDOMAINS=apollo,code-server,openclaw,sabnzbd
       - VALIDATION=dns
       - DNSPLUGIN=cloudflare
       - EMAIL=djasuar@gmail.com
@@ -371,3 +371,20 @@ services:
       - ./media-cleaner/config.yml:/config/config.yml:ro
     mem_limit: 128m
     cpus: 0.25
+
+  sabnzbd:
+    image: lscr.io/linuxserver/sabnzbd:latest
+    container_name: sabnzbd
+    environment:
+      - PUID=1000
+      - PGID=985
+      - TZ=America/New_York
+    volumes:
+      - ./sabnzbd/config:/config
+      - /mnt/Media/usenet/incomplete:/incomplete-downloads
+      - /mnt/Media/usenet:/downloads
+    ports:
+      - 8085:8080
+    restart: unless-stopped
+    mem_limit: 1g
+    cpus: 1
