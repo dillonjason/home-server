@@ -14,14 +14,9 @@ automation:
         domain: switch
     condition: []
     action:
-      - type: turn_on
-        device_id: 5bb6b71ea7ae755ed033268241ecd661
-        entity_id: 130f26da6a7d0abdc9926d23dbadf51a
-        domain: light
-      - type: turn_on
-        device_id: 35c1c010a03d85229d36932f57834859
-        entity_id: 8319122379ae8de71fdb95890cfa27f6
-        domain: switch
+      - action: light.turn_on
+        target:
+          entity_id: light.living_room_lights
     mode: single
 
   - id: '1702223565790'
@@ -35,12 +30,7 @@ automation:
         domain: switch
     condition: []
     action:
-      - type: turn_off
-        device_id: 5bb6b71ea7ae755ed033268241ecd661
-        entity_id: 130f26da6a7d0abdc9926d23dbadf51a
-        domain: light
-      - type: turn_off
-        device_id: 35c1c010a03d85229d36932f57834859
-        entity_id: 8319122379ae8de71fdb95890cfa27f6
-        domain: switch
+      - action: light.turn_off
+        target:
+          entity_id: light.living_room_lights
     mode: single
